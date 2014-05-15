@@ -77,7 +77,7 @@ function initialize() {
   };
 
   // Map을 그리는 작업
-  map = new google.maps.Map(document.getElementById('map'),
+  map = new google.maps.Map(document.getElementById('mainMap'),
       mapOptions);
 
   if(navigator.geolocation) {

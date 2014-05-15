@@ -1,0 +1,163 @@
+@CHARSET "UTF-8";
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+    }
+    .drawers {
+        position: absolute;
+        width: 300px;
+        color: white;
+        background-color: #696969;
+    }
+    #content {
+        position: absolute;
+        width: 100%;
+        background-color: #4682B4;
+    }
+    #tap {
+        text-decoration: none;
+        border: solid 1px #4682B4;
+        color: white;
+        background-color: #4682B4;
+    }
+    #menuIcon {
+      background-size:100% 1em;
+      width: 3.5em;
+      height: 3.5em;
+      float: left;
+      padding: 15px;
+    }
+    #menuAlarm {
+      background-size:100% 1em;
+      width: 2.6em;
+      height: 2.6em;
+      float: right;
+      padding: 7px;
+    }
+
+    #navigation{ 
+      text-align: center;
+      float: left;
+      margin:0 auto;
+      text-align:left;
+      position: absolute;
+      left: 50%;
+      margin: -23px 0px 10px -95px;
+      padding: 15px;
+    }
+    
+    .mainIcon {
+      height: 3.0em;
+      border: 1px solid white;
+      text-decoration: none;
+      text-align: center;
+    }
+    .mainIcon_s {
+      background-size:100% 4em;
+      width: 4em;
+      height: 4em;
+      padding: 15px;
+    }
+  /*
+    .mainIcon_f {
+      background-size:100% 4em;
+      width: 4em;
+      height: 4em;
+      padding: 15px;
+    }
+    */
+    #map {
+      display:inline-block;
+      float: left;
+      width: 80px;
+      height: 26px;
+      border-radius: 5px 0px 0px 5px;
+      background-color: white;
+    }
+    #maps {
+      color: #4682B4;
+    }
+    #chat {
+      display:inline-block;
+      float: right;
+      width: 80px;
+      height: 26px;
+      border-radius: 0px 5px 5px 0px;
+      background-color: #4682B4;
+    }
+    .text {
+      display: inline-block;
+      color: white;
+      vertical-align: sub;
+    }
+    
+    /**/
+    .snap-drawers {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      height: auto;
+     }
+     
+     #center {
+       height: 500px;
+       background-color: white;
+       margin: 32px 0px 0px 0px;
+      padding: 20px;  
+     }
+     #myPic {
+       border: 0;  
+       page-break-inside: avoid;  
+       max-width: 100%;
+       vertical-align: middle; 
+       
+     }
+      #imgBox {
+        width: 267px;
+        height: 180px;
+      }
+      #name {
+        padding: 0px 0px 0px 10px;
+        margin: 9px 0px 0px 0px;
+      }    
+     .left-drawer p{
+       margin: 1.5px 0px 3px 0px;
+       padding: 0px 0px 0px 10px;
+       font-size: small;
+     }  
+     #profile {
+       display: inline-block;
+       color: white;
+       margin-left: 10%;
+     }
+     #tagTap {
+     background-color: #4682B4;
+     } 
+    .locationTag{
+    
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    border: 1px solid #666;
+    background-color: #B1BCCF;
+    padding: 10px 0 ;
+    text-align:center;
+    opacity: .9;
+   
+    /*The good stuff */
+    -webkit-transition: opacity 0.5s ease-out;  /* Saf3.2+, Chrome */
+    -moz-transition: opacity 0.5s ease-out;  /* FF4+ */
+    -ms-transition: opacity 0.5s ease-out;  /* IE10? */
+    -o-transition: opacity 0.5s ease-out;  /* Opera 10.5+ */
+    transition: opacity 0.5s ease-out;  
+ 
+    }     
+  
+  
