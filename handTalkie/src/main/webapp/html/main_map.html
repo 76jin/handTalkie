@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Geolocation API 예제</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+
+<!--// viewport 태그: 페이지의 크기의 확대/축소에 관여
+    // initial-scale=1.0: 원래 크기 그대로
+    // user-scalable = no: 사용자가 임의로 확대/축소를 할 수 없게
+-->
+ <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+ 
+ <!-- Google Maps API를 사용하기 위한 선언 
+  // Google maps API의 링크
+  // sensor=true: 현재 사용자의 위치를 읽어들이는 여부를 선언하는 부분이다.
+  //위의 예시에서는 true라고 표시하여 현재 사용자의 위치를 불러들인다고 선언.
+ -->
+ <script src="http://maps.google.com/maps/api/js?sensor=true"> </script>
+ <link rel="stylesheet" href="../css/main_map.css">
+
+</head>
+
+<body>
+<div id="location">
+Your location will go here.
+</div>
+<div id="map"></div> <!-- Google Map 이 삽입될 division -->
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<script src="../js/main_map.js"></script>
+</body>
+</html>
