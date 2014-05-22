@@ -1,353 +1,353 @@
--- �����
+-- 사용자
 CREATE TABLE `SE_USERS` (
-	`UNO`       INTEGER      NOT NULL COMMENT '����ڹ�ȣ', -- ����ڹ�ȣ
-	`EMAIL`     VARCHAR(40)  NOT NULL COMMENT '�̸���', -- �̸���
-	`PASSWORD`  VARCHAR(20)  NOT NULL COMMENT '��ȣ', -- ��ȣ
-	`NAME`      VARCHAR(50)  NOT NULL COMMENT '�̸�', -- �̸�
-	`AGENO`     INTEGER      NOT NULL COMMENT '���ɴ� ���� ��ȣ', -- ���ɴ� ���� ��ȣ
-	`NATINO`    INTEGER      NOT NULL COMMENT '���� ��� ��ȣ', -- ���� ��� ��ȣ
-	`GENDER`    CHAR(1)      NOT NULL COMMENT '����', -- ����
-	`ISDECLARE` CHAR(1)      NULL     COMMENT '�Ű����ߴ��� ����', -- �Ű����ߴ��� ����
-	`GRADE`     VARCHAR(10)  NOT NULL COMMENT '���', -- ���
-	`ISEMAIL`   CHAR(1)      NULL     COMMENT '�̸��� ���� ����', -- �̸��� ���� ����
-	`FAVTAG`    VARCHAR(50)  NULL     COMMENT '�����ϴ� �±�', -- �����ϴ� �±�
-	`PHOPATH`   VARCHAR(255) NULL     COMMENT '�������' -- �������
+	`UNO`       INTEGER      NOT NULL COMMENT '사용자번호', -- 사용자번호
+	`EMAIL`     VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+	`PASSWORD`  VARCHAR(20)  NOT NULL COMMENT '암호', -- 암호
+	`NAME`      VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
+	`AGENO`     INTEGER      NOT NULL COMMENT '연령대 관리 번호', -- 연령대 관리 번호
+	`NATINO`    INTEGER      NOT NULL COMMENT '국가 목록 번호', -- 국가 목록 번호
+	`GENDER`    CHAR(1)      NOT NULL COMMENT '성별', -- 성별
+	`ISDECLARE` CHAR(1)      NULL     COMMENT '신고당했는지 여부', -- 신고당했는지 여부
+	`GRADE`     VARCHAR(10)  NOT NULL COMMENT '등급', -- 등급
+	`ISEMAIL`   CHAR(1)      NULL     COMMENT '이메일 검증 여부', -- 이메일 검증 여부
+	`FAVTAG`    VARCHAR(50)  NULL     COMMENT '좋아하는 태그', -- 좋아하는 태그
+	`PHOPATH`   VARCHAR(255) NULL     COMMENT '사진경로' -- 사진경로
 )
-COMMENT '�����';
+COMMENT '사용자';
 
--- �����
+-- 사용자
 ALTER TABLE `SE_USERS`
-	ADD CONSTRAINT `PK_SE_USERS` -- ����� �⺻Ű
+	ADD CONSTRAINT `PK_SE_USERS` -- 사용자 기본키
 		PRIMARY KEY (
-			`UNO` -- ����ڹ�ȣ
+			`UNO` -- 사용자번호
 		);
 
--- ����� ����ũ �ε���
+-- 사용자 유니크 인덱스
 CREATE UNIQUE INDEX `UIX_SE_USERS`
-	ON `SE_USERS` ( -- �����
-		`EMAIL` ASC -- �̸���
+	ON `SE_USERS` ( -- 사용자
+		`EMAIL` ASC -- 이메일
 	);
 
 ALTER TABLE `SE_USERS`
-	MODIFY COLUMN `UNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '����ڹ�ȣ';
+	MODIFY COLUMN `UNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '사용자번호';
 
--- ģ������
+-- 친구정보
 CREATE TABLE `SE_FRIENDINFO` (
-	`UNO`     INTEGER NOT NULL COMMENT '����ڹ�ȣ', -- ����ڹ�ȣ
-	`UNO2`    INTEGER NOT NULL COMMENT 'ģ����ȣ', -- ģ����ȣ
-	`ISBLOCK` CHAR(1) NULL     COMMENT '���ܿ���' -- ���ܿ���
+	`UNO`     INTEGER NOT NULL COMMENT '사용자번호', -- 사용자번호
+	`UNO2`    INTEGER NOT NULL COMMENT '친구번호', -- 친구번호
+	`ISBLOCK` CHAR(1) NULL     COMMENT '차단여부' -- 차단여부
 )
-COMMENT 'ģ������';
+COMMENT '친구정보';
 
--- ģ������
+-- 친구정보
 ALTER TABLE `SE_FRIENDINFO`
-	ADD CONSTRAINT `PK_SE_FRIENDINFO` -- ģ������ �⺻Ű
+	ADD CONSTRAINT `PK_SE_FRIENDINFO` -- 친구정보 기본키
 		PRIMARY KEY (
-			`UNO`,  -- ����ڹ�ȣ
-			`UNO2`  -- ģ����ȣ
+			`UNO`,  -- 사용자번호
+			`UNO2`  -- 친구번호
 		);
 
--- ����ä�ù�
+-- 문자채팅방
 CREATE TABLE `SE_CHATROOM` (
-	`CHATROOMNO` INTEGER     NOT NULL COMMENT 'ä�ù� ���� ��ȣ', -- ä�ù� ���� ��ȣ
-	`UNO`        INTEGER     NOT NULL COMMENT '�����ڹ�ȣ', -- �����ڹ�ȣ
-	`TOTALNUM`   INTEGER     NOT NULL COMMENT '�� ä�� ���� �ο�(30��)', -- �� ä�� ���� �ο�(30��)
-	`LOCNAME`    VARCHAR(50) NOT NULL COMMENT '�����̸�', -- �����̸�
-	`ISAUTO`     CHAR(1)     NOT NULL COMMENT '����� �ݰ� �ڵ����� ������ ����', -- ����� �ݰ� �ڵ����� ������ ����
-	`ISUPDATE`   CHAR(1)     NOT NULL COMMENT 'ä�� ���� ������Ʈ ����', -- ä�� ���� ������Ʈ ����
-	`CHATDESC`   TEXT        NULL     COMMENT 'ä�� ����' -- ä�� ����
+	`CHATROOMNO` INTEGER     NOT NULL COMMENT '채팅방 개설 번호', -- 채팅방 개설 번호
+	`UNO`        INTEGER     NOT NULL COMMENT '개설자번호', -- 개설자번호
+	`TOTALNUM`   INTEGER     NOT NULL COMMENT '총 채팅 가능 인원(30명)', -- 총 채팅 가능 인원(30명)
+	`LOCNAME`    VARCHAR(50) NOT NULL COMMENT '지역이름', -- 지역이름
+	`ISAUTO`     CHAR(1)     NOT NULL COMMENT '사용자 반경 자동생성 방인지 여부', -- 사용자 반경 자동생성 방인지 여부
+	`ISUPDATE`   CHAR(1)     NOT NULL COMMENT '채팅 내용 업데이트 여부', -- 채팅 내용 업데이트 여부
+	`CHATDESC`   TEXT        NULL     COMMENT '채팅 내용' -- 채팅 내용
 )
-COMMENT '����ä�ù�';
+COMMENT '문자채팅방';
 
--- ����ä�ù�
+-- 문자채팅방
 ALTER TABLE `SE_CHATROOM`
-	ADD CONSTRAINT `PK_SE_CHATROOM` -- ����ä�ù� �⺻Ű
+	ADD CONSTRAINT `PK_SE_CHATROOM` -- 문자채팅방 기본키
 		PRIMARY KEY (
-			`CHATROOMNO` -- ä�ù� ���� ��ȣ
+			`CHATROOMNO` -- 채팅방 개설 번호
 		);
 
 ALTER TABLE `SE_CHATROOM`
-	MODIFY COLUMN `CHATROOMNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT 'ä�ù� ���� ��ȣ';
+	MODIFY COLUMN `CHATROOMNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '채팅방 개설 번호';
 
--- �����缭��
+-- 음성사서함
 CREATE TABLE `SE_VOICMSG` (
-	`VOICMSGNO` INTEGER   NOT NULL COMMENT '���� �޽��� ��ȣ', -- ���� �޽��� ��ȣ
-	`UNO`       INTEGER   NOT NULL COMMENT '�����»����ȣ', -- �����»����ȣ
-	`UNO2`      INTEGER   NOT NULL COMMENT '�޴»����ȣ', -- �޴»����ȣ
-	`SENDTIME`  DATETIME  NOT NULL COMMENT '�߽��� �ð�', -- �߽��� �ð�
-	`ISRECV`    CHAR(1)   NOT NULL COMMENT '���� Ȯ�� ����(�߿�)', -- ���� Ȯ�� ����(�߿�)
-	`VOICEFILEPATH` VARCHAR(255) NOT NULL COMMENT '���� �޽��� ����' -- ���� �޽��� ����
+	`VOICMSGNO` INTEGER   NOT NULL COMMENT '음성 메시지 번호', -- 음성 메시지 번호
+	`UNO`       INTEGER   NOT NULL COMMENT '보내는사람번호', -- 보내는사람번호
+	`UNO2`      INTEGER   NOT NULL COMMENT '받는사람번호', -- 받는사람번호
+	`SENDTIME`  DATETIME  NOT NULL COMMENT '발신한 시간', -- 발신한 시간
+	`ISRECV`    CHAR(1)   NOT NULL COMMENT '수신 확인 여부(중요)', -- 수신 확인 여부(중요)
+	`VOICEFILEPATH` VARCHAR(255) NOT NULL COMMENT '음성 메시지 파일' -- 음성 메시지 파일
 )
-COMMENT '�����缭��';
+COMMENT '음성사서함';
 
--- �����缭��
+-- 음성사서함
 ALTER TABLE `SE_VOICMSG`
-	ADD CONSTRAINT `PK_SE_VOICMSG` -- �����缭�� �⺻Ű
+	ADD CONSTRAINT `PK_SE_VOICMSG` -- 음성사서함 기본키
 		PRIMARY KEY (
-			`VOICMSGNO` -- ���� �޽��� ��ȣ
+			`VOICMSGNO` -- 음성 메시지 번호
 		);
 
--- �����缭�� ����ũ �ε���
+-- 음성사서함 유니크 인덱스
 CREATE UNIQUE INDEX `UIX_SE_VOICMSG`
-	ON `SE_VOICMSG` ( -- �����缭��
-		`VOICEFILEPATH` ASC -- ���� �޽��� ����
+	ON `SE_VOICMSG` ( -- 음성사서함
+		`VOICEFILEPATH` ASC -- 음성 메시지 파일
 	);
 
 ALTER TABLE `SE_VOICMSG`
-	MODIFY COLUMN `VOICMSGNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '���� �޽��� ��ȣ';
+	MODIFY COLUMN `VOICMSGNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '음성 메시지 번호';
 
--- �ҷ�����ڽŰ�
+-- 불량사용자신고
 CREATE TABLE `SE_DECCREAT` (
-	`DECCREATNO` INTEGER  NOT NULL COMMENT '�Ű��ϱ� ���� ��ȣ', -- �Ű��ϱ� ���� ��ȣ
-	`UNO`        INTEGER  NOT NULL COMMENT '�Ű��ڹ�ȣ', -- �Ű��ڹ�ȣ
-	`UNO2`       INTEGER  NOT NULL COMMENT '�ǽŰ��ڹ�ȣ', -- �ǽŰ��ڹ�ȣ
-	`DECLISTNO`  INTEGER  NOT NULL COMMENT '�Ű� ���� ��� ��ȣ', -- �Ű� ���� ��� ��ȣ
-	`DECDESC`    TEXT     NOT NULL COMMENT '�Ű� ����(�Ű� ����)', -- �Ű� ����(�Ű� ����)
-	`DECTIME`    DATETIME NULL     COMMENT '�Ű� �ð�' -- �Ű� �ð�
+	`DECCREATNO` INTEGER  NOT NULL COMMENT '신고하기 개설 번호', -- 신고하기 개설 번호
+	`UNO`        INTEGER  NOT NULL COMMENT '신고자번호', -- 신고자번호
+	`UNO2`       INTEGER  NOT NULL COMMENT '피신고자번호', -- 피신고자번호
+	`DECLISTNO`  INTEGER  NOT NULL COMMENT '신고 종류 목록 번호', -- 신고 종류 목록 번호
+	`DECDESC`    TEXT     NOT NULL COMMENT '신고 내용(신고 사유)', -- 신고 내용(신고 사유)
+	`DECTIME`    DATETIME NULL     COMMENT '신고 시간' -- 신고 시간
 )
-COMMENT '�ҷ�����ڽŰ�';
+COMMENT '불량사용자신고';
 
--- �ҷ�����ڽŰ�
+-- 불량사용자신고
 ALTER TABLE `SE_DECCREAT`
-	ADD CONSTRAINT `PK_SE_DECCREAT` -- �ҷ�����ڽŰ� �⺻Ű
+	ADD CONSTRAINT `PK_SE_DECCREAT` -- 불량사용자신고 기본키
 		PRIMARY KEY (
-			`DECCREATNO` -- �Ű��ϱ� ���� ��ȣ
+			`DECCREATNO` -- 신고하기 개설 번호
 		);
 
 ALTER TABLE `SE_DECCREAT`
-	MODIFY COLUMN `DECCREATNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '�Ű��ϱ� ���� ��ȣ';
+	MODIFY COLUMN `DECCREATNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고하기 개설 번호';
 
--- �Ű�����
+-- 신고유형
 CREATE TABLE `SE_DEC` (
-	`DECLISTNO` INTEGER     NOT NULL COMMENT '�Ű� ���� ��� ��ȣ', -- �Ű� ���� ��� ��ȣ
-	`DECTYPE`   VARCHAR(50) NOT NULL COMMENT '�Ű� ����' -- �Ű� ����
+	`DECLISTNO` INTEGER     NOT NULL COMMENT '신고 종류 목록 번호', -- 신고 종류 목록 번호
+	`DECTYPE`   VARCHAR(50) NOT NULL COMMENT '신고 종류' -- 신고 종류
 )
-COMMENT '�Ű�����';
+COMMENT '신고유형';
 
--- �Ű�����
+-- 신고유형
 ALTER TABLE `SE_DEC`
-	ADD CONSTRAINT `PK_SE_DEC` -- �Ű����� �⺻Ű
+	ADD CONSTRAINT `PK_SE_DEC` -- 신고유형 기본키
 		PRIMARY KEY (
-			`DECLISTNO` -- �Ű� ���� ��� ��ȣ
+			`DECLISTNO` -- 신고 종류 목록 번호
 		);
 
 ALTER TABLE `SE_DEC`
-	MODIFY COLUMN `DECLISTNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '�Ű� ���� ��� ��ȣ';
+	MODIFY COLUMN `DECLISTNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고 종류 목록 번호';
 
--- ����
+-- 국가
 CREATE TABLE `SE_NAT` (
-	`NATINO`   INTEGER     NOT NULL COMMENT '���� ��� ��ȣ', -- ���� ��� ��ȣ
-	`NATITYPE` VARCHAR(50) NOT NULL COMMENT '���� ����' -- ���� ����
+	`NATINO`   INTEGER     NOT NULL COMMENT '국가 목록 번호', -- 국가 목록 번호
+	`NATITYPE` VARCHAR(50) NOT NULL COMMENT '국가 종류' -- 국가 종류
 )
-COMMENT '����';
+COMMENT '국가';
 
--- ����
+-- 국가
 ALTER TABLE `SE_NAT`
-	ADD CONSTRAINT `PK_SE_NAT` -- ���� �⺻Ű
+	ADD CONSTRAINT `PK_SE_NAT` -- 국가 기본키
 		PRIMARY KEY (
-			`NATINO` -- ���� ��� ��ȣ
+			`NATINO` -- 국가 목록 번호
 		);
 
 ALTER TABLE `SE_NAT`
-	MODIFY COLUMN `NATINO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '���� ��� ��ȣ';
+	MODIFY COLUMN `NATINO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '국가 목록 번호';
 
--- ���
+-- 언어
 CREATE TABLE `SE_LAN` (
-	`LANNO`   INTEGER     NOT NULL COMMENT '��� ���� ��ȣ', -- ��� ���� ��ȣ
-	`LANTYPE` VARCHAR(10) NOT NULL COMMENT '��� ����' -- ��� ����
+	`LANNO`   INTEGER     NOT NULL COMMENT '언어 관리 번호', -- 언어 관리 번호
+	`LANTYPE` VARCHAR(10) NOT NULL COMMENT '언어 종류' -- 언어 종류
 )
-COMMENT '���';
+COMMENT '언어';
 
--- ���
+-- 언어
 ALTER TABLE `SE_LAN`
-	ADD CONSTRAINT `PK_SE_LAN` -- ��� �⺻Ű
+	ADD CONSTRAINT `PK_SE_LAN` -- 언어 기본키
 		PRIMARY KEY (
-			`LANNO` -- ��� ���� ��ȣ
+			`LANNO` -- 언어 관리 번호
 		);
 
 ALTER TABLE `SE_LAN`
-	MODIFY COLUMN `LANNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '��� ���� ��ȣ';
+	MODIFY COLUMN `LANNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '언어 관리 번호';
 
--- ���ɴ�
+-- 연령대
 CREATE TABLE `SE_AGE` (
-	`AGENO`   INTEGER     NOT NULL COMMENT '���ɴ� ���� ��ȣ', -- ���ɴ� ���� ��ȣ
-	`AGETYPE` VARCHAR(10) NOT NULL COMMENT '���ɴ� ����' -- ���ɴ� ����
+	`AGENO`   INTEGER     NOT NULL COMMENT '연령대 관리 번호', -- 연령대 관리 번호
+	`AGETYPE` VARCHAR(10) NOT NULL COMMENT '연령대 종류' -- 연령대 종류
 )
-COMMENT '���ɴ�';
+COMMENT '연령대';
 
--- ���ɴ�
+-- 연령대
 ALTER TABLE `SE_AGE`
-	ADD CONSTRAINT `PK_SE_AGE` -- ���ɴ� �⺻Ű
+	ADD CONSTRAINT `PK_SE_AGE` -- 연령대 기본키
 		PRIMARY KEY (
-			`AGENO` -- ���ɴ� ���� ��ȣ
+			`AGENO` -- 연령대 관리 번호
 		);
 
 ALTER TABLE `SE_AGE`
-	MODIFY COLUMN `AGENO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '���ɴ� ���� ��ȣ';
+	MODIFY COLUMN `AGENO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '연령대 관리 번호';
 
--- ��밡�ɾ��
+-- 사용가능언어
 CREATE TABLE `SE_ADDLANG` (
-	`ADDLANNO` INTEGER NOT NULL COMMENT '�߰���� ���� ��ȣ', -- �߰���� ���� ��ȣ
-	`LANNO`    INTEGER NOT NULL COMMENT '��� ���� ��ȣ', -- ��� ���� ��ȣ
-	`UNO`      INTEGER NOT NULL COMMENT '����ڹ�ȣ' -- ����ڹ�ȣ
+	`ADDLANNO` INTEGER NOT NULL COMMENT '추가언어 관리 번호', -- 추가언어 관리 번호
+	`LANNO`    INTEGER NOT NULL COMMENT '언어 관리 번호', -- 언어 관리 번호
+	`UNO`      INTEGER NOT NULL COMMENT '사용자번호' -- 사용자번호
 )
-COMMENT '��밡�ɾ��';
+COMMENT '사용가능언어';
 
--- ��밡�ɾ��
+-- 사용가능언어
 ALTER TABLE `SE_ADDLANG`
-	ADD CONSTRAINT `PK_SE_ADDLANG` -- ��밡�ɾ�� �⺻Ű
+	ADD CONSTRAINT `PK_SE_ADDLANG` -- 사용가능언어 기본키
 		PRIMARY KEY (
-			`ADDLANNO` -- �߰���� ���� ��ȣ
+			`ADDLANNO` -- 추가언어 관리 번호
 		);
 
 ALTER TABLE `SE_ADDLANG`
-	MODIFY COLUMN `ADDLANNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '�߰���� ���� ��ȣ';
+	MODIFY COLUMN `ADDLANNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '추가언어 관리 번호';
 
--- ��ġ�α�
+-- 위치로그
 CREATE TABLE `SE_LOCLOG` (
-	`LOCLOGNO` INTEGER      NOT NULL COMMENT '��ġ�α׹�ȣ', -- ��ġ�α׹�ȣ
-	`UNO`      INTEGER      NOT NULL COMMENT '����ڹ�ȣ', -- ����ڹ�ȣ
-	`LOCTAG`   VARCHAR(255) NULL     COMMENT '��ġ�±�', -- ��ġ�±�
-	`LOGTIME`  DATETIME     NULL     COMMENT '��ϳ�¥' -- ��ϳ�¥
+	`LOCLOGNO` INTEGER      NOT NULL COMMENT '위치로그번호', -- 위치로그번호
+	`UNO`      INTEGER      NOT NULL COMMENT '사용자번호', -- 사용자번호
+	`LOCTAG`   VARCHAR(255) NULL     COMMENT '위치태그', -- 위치태그
+	`LOGTIME`  DATETIME     NULL     COMMENT '기록날짜' -- 기록날짜
 )
-COMMENT '��ġ�α�';
+COMMENT '위치로그';
 
--- ��ġ�α�
+-- 위치로그
 ALTER TABLE `SE_LOCLOG`
-	ADD CONSTRAINT `PK_SE_LOCLOG` -- ��ġ�α� �⺻Ű
+	ADD CONSTRAINT `PK_SE_LOCLOG` -- 위치로그 기본키
 		PRIMARY KEY (
-			`LOCLOGNO` -- ��ġ�α׹�ȣ
+			`LOCLOGNO` -- 위치로그번호
 		);
 
 ALTER TABLE `SE_LOCLOG`
-	MODIFY COLUMN `LOCLOGNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '��ġ�α׹�ȣ';
+	MODIFY COLUMN `LOCLOGNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '위치로그번호';
 
--- �����
+-- 사용자
 ALTER TABLE `SE_USERS`
-	ADD CONSTRAINT `FK_SE_NAT_TO_SE_USERS` -- ���� -> �����
+	ADD CONSTRAINT `FK_SE_NAT_TO_SE_USERS` -- 국가 -> 사용자
 		FOREIGN KEY (
-			`NATINO` -- ���� ��� ��ȣ
+			`NATINO` -- 국가 목록 번호
 		)
-		REFERENCES `SE_NAT` ( -- ����
-			`NATINO` -- ���� ��� ��ȣ
+		REFERENCES `SE_NAT` ( -- 국가
+			`NATINO` -- 국가 목록 번호
 		);
 
--- �����
+-- 사용자
 ALTER TABLE `SE_USERS`
-	ADD CONSTRAINT `FK_SE_AGE_TO_SE_USERS` -- ���ɴ� -> �����
+	ADD CONSTRAINT `FK_SE_AGE_TO_SE_USERS` -- 연령대 -> 사용자
 		FOREIGN KEY (
-			`AGENO` -- ���ɴ� ���� ��ȣ
+			`AGENO` -- 연령대 관리 번호
 		)
-		REFERENCES `SE_AGE` ( -- ���ɴ�
-			`AGENO` -- ���ɴ� ���� ��ȣ
+		REFERENCES `SE_AGE` ( -- 연령대
+			`AGENO` -- 연령대 관리 번호
 		);
 
--- ģ������
+-- 친구정보
 ALTER TABLE `SE_FRIENDINFO`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_FRIENDINFO` -- ����� -> ģ������
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_FRIENDINFO` -- 사용자 -> 친구정보
 		FOREIGN KEY (
-			`UNO` -- ����ڹ�ȣ
+			`UNO` -- 사용자번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- ģ������
+-- 친구정보
 ALTER TABLE `SE_FRIENDINFO`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_FRIENDINFO2` -- ����� -> ģ������2
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_FRIENDINFO2` -- 사용자 -> 친구정보2
 		FOREIGN KEY (
-			`UNO2` -- ģ����ȣ
+			`UNO2` -- 친구번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- ����ä�ù�
+-- 문자채팅방
 ALTER TABLE `SE_CHATROOM`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_CHATROOM` -- ����� -> ����ä�ù�
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_CHATROOM` -- 사용자 -> 문자채팅방
 		FOREIGN KEY (
-			`UNO` -- �����ڹ�ȣ
+			`UNO` -- 개설자번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- �����缭��
+-- 음성사서함
 ALTER TABLE `SE_VOICMSG`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_VOICMSG` -- ����� -> �����缭��
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_VOICMSG` -- 사용자 -> 음성사서함
 		FOREIGN KEY (
-			`UNO` -- �����»����ȣ
+			`UNO` -- 보내는사람번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- �����缭��
+-- 음성사서함
 ALTER TABLE `SE_VOICMSG`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_VOICMSG2` -- ����� -> �����缭��2
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_VOICMSG2` -- 사용자 -> 음성사서함2
 		FOREIGN KEY (
-			`UNO2` -- �޴»����ȣ
+			`UNO2` -- 받는사람번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- �ҷ�����ڽŰ�
+-- 불량사용자신고
 ALTER TABLE `SE_DECCREAT`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_DECCREAT` -- ����� -> �ҷ�����ڽŰ�
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_DECCREAT` -- 사용자 -> 불량사용자신고
 		FOREIGN KEY (
-			`UNO` -- �Ű��ڹ�ȣ
+			`UNO` -- 신고자번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- �ҷ�����ڽŰ�
+-- 불량사용자신고
 ALTER TABLE `SE_DECCREAT`
-	ADD CONSTRAINT `FK_SE_DEC_TO_SE_DECCREAT` -- �Ű����� -> �ҷ�����ڽŰ�
+	ADD CONSTRAINT `FK_SE_DEC_TO_SE_DECCREAT` -- 신고유형 -> 불량사용자신고
 		FOREIGN KEY (
-			`DECLISTNO` -- �Ű� ���� ��� ��ȣ
+			`DECLISTNO` -- 신고 종류 목록 번호
 		)
-		REFERENCES `SE_DEC` ( -- �Ű�����
-			`DECLISTNO` -- �Ű� ���� ��� ��ȣ
+		REFERENCES `SE_DEC` ( -- 신고유형
+			`DECLISTNO` -- 신고 종류 목록 번호
 		);
 
--- �ҷ�����ڽŰ�
+-- 불량사용자신고
 ALTER TABLE `SE_DECCREAT`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_DECCREAT2` -- ����� -> �ҷ�����ڽŰ�2
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_DECCREAT2` -- 사용자 -> 불량사용자신고2
 		FOREIGN KEY (
-			`UNO2` -- �ǽŰ��ڹ�ȣ
+			`UNO2` -- 피신고자번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- ��밡�ɾ��
+-- 사용가능언어
 ALTER TABLE `SE_ADDLANG`
-	ADD CONSTRAINT `FK_SE_LAN_TO_SE_ADDLANG` -- ��� -> ��밡�ɾ��
+	ADD CONSTRAINT `FK_SE_LAN_TO_SE_ADDLANG` -- 언어 -> 사용가능언어
 		FOREIGN KEY (
-			`LANNO` -- ��� ���� ��ȣ
+			`LANNO` -- 언어 관리 번호
 		)
-		REFERENCES `SE_LAN` ( -- ���
-			`LANNO` -- ��� ���� ��ȣ
+		REFERENCES `SE_LAN` ( -- 언어
+			`LANNO` -- 언어 관리 번호
 		);
 
--- ��밡�ɾ��
+-- 사용가능언어
 ALTER TABLE `SE_ADDLANG`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_ADDLANG` -- ����� -> ��밡�ɾ��
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_ADDLANG` -- 사용자 -> 사용가능언어
 		FOREIGN KEY (
-			`UNO` -- ����ڹ�ȣ
+			`UNO` -- 사용자번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
 
--- ��ġ�α�
+-- 위치로그
 ALTER TABLE `SE_LOCLOG`
-	ADD CONSTRAINT `FK_SE_USERS_TO_SE_LOCLOG` -- ����� -> ��ġ�α�
+	ADD CONSTRAINT `FK_SE_USERS_TO_SE_LOCLOG` -- 사용자 -> 위치로그
 		FOREIGN KEY (
-			`UNO` -- ����ڹ�ȣ
+			`UNO` -- 사용자번호
 		)
-		REFERENCES `SE_USERS` ( -- �����
-			`UNO` -- ����ڹ�ȣ
+		REFERENCES `SE_USERS` ( -- 사용자
+			`UNO` -- 사용자번호
 		);
