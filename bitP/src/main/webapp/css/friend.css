@@ -1,0 +1,56 @@
+#timeLine_Fri {
+	overflow-y: scroll;
+	width: 100%;
+	height: 384px;
+	padding: 4px;
+	border: 1 solid #000000;
+}
+.header-inner {
+  width: 200px;
+}
+ 
+#list {
+  font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+ 
+#timeLine_ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+.liFri {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+.liFri:last-child {
+  border: none;
+}
+ 
+.liFri a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 100px;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+.liFri a:hover {
+  background: #9BC3FF;
+  text-decoration: blink;
+}
+.liFri:hover {
+  background: #9BC3FF;
+}
+.img_Fri {
+	width: 100%;
+	height: 100%;
+}
