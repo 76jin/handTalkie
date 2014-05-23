@@ -1,0 +1,2485 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>리포트</title>
+</head>
+<body>
+<h2>내 스키마의 템플릿</h2>
+<table border="1">
+    <tr>
+        <td colspan="6">주문정보 (ODERS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>주문번호(PK)</td>
+        <td>ONO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>주문수량</td>
+        <td>QTY</td>
+        <td>수량</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>주문일</td>
+        <td>ORD_DATE</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>고객번호(FK)</td>
+        <td>CNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제품번호(FK)</td>
+        <td>PNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">고객정보 (CUSTOMERS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>고객번호(PK)</td>
+        <td>CNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>이름</td>
+        <td>NAME</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>전화</td>
+        <td>TEL</td>
+        <td>전화번호</td>
+        <td>VARCHAR(30)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>상세주소</td>
+        <td>DET_ADDR</td>
+        <td>주소</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>이메일</td>
+        <td>EMAIL</td>
+        <td>이메일</td>
+        <td>VARCHAR(40)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>주소번호(FK)</td>
+        <td>ANO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">제품사진정보 (PHOTOS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사진번호(PK)</td>
+        <td>PHNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사진</td>
+        <td>PATH</td>
+        <td>웹주소</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제품번호(FK)</td>
+        <td>PNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">주소정보 (ADDRS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>주소번호(PK)</td>
+        <td>ANO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>우편번호</td>
+        <td>POSTNO</td>
+        <td>짧은코드</td>
+        <td>VARCHAR(10)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>기본주소</td>
+        <td>BAS_ADDR</td>
+        <td>주소</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">제조사정보 (MAKERS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사업자번호(PK)</td>
+        <td>COMP_CODE</td>
+        <td>사업자번호</td>
+        <td>VARCHAR(20)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제조사</td>
+        <td>NAME</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제조사홈페이지</td>
+        <td>HOMEPAGE</td>
+        <td>웹주소</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제조사전화</td>
+        <td>TEL</td>
+        <td>전화번호</td>
+        <td>VARCHAR(30)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">제품정보 (PRODUCTS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>제품번호(PK)</td>
+        <td>PNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제품명</td>
+        <td>TITLE</td>
+        <td>제품명</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>잔여수량</td>
+        <td>QTY</td>
+        <td>수량</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사업자번호(FK)</td>
+        <td>COMP_CODE</td>
+        <td>사업자번호</td>
+        <td>VARCHAR(20)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">직원정보 (EMPLOYEES)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>고객번호(PFK)</td>
+        <td>CNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>내선번호</td>
+        <td>IN_TEL</td>
+        <td>전화번호</td>
+        <td>VARCHAR(30)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>팩스</td>
+        <td>FAX</td>
+        <td>전화번호</td>
+        <td>VARCHAR(30)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>직위</td>
+        <td>POS</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>직책</td>
+        <td>TASK</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>부서</td>
+        <td>DEPT</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">강사 (SE_TEACHS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>강사번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의료</td>
+        <td>SAL</td>
+        <td>금액</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">교육생 (SE_STUDS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>교육생번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>회사</td>
+        <td>COMP</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>직위</td>
+        <td>POS</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>재직여부</td>
+        <td>STAT</td>
+        <td>Y_N</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>최종학력</td>
+        <td>LAST_SCH</td>
+        <td>제목</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>통장번호</td>
+        <td>ACCT</td>
+        <td>통장번호</td>
+        <td>VARCHAR(20)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">관리자 (SE_MGRS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>관리자번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고 목록 번호(FK)</td>
+        <td>DECLISTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(FK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>비밀번호 분실 신고 번호(FK)</td>
+        <td>PWDFORGOTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">사용자 (SE_USERS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사용자번호(PK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>이메일</td>
+        <td>EMAIL</td>
+        <td>이메일</td>
+        <td>VARCHAR(40)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>암호</td>
+        <td>PASSWORD</td>
+        <td>암호</td>
+        <td>VARCHAR(20)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>이름</td>
+        <td>NAME</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>연령대 관리 번호(FK)</td>
+        <td>AGENO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>국가 목록 번호(FK)</td>
+        <td>NATINO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>성별</td>
+        <td>GENDER</td>
+        <td>성별</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고당했는지 여부</td>
+        <td>DECLARE</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>등급</td>
+        <td>GRADE</td>
+        <td>짧은코드</td>
+        <td>VARCHAR(10)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>이메일 검증 여부</td>
+        <td>ISEMAIL</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>좋아하는 태그</td>
+        <td>FAVTAG</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사진경로</td>
+        <td>PHOPATH</td>
+        <td>웹주소</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">교육과정 (SE_COURS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>교육과정번호(PK)</td>
+        <td>CNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과정명</td>
+        <td>TITLE</td>
+        <td>제목</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>설명</td>
+        <td>DEST</td>
+        <td>내용</td>
+        <td>TEXT</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>교육시간</td>
+        <td>HOURS</td>
+        <td>숫자</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">과목 (SE_SUBJS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>과목번호(PK)</td>
+        <td>SNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과목명</td>
+        <td>TITLE</td>
+        <td>제목</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>설명</td>
+        <td>DEST</td>
+        <td>내용</td>
+        <td>TEXT</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">커리큘럼 (SE_COUR_SUBJS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>교육과정번호(PFK)</td>
+        <td>CNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과목번호(PFK)</td>
+        <td>SNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>순서</td>
+        <td>SEQ</td>
+        <td>숫자</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>교육시간</td>
+        <td>HOURS</td>
+        <td>숫자</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">개설강의 (SE_OPEN_LECTS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>강의번호(PK)</td>
+        <td>OLNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>교육과정번호(FK)</td>
+        <td>CNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>개설강의명</td>
+        <td>TITLE</td>
+        <td>제목</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의시작일</td>
+        <td>ST_DT</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의종료일</td>
+        <td>ED_DT</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>모집인원</td>
+        <td>SIZES</td>
+        <td>수량</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>관리자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">개설강의과목 (SE_OPEN_LECT_SUBJS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>과목강사번호(PK)</td>
+        <td>LSNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의번호(FK)</td>
+        <td>OLNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>교육과정번호(FK)</td>
+        <td>CNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과목번호(FK)</td>
+        <td>SNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강사번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의시작일</td>
+        <td>ST_DT</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의종료일</td>
+        <td>ED_DT</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의시간</td>
+        <td>HOURS</td>
+        <td>숫자</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">수강생 (SE_LECT_STUDS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>수강생번호(PK)</td>
+        <td>LSNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의번호(FK)</td>
+        <td>OLNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>교육생번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>교육지원번호(FK)</td>
+        <td>SUNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>수강상태번호(FK)</td>
+        <td>LSTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">새 테이블 (TABLE11)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">과제 (SE_TESTS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>과제번호(PK)</td>
+        <td>TNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의번호(FK)</td>
+        <td>OLNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과제유형번호(FK)</td>
+        <td>TTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과제명</td>
+        <td>TITLE</td>
+        <td>제목</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td>DEST</td>
+        <td>내용</td>
+        <td>TEXT</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>파일경로</td>
+        <td>FILE_PATH</td>
+        <td>웹주소</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>출제일</td>
+        <td>CR_DT</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제출마감일</td>
+        <td>ED_DT</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">과제평가 (SE_TEST_RESUS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>과제번호(PFK)</td>
+        <td>TNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>수강생번호(PFK)</td>
+        <td>LSNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>제출일</td>
+        <td>CR_DT</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>파일경로</td>
+        <td>FILE_PATH</td>
+        <td>웹주소</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>평가점수</td>
+        <td>GRAD</td>
+        <td>숫자</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과제상태번호(FK)</td>
+        <td>TRSNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">교육자료 (SE_LECT_FILES)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>교육자료번호(PK)</td>
+        <td>LFNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>강의번호(FK)</td>
+        <td>OLNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td>MSG</td>
+        <td>내용</td>
+        <td>TEXT</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>파일경로</td>
+        <td>FILE_PATH</td>
+        <td>웹주소</td>
+        <td>VARCHAR(255)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사용자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">강사과목 (SE_TEACH_SUBJS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>강사번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과목번호(PFK)</td>
+        <td>SNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>수준</td>
+        <td>LEVL</td>
+        <td>숫자</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">과제유형 (SE_TEST_TYPES)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>과제유형번호(PK)</td>
+        <td>TTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과제유형명</td>
+        <td>TITLE</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">과제상태 (SE_TEST_RESU_TYPES)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>과제상태번호(PK)</td>
+        <td>TRSNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>과제상태명</td>
+        <td>TITLE</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">교육지원 (SE_SUPPS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>교육지원번호(PK)</td>
+        <td>SUNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>교육지원명</td>
+        <td>TITLE</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">수강상태 (SE_LECT_STATS)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>수강상태번호(PK)</td>
+        <td>LSTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>수강상태명</td>
+        <td>TITLE</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">기본정보 (TABLE)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사용자번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">추가정보 (TABLE2)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사용자번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">정보 공개 여부 (TABLE3)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>정보공개여부키(PK)</td>
+        <td>COL9</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>위치태그</td>
+        <td>COL6</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">로그인 (TABLE4)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사용자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">프로필 (TABLE5)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사용자번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">친구 목록 관리 (TABLE6)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>친구목록관리번호(PK)</td>
+        <td>FRIENDLISTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>친구 차단목록관리번호(FK)</td>
+        <td>FRIENDBLOCKNO2</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">친구정보 (TABLE7)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>사용자번호(PFK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>친구번호(PFK)</td>
+        <td>UNO2</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>차단여부</td>
+        <td>COL</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">태그 관리 (TABLE8)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>태그관리번호(PK)</td>
+        <td>TAGNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>위치태그</td>
+        <td>LOCTAG</td>
+        <td>주소</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>좋아하는 태그</td>
+        <td>FAVTAG</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>최근 위치태그</td>
+        <td>CURLOCTAG</td>
+        <td>주소</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>id(FK)</td>
+        <td>id</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">문자채팅방 리스트 관리 (TABLE9)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>채팅방 리스트 번호(PK)</td>
+        <td>CHATLISTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>채팅방 개설 번호(FK)</td>
+        <td>CHATROOMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">설정 (TABLE10)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>GPS 사용 여부</td>
+        <td>ISPGS</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>App 버전정보</td>
+        <td>APPVER</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>도움말 봤는지 여부</td>
+        <td>ISFIRST</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">문자채팅방 (TABLE12)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>채팅방 개설 번호(PK)</td>
+        <td>CHATROOMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>개설자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>총 채팅 가능 인원(30명)</td>
+        <td>TOTALNUM</td>
+        <td>수량</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>지역이름</td>
+        <td>LOCNAME</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사용자 반경 자동생성 방인지 여부</td>
+        <td>ISAUTO</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>채팅 내용 업데이트 여부</td>
+        <td>ISUPDATE</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>채팅 내용</td>
+        <td>CHATDESC</td>
+        <td>내용</td>
+        <td>TEXT</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">문자채팅방 한개 관리 (TABLE13)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">신고하기 (TABLE14)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">음성 메시지 보관함 관리 (TABLE15)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>음성 메시지 보관함 번호(PK)</td>
+        <td>COL</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>음성 메시지 번호(FK)</td>
+        <td>VOICMSGNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">음성사서함 (TABLE16)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>음성 메시지 번호(PK)</td>
+        <td>VOICMSGNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>보내는사람번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>받는사람번호(FK)</td>
+        <td>UNO2</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>발신한 시간</td>
+        <td>SENDTIME</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>수신 확인 여부(중요)</td>
+        <td>ISRECV</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>음성 메시지 파일</td>
+        <td>VOICEFILE</td>
+        <td>오디오</td>
+        <td>VARBINARY</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">친구 차단 목록 관리 (TABLE17)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>친구 차단목록관리번호(PK)</td>
+        <td>FRIENDBLOCKNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">지도화면 관리 (TABLE18)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>지도화면 관리번호</td>
+        <td>COL</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사용자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">알림 보관함 관리 (TABLE19)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 보관함 관리 번호(PK)</td>
+        <td>ARAMLISTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(FK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">알림 메시지 하나 관리 (TABLE20)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(PK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사용자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>수신할 사용자 번호</td>
+        <td>RECVNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>발신한 사용자 번호</td>
+        <td>SENDNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>최대 메시지 길이(100자)</td>
+        <td>MAXLENG</td>
+        <td>수량</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>발신한 시간</td>
+        <td>SENDTIME</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>수신 확인 여부(중요)</td>
+        <td>ISRECV</td>
+        <td>선택</td>
+        <td>CHAR(1)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>메시지 내용</td>
+        <td>MSG</td>
+        <td>내용</td>
+        <td>TEXT</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">친구 추가 알림 (TABLE21)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(PFK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>친구 추가 알림 아이콘</td>
+        <td>FRIARAMICON</td>
+        <td>이미지</td>
+        <td>VARBINARY</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">알림 메시지 한 개 (TABLE22)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">음성 메시지 알림 (TABLE23)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(PFK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>음성 메시지 알림 아이콘</td>
+        <td>COL</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">채팅내용 업데이트 알림 (TABLE24)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(PFK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">시스템 알림(공지사항) (TABLE25)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(PFK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>시스템 알림 아이콘</td>
+        <td>SYSARAMICON</td>
+        <td>이미지</td>
+        <td>VARBINARY</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">채팅방에 추가됨 알림 메시지 (TABLE26)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(PFK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>채팅방에 추가 알림 아이콘</td>
+        <td>ADDARAMICON</td>
+        <td>이미지</td>
+        <td>VARBINARY</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">음성 메시지 도착 알림 메시지 (TABLE27)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>알림 메시지 번호(PFK)</td>
+        <td>ARAMNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>음성 메시지 알림 아이콘</td>
+        <td>VOICARAMICON</td>
+        <td>이미지</td>
+        <td>VARBINARY</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">불량사용자신고 (TABLE28)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>신고하기 개설 번호(PK)</td>
+        <td>DECCREATNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>피신고자번호(FK)</td>
+        <td>UNO2</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고 종류 목록 번호(FK)</td>
+        <td>DECLISTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고 내용(신고 사유)</td>
+        <td>DECDESC</td>
+        <td>내용</td>
+        <td>TEXT</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고 시간</td>
+        <td>DECTIME</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">신고 목록 관리 (TABLE29)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>신고 목록 번호(PK)</td>
+        <td>DECLISTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고하기 개설 번호(FK)</td>
+        <td>DECCREATNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">신고유형 (TABLE30)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>신고 종류 목록 번호(PK)</td>
+        <td>DECLISTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>신고 종류</td>
+        <td>DECTYPE</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">비밀번호 분실 신고 관리 (TABLE31)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>비밀번호 분실 신고 번호(PK)</td>
+        <td>PWDFORGOTNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사용자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>분실 신고 시간</td>
+        <td>DECTIME</td>
+        <td>날짜시간</td>
+        <td>DATETIME</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">국가 관리 (TABLE32)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>국가 관리 번호(PK)</td>
+        <td>COL</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>국가 목록 번호(FK)</td>
+        <td>NATINO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">국가 (TABLE33)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>국가 목록 번호(PK)</td>
+        <td>NATINO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>국가 종류</td>
+        <td>NATITYPE</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">언어 (TABLE34)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>언어 관리 번호(PK)</td>
+        <td>LANNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>언어 종류</td>
+        <td>LANTYPE</td>
+        <td>짧은코드</td>
+        <td>VARCHAR(10)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">연령대 (TABLE35)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>연령대 관리 번호(PK)</td>
+        <td>AGENO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>연령대 종류</td>
+        <td>AGETYPE</td>
+        <td>짧은코드</td>
+        <td>VARCHAR(10)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">사용가능언어 (TABLE36)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>추가언어 관리 번호(PK)</td>
+        <td>ADDLANNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>언어 관리 번호(FK)</td>
+        <td>LANNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사용자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">태그 하나 정보 (TABLE37)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>id(PK)</td>
+        <td>id</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>태그하나 번호</td>
+        <td>TAGNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>태그 종류</td>
+        <td>TAGTYPE</td>
+        <td>이름</td>
+        <td>VARCHAR(50)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">위치로그 (Temporary)</td>
+    </tr>
+    <tr>
+        <td>논리명</td>
+        <td>물리명</td>
+        <td>도메인</td>
+        <td>데이터 타입</td>
+        <td>Not Null</td>
+        <td>설명</td>
+    </tr>
+    <tr>
+        <td>위치로그번호(PK)</td>
+        <td>COL</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>Y</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>사용자번호(FK)</td>
+        <td>UNO</td>
+        <td>일련번호</td>
+        <td>INTEGER</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>위치태그</td>
+        <td>LOCTAG</td>
+        <td>주소</td>
+        <td>VARCHAR(255)</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>기록날짜</td>
+        <td>COL2</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

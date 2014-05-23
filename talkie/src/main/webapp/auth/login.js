@@ -21,7 +21,7 @@ $(document).ready(function(){
 				console.log(jsonObj);
 				var result = jsonObj.ajaxResult;
 				if (result.status == "ok" && result.data == "success") {
-					location.href="../subject/main.html";
+					location.href="../main_Tap.html";
 				} else {
 					alert('이메일 또는 암호가 맞지 않습니다.');
 				}

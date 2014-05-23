@@ -1,0 +1,116 @@
+@CHARSET "UTF-8";
+
+  .locationTag{
+    
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    border: 1.5px solid #4682B4;
+    background-color: #333;
+    opacity: 0.9;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 5px 0 ;
+    text-align:center;
+    color: #eee;
+    font-family: lucida Grande;
+    font-size: smaller;
+   
+    /*The good stuff */
+    -webkit-transition: opacity 0.5s ease-out;  /* Saf3.2+, Chrome */
+    -moz-transition: opacity 0.5s ease-out;  /* FF4+ */
+    -ms-transition: opacity 0.5s ease-out;  /* IE10? */
+    -o-transition: opacity 0.5s ease-out;  /* Opera 10.5+ */
+    transition: opacity 0.5s ease-out;  
+ 
+    }  
+
+.locationTag p {
+    text-align: left;
+    border: 10px;
+    font-size: x-small;
+    margin: 10px;
+}
+
+.locationTag_close {
+    width:18px;
+    height:18px;
+    float:right;
+    top:7px;
+    right:7px;
+}
+
+.locationTag_image {
+    width:32px;
+    height: 32px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    float:left;
+}
+
+.mainIcon_t {
+	    background-size:100% 2em;
+      width: 2em;
+      height: 2em;
+      padding: 0px;
+}
+.mainIcon_c {
+	   background-size:100% 2em;
+      width: 1em;
+      height: 1em;
+      padding: 0px;
+      margin: 0px 0px 8px -5px;
+}
+
+
+
+/*
+.toast-type-notice {
+    color: white;
+}
+
+.toast-position-top-left {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+}
+
+.toast-position-top-center {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    margin-left: -140px;
+}
+
+.toast-position-top-right {
+    position: fixed;
+    top: 200px;
+    left: 200px;
+}
+
+.toast-position-middle-left {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    margin-top: -40px;
+}
+
+.toast-position-middle-center {
+    position: fixed;
+    left: 50%;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}
+
+.toast-position-middle-right {
+    position: fixed;
+    right: 20px;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}
+*/

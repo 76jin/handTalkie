@@ -8,13 +8,16 @@
   <resultMap type="talkie.vo.StudentVo" id="studentMap">
     <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
     <result column="EMAIL" property="email"/>
+    <result column="PASSWORD" property="password"/>
     <result column="NAME" property="name"/>
-    <result column="TEL" property="tel"/>
-    <result column="COMP" property="company"/>
-    <result column="POS" property="position"/>
-    <result column="STAT" property="workingState"/>
-    <result column="LAST_SCH" property="lastSchool"/>
-    <result column="ACCT" property="bankingAccount"/>
+    <result column="AGENO" property="ageNo"/>
+    <result column="NATINO" property="natiNo"/>
+    <result column="GENDER" property="gender"/>
+    <result column="ISDECLARE" property="isDeclare"/>
+    <result column="GRADE" property="grade"/>
+    <result column="ISEMAIL" property="isEmail"/>
+    <result column="FAVTAG" property="favTag"/>
+    <result column="PHOPATH" property="phoPath"/>
   </resultMap> 
 
   <insert id="insert" parameterType="studentVo">
@@ -28,11 +31,18 @@
   </insert>
   <select id="getLoginUser" 
       parameterType="map" resultMap="studentMap">
+    select UNO, NAME, EMAIL
+    from SE_USERS
+    where EMAIL=#{email} and PASSWORD=#{password}
+  </select>
+  
+<!--     <select id="getLoginUser" 
+      parameterType="map" resultMap="studentMap">
     select T1.UNO, T1.NAME, T1.EMAIL, T1.TEL, T2.COMP, T2.POS, T2.STAT 
     from SE_USERS T1 left outer join SE_STUDS T2
     on T1.UNO = T2.UNO
     where T1.EMAIL=#{email} and T1.PWD=#{password}
-  </select>
+  </select> -->
   
 </mapper>
 
