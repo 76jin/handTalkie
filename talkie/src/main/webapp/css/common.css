@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
 .container {
-	width: 600px;
+	width: 300px;
 }
+#btnLogin{
+	margin-left:50px;
+}
+
