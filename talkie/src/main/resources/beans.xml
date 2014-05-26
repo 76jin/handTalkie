@@ -20,7 +20,7 @@
 			expression="talkie.controls.*" />
 	</context:component-scan>
 
-	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/studydb" />
+	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/talkiedb" />
 
 	<!-- mybatis의 SqlSessionFactory 객체를 생성 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
