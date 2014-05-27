@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="talkie.dao.SignupDao">
+  <resultMap type="talkie.vo.SignupVo" id="signupMap">
+    <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="EMAIL" property="email"/>
+    <result column="PASSWORD" property="password"/>
+    <result column="NAME" property="name"/>
+    <result column="NATINO" property="country"/>
+    <result column="LANNO" property="language"/>
+<!--     
+    <result column="AGENO" property="age"/>
+    <result column="GENDER" property="gender"/>
+    <result column="ISDECLARE" property="isDeclare"/>
+    <result column="GRADE" property="grade"/>
+    <result column="ISEMAIL" property="isEmail"/>
+    <result column="FAVTAG" property="favTag"/>
+    <result column="PHOPATH" property="phoPath"/>
+ -->    
+  </resultMap> 
+
+  <!-- 
+  <insert id="insert" parameterType="studentVo">
+    insert into SE_STUDS (UNO,COMP,POS,STAT,LAST_SCH,ACCT)
+    values (#{no}, 
+            #{company}, 
+            #{position}, 
+            #{workingState}, 
+            #{lastSchool}, 
+            #{bankingAccount})
+  </insert>
+   -->
+ 
+  <insert id="addUser" parameterType="talkie.vo.SignupVo">
+			insert into SE_USERS (EMAIL,PASSWORD,NAME,NATINO)
+			values (#{email},
+			        #{password},
+			        #{name},
+			        #{country});
+  </insert>
+  <insert id="addLanguage" parameterType="talkie.vo.SignupVo">
+      insert INTO SE_ADDLANG ( `LANNO`,`UNO` )
+      values(#{language}, 
+             (SELECT UNO FROM SE_USERS WHERE EMAIL=#{email}));
+  </insert>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

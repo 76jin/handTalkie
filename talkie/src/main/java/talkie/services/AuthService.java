@@ -1,7 +1,7 @@
 package talkie.services;
 
-import talkie.vo.UserVo;
+import talkie.vo.TalkieUserVo;
 
 public interface AuthService {
-	UserVo getLoginUser(String email, String password, UserGroup group);
+	TalkieUserVo getLoginUser(String email, String password);
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="talkie.dao.UserInfoDao">
+  <resultMap type="talkie.vo.UserInfoVo" id="userInfoMap">
+    <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="EMAIL" property="email"/>
+    <result column="NAME" property="name"/>
+    <result column="NATINO" property="nation"/>
+    <result column="LANNO" property="languageNo"/>
+<!--     
+    <result column="PASSWORD" property="password"/>
+    <result column="AGENO" property="age"/>
+    <result column="GENDER" property="gender"/>
+    <result column="ISDECLARE" property="isDeclare"/>
+    <result column="GRADE" property="grade"/>
+    <result column="ISEMAIL" property="isEmail"/>
+    <result column="FAVTAG" property="favTag"/>
+    <result column="PHOPATH" property="phoPath"/>
+ -->    
+  </resultMap> 
+   
+  <select id="getUserLanguage" 
+      parameterType="map" resultMap="userInfoMap">
+    select T1.UNO, T1.NAME, T1.EMAIL, T1.NATINO, T2.LANNO
+    from SE_USERS T1 left outer join SE_ADDLANG T2
+    on T1.UNO = T2.UNO
+    where T1.EMAIL=#{email} and T1.PASSWORD=#{password}
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -37,6 +37,9 @@ insert into SE_USERS(UNO,EMAIL,PASSWORD,NAME,AGENO,NATINO,GENDER,ISDECLARE,GRADE
 insert into SE_USERS(UNO,EMAIL,PASSWORD,NAME,AGENO,NATINO,GENDER,ISDECLARE,GRADE,ISEMAIL,FAVTAG)
   values(6,'tom@test.com','6666','tom',3,2,'m','n','1','n','kpop');
 
+insert into SE_USERS(UNO,EMAIL,PASSWORD,NAME,AGENO,NATINO,GENDER,ISDECLARE,GRADE,ISEMAIL,FAVTAG)
+  values(7,'songi@test.com','7777','오송이',2,1,'w','n','1','n','kpop drama kangnam fashion bigbang');
+
 select * from SE_USERS;
 -- --------------------------------------------------
 -- Insert SE_LOCLOG (logtime: 2006-01-10 13:56:16 --------------
@@ -69,30 +72,39 @@ INSERT INTO `talkiedb`.`SE_CHATROOM`
 (`CHATROOMNO`,`UNO`,`TOTALNUM`,`LOCNAME`,`ISAUTO`,`ISUPDATE`,`CHATDESC`)
 VALUES (2,6,30,'kangnam','y','n','hi im tom');
 
-select * from SE_CHATROOM;
 -- --------------------------------------------------
--- Insert SE_AGE --------------------------------------------------
-INSERT INTO `talkiedb`.`SE_LAN` (`LANNO`,`LANTYPE`) VALUES (2,'en');
+-- 테스트
+select T1.UNO, T1.NAME, T1.EMAIL, T1.NATINO, T2.LANNO
+    from SE_USERS T1 left outer join SE_ADDLANG T2
+    on T1.UNO = T2.UNO
+    where T1.EMAIL='songi@test.com' and T1.PASSWORD='7777';
 
-select * from SE_AGE;
--- --------------------------------------------------
--- Insert SE_AGE --------------------------------------------------
-INSERT INTO `talkiedb`.`SE_LAN` (`LANNO`,`LANTYPE`) VALUES (2,'en');
+-- 자국어 리턴
+select T2.UNO, T2.LANNO 
+	from SE_USERS T1 left outer join SE_ADDLANG T2 
+	on T1.UNO = T2.UNO where T1.EMAIL='songi@test.com' and T1.NATINO=T2.LANNO;
 
-select * from SE_AGE;
--- --------------------------------------------------
--- Insert SE_AGE --------------------------------------------------
-INSERT INTO `talkiedb`.`SE_LAN` (`LANNO`,`LANTYPE`) VALUES (2,'en');
+-- 사용가능한 모든 언어 리턴
+select T1.UNO, T1.NAME, T1.EMAIL, T1.NATINO, T2.LANNO
+    from SE_USERS T1 left outer join SE_ADDLANG T2
+    on T1.UNO = T2.UNO
+    where T1.EMAIL='songi@test.com';
 
-select * from SE_AGE;
--- --------------------------------------------------
--- Insert SE_AGE --------------------------------------------------
-INSERT INTO `talkiedb`.`SE_LAN` (`LANNO`,`LANTYPE`) VALUES (2,'en');
+-- 회원가입하기
+-- 회원가입 정보 등
+insert into SE_USERS(EMAIL,PASSWORD,NAME,NATINO)
+  values('3@test.com','3333','3번',1);
 
-select * from SE_AGE;
--- --------------------------------------------------
--- Insert SE_AGE --------------------------------------------------
-INSERT INTO `talkiedb`.`SE_LAN` (`LANNO`,`LANTYPE`) VALUES (2,'en');
+-- 복합
+INSERT INTO `talkiedb`.`SE_ADDLANG` ( `LANNO`,`UNO` ) 
+VALUES(1, (SELECT UNO FROM SE_USERS WHERE EMAIL='3@test.com'));
 
-select * from SE_AGE;
--- --------------------------------------------------
+-- 회원가입 정보 중 언어 등록
+INSERT INTO `talkiedb`.`SE_ADDLANG` (`LANNO`,`UNO`) VALUES (1,8);
+
+
+select * from SE_USERS;
+select * from SE_ADDLANG;
+
+
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="talkie.dao.TalkieUserDao">
+  <resultMap type="talkie.vo.TalkieUserVo" id="talkieUserMap">
+    <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="EMAIL" property="email"/>
+    <result column="PASSWORD" property="password"/>
+    <result column="NAME" property="name"/>
+    <result column="AGENO" property="age"/>
+    <result column="NATINO" property="nation"/>
+    <result column="GENDER" property="gender"/>
+    <result column="ISDECLARE" property="isDeclare"/>
+    <result column="GRADE" property="grade"/>
+    <result column="ISEMAIL" property="isEmail"/>
+    <result column="FAVTAG" property="favTag"/>
+    <result column="PHOPATH" property="phoPath"/>
+  </resultMap> 
+
+  <!-- 
+  <insert id="insert" parameterType="studentVo">
+    insert into SE_STUDS (UNO,COMP,POS,STAT,LAST_SCH,ACCT)
+    values (#{no}, 
+            #{company}, 
+            #{position}, 
+            #{workingState}, 
+            #{lastSchool}, 
+            #{bankingAccount})
+  </insert>
+   -->
+ 
+  <select id="getLoginUser" 
+      parameterType="map" resultMap="talkieUserMap">
+    select UNO, NAME, EMAIL, NATINO
+    from SE_USERS
+    where EMAIL=#{email} and PASSWORD=#{password}
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -36,3 +36,34 @@ h1 {
 #iconff {
 	margin-top: 4%;
 }
+
+
+
+/* 디버그용
+* {
+	 border: 1px black solid;
+}
+#favoriteTag {
+  border: 1px red solid;
+}
+ */
+
+
+#favoriteTag {
+	width: 80%;
+	margin-bottom: 10px;
+}
+
+#favoriteTagLabel {
+	width: 100%;
+}
+
+#favoriteTagImage {
+	width: 18px;
+}
+
+#favoriteTagContent {
+	border: 0px;
+	text-align: left;
+	width: 80%;
+}

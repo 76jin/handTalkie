@@ -1,10 +1,12 @@
 var snapper;
 window.onload = mainTap;
-    $(function() {
-      snapper = new Snap({
-        element: document.getElementById('content')
-        });
-      });
+
+$(function() {
+	snapper = new Snap({
+		element: document.getElementById('content')
+	});
+});
+
 function mainTap() {
 	
     $('#menuIcon').on('click', function(){
@@ -48,6 +50,8 @@ function mainTap() {
 		window.openURL("./main_Pro_modify.html");
 	 });
 	
+	getUserInfo();
+	
 	
 }
 
@@ -78,5 +82,48 @@ function getCurrentLocation() {
     alert("error:" + error);
     
   }, { timeout: 30000 });
+}
+
+function getUserInfo() {
+	console.log('call getUserInfo');
+	$.getJSON(
+		bit.contextRoot + '/auth/getUserInfo.ajax', 
+		function(jsonObj) {
+			console.log('dddd');
+			console.log(bit);
+			console.log(bit.contextRoot);
+			
+			var result = jsonObj.ajaxResult;
+			if (result.status == "ok") {
+				var user = result.data;
+				console.log(user);
+				
+				$('#name').text(user.name);
+/*				$('#loginEmail').text(user.email);*/
+				
+				var nation;
+				switch (user.nation) {
+					case 1: nation = 'Korea';
+					case 2: nation = 'U.S.A';
+					default: nation = 'Korea';
+				}
+				
+				console.log('nation:', nation);
+				
+				var language;
+				switch (user.nation) {
+					case 1: language = 'Korean';
+					case 2: language = 'English';
+					default: language = 'Korean';
+				}
+				console.log('language:', language);
+				
+				$('#profileCountry').text(nation);
+				$('#profileLanguage').text(language);
+			} else {
+				alert("로그인 하지 않았습니다.111");
+				location.href = bit.contextRoot + "/auth/main_slider.html";
+			}
+		});
 }
 
