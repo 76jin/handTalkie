@@ -18,6 +18,8 @@
     <result column="ISEMAIL" property="isEmail"/>
     <result column="FAVTAG" property="favTag"/>
     <result column="PHOPATH" property="phoPath"/>
+    <result column="PROFILETITLE" property="profileTitle"/>
+    <result column="PROFILEDESC" property="profileDesc"/>
   </resultMap> 
 
   <!-- 
@@ -38,6 +40,14 @@
     from SE_USERS
     where EMAIL=#{email} and PASSWORD=#{password}
   </select>
+  
+  <select id="getProfileInfo" 
+      parameterType="map" resultMap="talkieUserMap">
+    select FAVTAG, PROFILETITLE, PROFILEDESC
+    from SE_USERS
+    where EMAIL=#{email}
+  </select>
+  
   
 </mapper>
 

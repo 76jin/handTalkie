@@ -192,11 +192,26 @@
      }
      
      #imgproFile {
-     z-index:auto;
-     	width: 10%;
-     	height: 40%;
+			float: left;
+			z-index: auto;
+			width: 20%;
+			height: 90%;
+			margin-left: 25%;
+			margin-top: 3px;
      }
      #footer {
      background-color: #696969;
     height: 50px;
      }
+
+    #fri_li{
+     list-style: none;
+		display: table;
+		margin-top: 5px;
+		text-align: left;
+		margin-left: -5%;
+    }
+    #friName{
+    font-weight: bold;
+    font-size: larger;
+    }

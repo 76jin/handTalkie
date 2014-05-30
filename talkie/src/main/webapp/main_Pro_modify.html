@@ -11,56 +11,96 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="./css/main_Pro_modify.css">
+<link rel="stylesheet" type="text/css" href="./css/main_Tap.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="./js/main_Pro_modify.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/main_Pro_modify.css">
 
 <script src="./js/jquery-1.11.1.min.js"></script>
 <!-- <script src="./js/jquery.mobile-1.4.2.min.js"></script> -->
 
 <script>
-	$(function() {
-		$("#includedContent").load("./html/proFile.html");
-	});
+  $(function() {
+    $("#includedContent").load("./html/pro_modify.html");
+  });
 </script>
 </head>
 <body>
 
+ <div class="drawers">
+  <div class="left-drawer"><a href="#">
+      <img  class="mainIcon_f">
+         <div id="profile">
+          <h4 id="name"></h4>
+          <p></p>
+          </div>
+        </a>
+    <div id="imgBox">
+         <img  id="myPic" src="./img/test.jpg" alt="myInfo">
+    </div>
+  </div>
+                    
+       <div class="snap-drawer snap-drawer-left">
+                <div>
+                    <ul>
+                          <div>
+                            <li id="tagTap"><a href="#" id="tagappend">
+                            <img id="tag" class="mainIcon_s" src="./img/tag.png"> location Tag </a></li>
+                           </div> 
+                        
+                        <li><a href="#">
+                          <img id="friend" class="mainIcon_s" src="./img/friend.png"> friend List</a></li>
+                        <li><a href="#">
+                        <img id="findFriend" class="mainIcon_s" src="./img/friend.png"> findFriend</a></li>
+                        <li><a href="#">
+                          <img id="help" class="mainIcon_s" src="./img/help.png"> help</a></li>
+                        <li><a href="#">
+                          <img id="setting" class="mainIcon_s" src="./img/setting.png"> setting</a></li>
+                    </ul>
+                      <div class="demo-social">
+                    </div>
+                </div>
+            </div>
+ 
+ </div>
+ 
+ <div id="content">
+      <a id="tap" href="#" id="menuIcon"><img id="menuIcon"src="./img/menuIcon.png"></a>
+      
+      <div id="navigation">
+        <div id="map" class="mainIcon">
+           <a href="./main_Tap.html" title="map">
+           <span id="maps" class="text">map</span></a>
+        </div>
+        <div id="chat" class="mainIcon">
+           <a href="#" title="chat">
+           <span id="chats" class="text">chat</span></a>
+        </div>
+      </div>
+      <a href="#" id="menuAlarm"><img id="menuAlarm"src="./img/alarm.png"></a>
+     
+     
+
+    <div id="center">
+      <div id="hh"></div>
+      <div id="includedContent"></div>
+      <div id="footer"></div>
+    </div>
+
+      
+      
+
+ </div>
 
 
-	<div id="content">
-
-		<div id="navigation">
-			<div id="map" class="mainIcon">
-				<a href="#" title="map"> <span id="maps" class="text">map</span></a>
-			</div>
-			<div id="chat" class="mainIcon">
-				<a href="#" title="chat"> <span id="chats" class="text">chat</span></a>
-			</div>
-		</div>
-		<a href="#" id="menuAlarm"><img id="menuAlarm"
-			src="./img/alarm.png"></a>
-
-
-		<div id="center">
-			<div id="hh"></div>
-			<div id="includedContent"></div>
-			<div id="footer"></div>
-		</div>
-	</div>
-
-
-	<div class='locationTag' style='display: none'>
-		<div class="locationTag_close">
-			<img id="closeIcon" class="mainIcon_c" src="./img/close.png">
-		</div>
-		<div class="locationTag_image">
-			<img id="locationIcon" class="mainIcon_t" src="./img/location.png">
-		</div>
-		<p>
-			경기도 용인시 처인구<br> 용인 에버랜드
-		</p>
-	</div>
+    <div class='locationTag' style='display:none'>
+        <div class="locationTag_close">
+        <img id="closeIcon" class="mainIcon_c" src="./img/close.png"></div>
+        <div class="locationTag_image">
+        <img id="locationIcon" class="mainIcon_t" src="./img/location.png"></div>
+        <p>경기도 용인시 처인구<br>
+         용인 에버랜드</p>
+    </div>
 </body>
 </html>

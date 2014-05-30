@@ -11,13 +11,15 @@
 <link rel="stylesheet" href="./css/jquery.mobile-1.4.2.min.css">
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="./js/snap.js"></script>
-<script type="text/javascript" src="./js/main_Tap.js"></script>
+<!-- 모든 CSS는 js보다 먼저 선언되어야함. -->
 <link rel="stylesheet" type="text/css" href="./css/main_side.css">
 <link rel="stylesheet" type="text/css" href="./css/main_Tap.css">
 <link rel="stylesheet" type="text/css" href="./css/main_map.css">
 <link rel="stylesheet" type="text/css" href="./css/toast.css">
-<link rel="stylesheet" type="text/css" href="./css/search-bar.css">
+<script type="text/javascript" src="./js/snap.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/main_Tap.js"></script>
+<script type="text/javascript" src="./js/profile.js"></script>
 
 <script src="./js/jquery-1.11.1.min.js"></script>
 <!-- <script src="./js/jquery.mobile-1.4.2.min.js"></script> -->
@@ -36,8 +38,8 @@
   <div class="left-drawer"><a href="#">
       <img  class="mainIcon_f">
          <div id="profile">
-		      <h4 id="name">@songLee</h4>
-		      <p>state: 1987.06.16 Korea</p>
+		      <h4 id="name"></h4>
+		      <p></p>
 		      </div>
         </a>
     <div id="imgBox">
@@ -108,7 +110,6 @@
         <p>경기도 용인시 처인구<br>
          용인 에버랜드</p>
     </div>
-    <script src="./js/main_map.js"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="./js/bootstrap.min.js"></script>
 </body>

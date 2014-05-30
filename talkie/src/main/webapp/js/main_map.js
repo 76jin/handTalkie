@@ -17,6 +17,8 @@
 
 var map;                // html div id='map'
 var currentPosition;    // 사용자의 현재 위치 정보
+var isTest = true;		// 테스트용 코드인지.
+var otherPosition = [];		// 사용자 주변에 있는 다른 사용자의 현재 위치 정보
 
 
 ////마커 정보 ////////////////////////
@@ -57,18 +59,13 @@ var displayCurrentLocation = function (position) {
 
 var displayOtherLocation = function (position) {
 
-  /* 사용자의 현재 위치 정보 가져오기 (모바일에서만 되는거 같음. 확인필요.)
-  var pos = new google.maps.LatLng(position.coords.latitude,
-      position.coords.longitude);
-   */
-  var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
   // 주위 사용자의 현재 위치 저장.(필요할까?)
+  otherPosition.push(position);
   //currentPosition = pos;
-  console.log('other user Pos:', position.coords.latitude, position.coords.longitude);
 
   // 2. 주위 사람들 위치를 지도에 표시
-  // ?????
+  addMarker(position);
 }
 
 function initialize() {
@@ -86,22 +83,35 @@ function initialize() {
     });
 
     // 지도 클릭 이벤트 등록
-    google.maps.event.addListener(map, 'click', function(event) {
-      addMarker(event.latLng);
-    });
-
-    /*    google.maps.event.addListener(userMarker, "click", function() {
-      //infowindow.open(map,userMarker);
-      openInfoWindow("clicked", userMarker);
-    });
+    // 테스트용 코드
+    if(isTest) {
+    /* 임의로 사용자 5명의 위치 정보를 지정하고 화면에 출력함.
+     * 임꺽정. 	37.49760569477413, 127.02422618865967
+     * 장보고. 	37.49338360812417, 127.02311038970947
+     * 이순신. 	37.49103411783421, 127.0259428024292
+     * 강감찬. 	37.492838805363476, 127.03263759613037
+     * tom. 	37.498593083824986, 127.03276634216309
+     * 
      */
 
-    /*google.maps.event.addListener(markersArray, "click", function() {
-      $.each(markersArray, function( index, value ) {
-        console.log( index + ": " + value );
-      });
+      displayOtherLocation(new google.maps.LatLng(37.49760569477413, 127.02422618865967));
+      displayOtherLocation(new google.maps.LatLng(37.49338360812417, 127.02311038970947));
+      displayOtherLocation(new google.maps.LatLng(37.49103411783421, 127.0259428024292));
+      displayOtherLocation(new google.maps.LatLng(37.492838805363476, 127.03263759613037));
+      displayOtherLocation(new google.maps.LatLng(37.498593083824986, 127.03276634216309));
       //infowindow.open(map,marker);
-    });*/
+      //
+    	  
+    	
+    	
+    } // end isTest
+    
+
+    // 지도 클릭 이벤트 등록
+    google.maps.event.addListener(map, 'click', function(event) {
+      console.log('touched by user. location: ', event.latLng.toString());
+      hideShortProfile();
+    });
 
   } else {
     // Browser doesn't support Geolocation
@@ -127,6 +137,21 @@ function handleNoGeolocation(errorFlag) {
   map.setCenter(options.position);
 }
 
+function showShortProfile() {
+  $("#f_Btn").appendTo($("#header"));
+  $("#f_Btn").css("display","");
+
+  $("#selectBtn").appendTo($("#footer"));
+  $("#selectBtn").css("display","")
+}
+
+function hideShortProfile() {
+  $("#f_Btn").appendTo($("#header"));
+  $("#f_Btn").css("display","none");
+
+  $("#selectBtn").appendTo($("#footer"));
+  $("#selectBtn").css("display","none")
+}
 function addUserMarker(location) {
   userMaker = new google.maps.Marker({
     position:location,
@@ -140,6 +165,8 @@ function addUserMarker(location) {
 
 var count = 0;
 function addMarker(location) {
+  console.log('called addMarker');
+  
   var tempContent = "I am newview" + ++count; 
 
   var marker = new google.maps.Marker({
@@ -151,21 +178,67 @@ function addMarker(location) {
   marker.setMap(map);
   //markersArray.push(marker);
 
-  google.maps.event.addListener(marker, "click", function() {
+  google.maps.event.addListener(marker, "click", function(event) {
 
     /*    $.each(markersArray, function( index, value ) {
       console.log( index + ": " + value );
     });*/
+	  var num = 0;
+	  for (var i=0; i<otherPosition.length;i++) {
+		  if (event.latLng == otherPosition[i]) {
+			  num = i + 2;
+			  break;
+		  }
+	  }
 
     //openInfoWindow("profile: " + count, marker);
-     
-	  console.log("zzz");
-	  	
-	 	$("#f_Btn").appendTo($("#header"));
-        $("#f_Btn").css("display","");
-	  
-	  	$("#selectBtn").appendTo($("#footer"));
-        $("#selectBtn").css("display","");
+	  console.log("clicked other postion");
+		$.ajax(	bit.contextRoot + '/ShortProfile.ajax', {
+			type: 'POST',
+			dataType: 'json', /*서버에서 보내는 데이터의 형식 지정 */
+			data: { /* 서버쪽으로 보내는 데이터 */
+				//email: $('#email').val(),
+				no: num
+				
+			},
+			success: function(jsonObj){
+				console.log(jsonObj);
+				var result = jsonObj.ajaxResult;
+				if (result.status == "ok" && result.data == "failure") {
+					alert('등록에 실패했습니다.');
+				} else {
+					console.log('friendInfo success!');
+					console.log(result.data);
+					
+					var volist = JSON.parse(result.data);
+					var nation = '';
+					var languageNo = '';
+					$.each( volist, function( key, value ) {
+							switch (value.nation) {
+							case 1:  nation ="korea"; break;
+							case 2:  nation ="U.S.A"; break;
+							default: nation ="korea"; break;
+							break;
+							}
+							switch (value.languageNo) {
+							case  1 : languageNo += "Korean "; break;
+ 							case  2 :	languageNo += "English "; break;
+							default:			languageNo += "Korean "; break;
+							}
+						});
+					
+					$('#friName').text(volist[0].name);
+					$('#friCountry').text(nation);
+					$('#friLanguage').text(languageNo);
+				}
+			},
+			error: function(xhr, status, errorThrown){
+				//alert('등록 중 오류 발생!');
+				console.log(status);
+				console.log(errorThrown);
+			}
+		});
+	  showShortProfile();
         
         
         /*
@@ -260,17 +333,4 @@ function initialize_Polygon(){
 google.maps.event.addDomListener(window, 'load', initialize);
 
 ///////////////// useful functions
-/*
-function createMarker3(point) {
-  var iconBlue = new GIcon(G_DEFAULT_ICON);
-     iconBlue.image = 'you.png';
-     iconBlue.shadowSize = new GSize(1, 1);
-     iconBlue.iconSize = new GSize(23, 26);
-
-  hkm = new GMarker(point, iconBlue);
-
-  return hkm;
-  }
-  map.addOverlay(createMarker3(monitor));
- */
 /////////////////

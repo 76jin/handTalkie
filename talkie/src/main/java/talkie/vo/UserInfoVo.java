@@ -12,6 +12,14 @@ public class UserInfoVo implements Serializable {
 	int			nation;
 	int 		languageNo;
 
+	
+	
+	
+	@Override
+    public String toString() {
+	    return "UserInfoVo [no=" + no + ", name=" + name + ", email=" + email
+	            + ", nation=" + nation + ", languageNo=" + languageNo + "]";
+    }
 	public int getLanguageNo() {
 		return languageNo;
 	}

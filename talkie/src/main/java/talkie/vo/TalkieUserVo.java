@@ -5,28 +5,30 @@ import java.io.Serializable;
 public class TalkieUserVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	int 	no;
-	String name;
-	String email;
-	String password;
-	int		age;
-	int		nation;
-	char	gender;
-	char	isDeclare;
-	String	grade;
-	char	isEmail;
-	String	favTag;
-	String	phoPath;
-	
+	int 			no;
+	String 	name;
+	String 	email;
+	String 	password;
+	int			age;
+	int			nation;
+	char		gender;
+	char		isDeclare;
+	String		grade;
+	char		isEmail;
+	String		favTag;
+	String		phoPath;
+	String 	profileTitle;
+	String 	profileDesc;
 	
 	@Override
-	public String toString() {
-		return "TalkieUserVo [no=" + no + ", name=" + name + ", email=" + email
-				+ ", password=" + password + ", age=" + age + ", nation="
-				+ nation + ", gender=" + gender + ", isDeclare=" + isDeclare
-				+ ", grade=" + grade + ", isEmail=" + isEmail + ", favTag="
-				+ favTag + ", phoPath=" + phoPath + "]";
-	}
+    public String toString() {
+	    return "TalkieUserVo [no=" + no + ", name=" + name + ", email=" + email
+	            + ", password=" + password + ", age=" + age + ", nation="
+	            + nation + ", gender=" + gender + ", isDeclare=" + isDeclare
+	            + ", grade=" + grade + ", isEmail=" + isEmail + ", favTag="
+	            + favTag + ", phoPath=" + phoPath + ", profileTitle="
+	            + profileTitle + ", profileDesc=" + profileDesc + "]";
+    }
 	
 	public int getNo() {
 		return no;
@@ -115,6 +117,24 @@ public class TalkieUserVo implements Serializable {
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getProfileTitle() {
+		return profileTitle;
+	}
+
+	public TalkieUserVo setProfileTitle(String profileTitle) {
+		this.profileTitle = profileTitle;
+		return this;
+	}
+
+	public String getProfileDesc() {
+		return profileDesc;
+	}
+
+	public TalkieUserVo setProfileDesc(String profileDesc) {
+		this.profileDesc = profileDesc;
+		return this;
 	}
 	
 	

@@ -31,6 +31,14 @@
     where T1.EMAIL=#{email} and T1.PASSWORD=#{password}
   </select>
   
+  <select id="getShortProfile" 
+      parameterType="map" resultMap="userInfoMap">
+    select T1.UNO, T1.NAME, T1.NATINO, T2.LANNO
+    from SE_USERS T1 left outer join SE_ADDLANG T2
+    on T1.UNO = T2.UNO
+    where T1.UNO=#{no}
+  </select>
+  
 </mapper>
 
 

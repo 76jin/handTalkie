@@ -7,7 +7,37 @@ $(function() {
 	});
 });
 
+function aaa(){
+	$.ajax(	bit.contextRoot + 'profileInfo.ajax', {
+		type: 'POST',
+		dataType: 'json', /*서버에서 보내는 데이터의 형식 지정 */
+		data: { /* 서버쪽으로 보내는 데이터 */
+			//email: $('#email').val(),
+			email: '5song2@test.com'
+		},
+		success: function(jsonObj){
+			console.log(jsonObj);
+			var result = jsonObj.ajaxResult;
+			if (result.status == "ok" && result.data == "success") {
+				console.log('profileInfo success!');
+				/*	location.href="./main_slider.html";*/
+			} else {
+				alert('등록에 실패했습니다.');
+			}
+		},
+		error: function(xhr, status, errorThrown){
+			alert('등록 중 오류 발생!');
+			console.log(status);
+			console.log(errorThrown);
+		}
+	});
+
+	// 등록 성공 후에 해야할 작업을 여기에 기술한다면,당신은 바보!
+	//location.href="../subject/list.bit";
+}
 function mainTap() {
+	
+	//aaa();
 	
     $('#menuIcon').on('click', function(){
 
@@ -15,7 +45,7 @@ function mainTap() {
               snapper.close();
           } else {
               snapper.open('left');
-          }
+          }  
       });
 
     
@@ -35,7 +65,7 @@ function mainTap() {
     
     $('#tagTap').on('click', function(){
         
-        getCurrentLocation();
+  //      getCurrentLocation();
         
         $('.locationTag').fadeIn(400).delay(1500).fadeOut(400); 
     });
@@ -86,12 +116,12 @@ function getCurrentLocation() {
 
 function getUserInfo() {
 	console.log('call getUserInfo');
+	console.log('dddd');
+	console.log(bit);
+	console.log(bit.contextRoot);
 	$.getJSON(
 		bit.contextRoot + '/auth/getUserInfo.ajax', 
 		function(jsonObj) {
-			console.log('dddd');
-			console.log(bit);
-			console.log(bit.contextRoot);
 			
 			var result = jsonObj.ajaxResult;
 			if (result.status == "ok") {
@@ -121,8 +151,8 @@ function getUserInfo() {
 				$('#profileCountry').text(nation);
 				$('#profileLanguage').text(language);
 			} else {
-				alert("로그인 하지 않았습니다.111");
-				location.href = bit.contextRoot + "/auth/main_slider.html";
+				//alert("로그인 하지 않았습니다.111");
+				//location.href = bit.contextRoot + "/auth/main_slider.html";
 			}
 		});
 }
