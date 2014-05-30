@@ -6,6 +6,10 @@
         margin: 0;
         font-family: sans-serif;
     }
+    .form-search{
+    	margin-left : 10%;
+    	
+    }
     .drawers {
         position: absolute;
         width: 300px;
