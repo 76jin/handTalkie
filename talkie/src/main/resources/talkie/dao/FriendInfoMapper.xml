@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="talkie.dao.FriendInfoDao">
+	<resultMap type="talkie.vo.FriendInfoVo" id="friendInfoMap">
+		<id column="UNO" property="userNo" /><!-- PK 컬럼에 대해서만 설정한다. -->
+		<result column="UNO2" property="friendNo" />
+			<result column="ISBLOCK" property="isBlock" />
+	</resultMap>
+
+	<select id="getFriendList" resultMap="friendInfoMap" parameterType="String">
+		SELECT `UNO2`,`ISBLOCK`
+		FROM `SE_FRIENDINFO`
+		where UNO IN (
+		select UNO
+		from SE_USERS
+		where EMAIL=#{email})
+	</select>
+</mapper>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>friend List</title>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="../css/friendList.css">
+<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="../js/snap.js"></script>
+
+
+</head>
+<body>
+  <div class="main-bar">
+  <div id="mainbar-text">friend List</div>
+  </div>
+
+  <section class="main">
+    <form class="search" method="post" action="index.html">
+      <input type="text" name="q" placeholder="Search..." />
+      <ul class="results">
+        <li><a href="index.html">Search Result #1<br /> <span>Description...</span></a></li>
+        <li><a href="index.html">Search Result #2<br /> <span>Description...</span></a></li>
+        <li><a href="index.html">Search Result #3<br /> <span>Description...</span></a></li>
+        <li><a href="index.html">Search Result #4</a></li>
+      </ul>
+    </form>
+  </section>
+
+  <table class="table">
+    <tr>
+      <td><img src="../img/man1.jpg" alt=""
+        style="width: 70px; height: 70px;"></td>
+      <td>steve   <br> <br> location: canada</td>
+      <td>                                <!--  toggle -->
+        <div class="btn-group" id="toggle">
+          <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+            data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">               <!-- message button in toggle -->
+            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span>
+                message</a></li>
+            <li><a href="#">Dropdown link</a></li>
+          </ul>
+          </div>
+          </td>
+    </tr>
+    <tr>
+      <td><img src="../img/man2.JPG" alt=""
+        style="width: 70px; height: 70px;"></td>
+      <td>steve   <br> <br> location: canada</td>
+      <td>
+        <div class="btn-group" id="toggle">
+          <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+            data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span>
+                message</a></li>
+            <li><a href="#">Dropdown link</a></li>
+          </ul>
+          </div>
+          </td>
+    </tr>
+<tr>
+      <td><img src="../img/man3.jpeg" alt=""
+        style="width: 70px; height: 70px;"></td>
+      <td>steve   <br> <br> location: canada</td>
+      <td>
+        <div class="btn-group" id="toggle">
+          <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+            data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span>
+                message</a></li>
+            <li><a href="#">Dropdown link</a></li>
+          </ul>
+          </div>
+          </td>
+    </tr>
+    <tr>
+      <td><img src="../img/justinbieber.jpg" alt=""
+        style="width: 70px; height: 70px;"></td>
+      <td>steve   <br> <br> location: canada</td>
+      <td>
+        <div class="btn-group" id="toggle">
+          <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+            data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span>
+                message</a></li>
+            <li><a href="#">Dropdown link</a></li>
+          </ul>
+          </div>
+          </td>
+    </tr>
+  </table>
+  <div class="readmore">
+    <button type="button" class="btn btn-default btn-lg btn-block">Read
+      more</button>
+  </div>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./friendList.js"></script>
+</body>
+</html>
