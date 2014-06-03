@@ -1,15 +1,12 @@
 @CHARSET "UTF-8";
 
-* {
-	border:1px solid white;
-}
 
 .main-bar {
 	text-align: center;
-	font-size:35px;
+	font-size:25px;
 	color: white;
 	width: 100%;
-	height: 50px;
+	height: 25px;
 	background-color: #358fbc;
 }
 

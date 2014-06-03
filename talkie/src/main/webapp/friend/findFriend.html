@@ -1,10 +1,113 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>find friend</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<title>find friend</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/main_side.css">
+		<link rel="stylesheet" type="text/css" href="../css/main_Tap.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/snap.js"></script>
+		<script type="text/javascript" src="../js/main_Tap.js"></script>
 
-</body>
+	</head>
+	<body>
+
+		<div class="drawers">
+			<div class="left-drawer">
+				<a href="../main_Pro.html"> <img  class="mainIcon_f">
+				<div id="profile">
+					<h4 id="name"></h4>
+					<p>
+						<span id="profileCountry"></span> / <span id="profileLanguage"></span>
+					</p>
+				</div> </a>
+				<div id="imgBox">
+					<img  id="myPic" src="../img/test.jpg" alt="myInfo">
+				</div>
+			</div>
+
+			<div class="snap-drawer snap-drawer-left">
+				<div>
+					<ul>
+						<div>
+							<li id="tagTap">
+								<a href="#" id="tagappend"> <img id="tag" class="mainIcon_s" src="../img/tag.png"> location Tag </a>
+							</li>
+						</div>
+
+						<li>
+							<a href="./friend/friendList.html"> <img id="friend" class="mainIcon_s" src="../img/friend.png"> friend List</a>
+						</li>
+						<li>
+							<a href="#"> <img id="findFriend" class="mainIcon_s" src="../img/friend.png"> find Friend</a>
+						</li>
+						<li>
+							<a href="#"> <img id="help" class="mainIcon_s" src="../img/help.png"> help</a>
+						</li>
+						<li>
+							<a href="#"> <img id="setting" class="mainIcon_s" src="../img/setting.png"> setting</a>
+						</li>
+					</ul>
+					<div class="demo-social">
+						<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1400006231.html#_=1400077073883&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fjakiestfu.github.io%2FSnap.js%2Fdemo%2Fapps%2Fdefault.html&amp;size=m&amp;text=Snap.js%20-%20A%20Library%20for%20creating%20beautiful%20mobile%20shelfs%20in%20Javascript&amp;url=http%3A%2F%2Fjakiestfu.github.com%2FSnap.js%2F&amp;via=jakiestfu" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-none" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 56px; height: 20px;"></iframe>
+						<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.1400006231.html#_=1400077073888&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=jakiestfu&amp;show_count=false&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 119px; height: 20px;"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="navigation">
+			<div id="map" class="mainIcon">
+				<a href="../main_Tap.html" title="map"> <span id="maps" class="text">map</span></a>
+			</div>
+			<div id="chat" class="mainIcon">
+				<a href="#" title="chat"> <span id="chats" class="text">chat</span></a>
+			</div>
+		</div>
+		<a href="#" id="menuAlarm"><img id="menuAlarm"src="../img/alarm.png"></a>
+
+		<!--
+		<div class='locationTag' style='display:none'>
+		<div class="locationTag_close">
+		<img id="closeIcon" class="mainIcon_c" src="./img/close.png"></div>
+		<div class="locationTag_image">
+		<img id="locationIcon" class="mainIcon_t" src="./img/location.png"></div>
+		<p>경기도 용인시 처인구<br>
+		용인 에버랜드</p>
+		</div>
+		-->
+		<div id="center">
+			<!--<div class="main-bar">
+			<div id="mainbar-text">friend List</div>
+			</div> -->
+			<!--    검색창 -->
+			<section class="main">
+				<form class="search" method="post" action="index.html">
+					<input type="text" name="q" placeholder="사용자와 헤시태그 검색" />
+					<ul class="results">
+						<li>
+							<a href="index.html">Search Result #1
+							<br />
+							<span>Description...</span></a>
+						</li>
+						<li>
+							<a href="index.html">Search Result #2
+							<br />
+							<span>Description...</span></a>
+						</li>
+						<li>
+							<a href="index.html">Search Result #3
+							<br />
+							<span>Description...</span></a>
+						</li>
+						<li>
+							<a href="index.html">Search Result #4</a>
+						</li>
+					</ul>
+				</form>
+			</section>
+	</body>
 </html>

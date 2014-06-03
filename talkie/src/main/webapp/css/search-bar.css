@@ -6,7 +6,7 @@
 
 body {
     background: #f7f7f7;
-    color: #404040;
+    color: #358fbc;
     font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 13px;
     font-weight: normal;
@@ -27,12 +27,15 @@ a:hover { text-decoration: underline }
     height: 30px;
 }
 
-.main { margin-top: 1px }
+.main { 
+	margin-top: 1px;
+	padding-top:1px; 
+}
 
 input {
     font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 13px;
-    color: #555860;
+    color: #358fbc;
 }
 
 
@@ -49,7 +52,7 @@ input {
     background: white url("http://cssdeck.com/uploads/media/items/5/5JuDgOa.png") 8px 6px no-repeat;
     border-width: 1px;
     border-style: solid;
-    border-color: #a8acbc #babdcc #c0c3d2;
+    border-color: #358fbc #358fbc #358fbc;
     border-radius: 13px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
