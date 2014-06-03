@@ -1,0 +1,61 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script>
+  var socket = io.connect('http://localhost:9998'); // 서버에 접속 시도
+
+  // 서버에 접속되면 실행된다.
+  socket.on('connect', function(){
+    socket.emit('ADD_USER', prompt("What's your name?")); // 서버에 사용자명 전달
+  });
+
+  // 서버에서 UPDATE_CHAT 메시지를 받으면, 채팅 내용을 업데이트한다.
+  socket.on('UPDATE_CHAT', function (username, data) {
+    $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+  });
+
+  // 서버에서 UPDATE_ROOMS 메시지를 받으면, 화면에 채팅방 목록을 업데이트한다.
+  socket.on('UPDATE_ROOMS', function(rooms, current_room) {
+    $('#rooms').empty();
+    $.each(rooms, function(key, value) {
+      if(value == current_room){
+        $('#rooms').append('<div>' + value + '</div>');
+      }
+      else {
+        $('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+      }
+    });
+  });
+
+  function switchRoom(room){
+    socket.emit('SWITCH_ROOM', room);
+  }
+
+  // DOM 트리가 완성되고, 화면에 HTML 태그 랜더링이 완료되면 아래 코드 실행됨.
+  $(function(){
+    // 웹브라우저에서 SEND 버튼을 클릭할 때
+    $('#datasend').click( function() {
+      var message = $('#data').val();
+      $('#data').val('');
+      socket.emit('SEND_CHAT', message);  // 서버를 통해 다른 사용자에게 메시지를 전달한다.
+    });
+
+    // 웹브라우저에서 키보드의 엔터키를 입력할 때
+    $('#data').keypress(function(e) {
+      if(e.which == 13) {
+        $(this).blur();
+        $('#datasend').focus().click();   // SEND 버튼 클릭 효과
+      }
+    });
+  });
+
+</script>
+
+<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+  <b>ROOMS</b>
+  <div id="rooms"></div>
+</div>
+<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+  <div id="conversation"></div>
+  <input id="data" style="width:200px;" />
+  <input type="button" id="datasend" value="send" />
+</div>
