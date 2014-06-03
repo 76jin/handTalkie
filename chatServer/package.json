@@ -2,12 +2,17 @@
   "name": "chatServer",
   "version": "0.0.1",
   "private": true,
+  "description": "Realtime chat system",
   "scripts": {
     "start": "node app.js"
   },
+  "author": "late ability",
+  "license": "MIT",
   "dependencies": {
     "express": "3.2.6",
     "jade": "*",
-    "formidable": "*"
+    "formidable": "*",
+    "socket.io": "*",
+    "mysql": "*"
   }
 }
