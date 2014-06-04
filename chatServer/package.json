@@ -13,6 +13,7 @@
     "jade": "*",
     "formidable": "*",
     "socket.io": "*",
+    "cors": "*",
     "mysql": "*"
   }
 }

@@ -1,0 +1,172 @@
+body {
+background-color: #f0f1f3;
+color: #667073;
+font: 16px/1.3 'Arial',sans-serif;
+}
+
+* {
+padding: 0;
+margin: 0;
+}
+.banner {
+height: 70px;
+background-color: #3c4446;
+margin-bottom: 200px;
+}
+.bannertext {
+text-align: center;
+padding-top: 5px;
+font-weight: bold;
+color: white;
+font-size: 1.0em;
+}
+header.banner {
+height: 7%;
+margin-bottom: 5%;
+}
+a#logo {
+color:white;
+text-decoration: none;
+}
+span{
+color : #d6441b;
+}
+ul, menu, dir {
+display: block;
+list-style-type: disc;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 40px;
+}
+#conversation {
+text-align: center;
+display: block;
+margin: 0px auto;
+width: 100%;
+height: 300%;
+background-color: #f0f1f3;
+border-radius: 3px;
+box-shadow: 0px 3px 3px #e3e4e6;
+color: #637277;
+margin-bottom: 400px;
+}
+#data {
+width: 80%;
+height: 35px;
+display: block;
+float: left;
+margin: 0 auto;
+background-color: #f9f9f9;
+border: 1px solid #cccccc;
+border-radius: 2px;
+padding-left: 20px;
+padding-top: 2%;
+resize: none;
+font: inherit;
+color: inherit;
+}
+#datasend {
+width: 18%;
+height: 35px;
+float: right;
+text-align: center;
+background-color: #73b4d4;
+display: block;
+margin: 0 auto;
+border: none;
+box-shadow: 3px 3px 3px #efedee;
+border-radius: 2px;
+color: white;
+font-weight: bold;
+font-size: 0.8em;
+outline: none;
+cursor: pointer;
+}
+
+.chatroom{
+  width:100%;
+  margin: 0 auto ;
+  overflow:hidden;
+  height: 7%;
+}
+#chatform {
+width: 90%;
+margin: 0 auto;
+background-color: white;
+}
+footer {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+padding-top: 30px;
+background-color: white;
+/*height: 130px;*/
+padding-bottom: 5%;
+}
+li {
+display: list-item;
+text-align: -webkit-match-parent;
+}
+.me {
+clear: both;
+}
+.image {
+clear: both;
+float: left;
+height: 160px;
+width: 80px;
+text-align: center;
+overflow: hidden;
+}
+.image img {
+float: left;
+width: 72%;
+height: 35%;
+border-radius: 50%;
+}
+.image b {
+overflow: hidden;
+display: block;
+clear: both;
+padding-top: 7px;
+
+}
+
+b {
+font-size: small;
+margin-left: -25%;
+}
+.image i {
+font-size: 12px;
+line-height: 1.2;
+display: block;
+opacity: 0.8;
+padding-top: 4px;
+}
+li.me {
+margin-left: -6%;
+}
+ul .me p {
+width: 50%;
+height: 30px;
+padding: 6% 0% 10% 5%;
+text-align: left;
+float: left;
+display: inline-block;
+
+min-width: 160px;
+min-height: 10px;
+max-width: 510px;
+background-color: #FFF;
+border-radius: 3px;
+box-shadow: 0px 3px 3px #E3E4E6;
+color: #637277;
+line-height: 1.4;
+word-wrap: break-word;
+}
+ul {
+list-style-type: none;
+}

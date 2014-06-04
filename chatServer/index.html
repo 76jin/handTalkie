@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="public/css/chat.css">
 <script src="/socket.io/socket.io.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
@@ -10,7 +11,9 @@
 
   // 서버에서 UPDATE_CHAT 메시지를 받으면, 채팅 내용을 업데이트한다.
   socket.on('UPDATE_CHAT', function (username, data) {
-    $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+		  
+    $('#conversation')/*.append('<b>'+username + ':</b> ' + data + '<br>');*/
+    .append('<div class="chatroom"><ul><li class="me"><div class="image"><img src="public/img/test.jpg"><b>'+username+'</b><i class="timesent" data-time=""></i></div><p>'+data+'</li></ul></div>');
   });
 
   // 서버에서 UPDATE_ROOMS 메시지를 받으면, 화면에 채팅방 목록을 업데이트한다.
@@ -50,12 +53,34 @@
 
 </script>
 
+<body>
+
+  <header class="banner">
+    <h1 class="bannertext">
+      <a href="#"
+        id="logo">chatting<span>(korea)</span>: korea tour
+      </a>
+    </h1>
+  </header>
+  
+  <!-- 
 <div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
   <b>ROOMS</b>
   <div id="rooms"></div>
 </div>
-<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-  <div id="conversation"></div>
-  <input id="data" style="width:200px;" />
-  <input type="button" id="datasend" value="send" />
-</div>
+ -->
+ 
+  <section class="section">
+    <div id="conversation">
+    </div>
+    
+
+  </section>
+
+  <footer>
+    <form id="chatform">
+      <textarea id="data" placeholder="Write something.."></textarea>
+      <input type="button" id="datasend" value="SEND" />
+    </form>
+  </footer>
+</body>

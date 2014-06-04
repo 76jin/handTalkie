@@ -1,16 +1,20 @@
-/*
- * * event name : 우리가 만든 이벤트는 대문자로 쓰고, _를 써서 단어 구분한다.
- */
-
 var express = require('express')
   , app = express()
   , http = require('http')
   , server = http.createServer(app)
-  , io = require('socket.io').listen(server);
+  , io = require('socket.io').listen(server)
+  , cors = require('cors');
 
 server.listen(9998);
 
+// Cross domain 문제 해결
+// ("URL" not allowed by Access-Control-Allow-Origin)
+app.use(cors());
+app.use(app.router);
+
 // 라우팅 
+app.use('/public/css', express.static(__dirname + '/public/css'));
+app.use('/public/img', express.static(__dirname + '/public/img'));
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
