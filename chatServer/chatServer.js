@@ -3,23 +3,184 @@ var express = require('express')
   , http = require('http')
   , server = http.createServer(app)
   , io = require('socket.io').listen(server)
-  , cors = require('cors');
+  , cors = require('cors')
+  , path = require('path');
 
-server.listen(9997);
+var mysql = require('mysql');
+var dbPool = mysql.createPool({
+  host : '127.0.0.1',
+  port : 3306,
+  user : 'talkie',
+  password : 'talkie',
+  database : 'talkiedb',
+  connectionLimit:20,
+  waitForConnections:true
+});
+
+// DB Connection 연결
+/* ConnectionPool 사용하면 이거 필요 없음.
+connection.connect(function(err){
+  if (err) {
+    console.error('mysql connection error');
+    console.error(err);
+    throw err;
+  }
+  console.log('이 코드는 언제 호출되는걸까?');
+});
+*/
 
 // Cross domain 문제 해결
 // ("URL" not allowed by Access-Control-Allow-Origin)
 app.use(cors());
 app.use(app.router);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+/////////////////////////////////////////////////
+
+// express를 위한 환경 변수 설정
+//all environments
+app.set('port', process.env.PORT || 9997);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(express.cookieParser('talkie'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 라우팅 
 app.use('/public/css', express.static(__dirname + '/public/css'));
 app.use('/public/img', express.static(__dirname + '/public/img'));
+app.get('/:id', function (req, res, next) {
+  console.log('req:id - ', req.params.id);
+  next();
+});
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
+  //location.href = '192.168,200.10:9999/';
 });
 
-var usernames = [];       // 현재 접속한 사용자명
+app.get('/getUsers', function(req, res){
+  dbPool.getConnection(function(err, connection){
+    var query = connection.query('SELECT * from SE_USERS', function(err, rows){
+      if (err) {
+        connection.release(); // to prevent connectino leak.
+        throw err;
+      }
+
+      console.log(rows);
+      res.json(rows);
+      connection.release();   // to prevent connectino leak.
+    });
+    console.log(query);
+  });
+});
+
+app.get('/getuserno.jsonp*', function(req, res){
+  console.log('query: ', req.query);
+  var callback = req.param('callback');
+  res.send(callback +
+      '(' +
+      JSON.stringify({
+        status: 'ok',
+        data: 'success get'
+      }) +
+      ')'
+      );
+});
+
+app.get('/startChat.jsonp*', function(req, res){
+  console.log('query: ', req.query);
+  var callback = req.param('callback');
+  
+  // 파라미터 세션에 저장
+  var userNo = req.query.userNo;
+  var othersNo = req.query.othersNo;
+  console.log('parameter: ', userNo, othersNo);
+/*  
+  req.session.userNo = userNo;
+  req.session.othersNo = othersNo;
+  console.log('req session userNo: ', req.session.userNo);
+  console.log('req session othersNo: ', req.session.othersNo);
+ */ 
+  // 웹브라우저에서 채팅방 설정하기
+  
+  var resultData = 
+  {
+    ajaxResult:
+    {
+      status: 'ok',
+      data: 'success'
+    }
+  };
+/*  
+  res.cookie('userNo', req.session.userNo, 
+      { expires: new Date(Date.now() + 900000), 
+        httpOnly: true, 
+        signed:true });
+  
+  res.cookie('othersNo',req.session.othersNo,
+      { expires: new Date(Date.now() + 900000), 
+        httpOnly: true, 
+        signed:true });
+  */
+/*  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.write(JSON.stringify(resultData));
+  res.end();*/
+  
+  
+  
+   res.send(callback +
+      '(' +
+      JSON.stringify(
+      {
+        ajaxResult:
+        {
+          status: 'ok',
+          data: 'success'
+        }
+      }) +
+      ')'
+      );
+/*  
+  var chatUsersNo = {
+      'userNo' : req.body.userNo,
+      'othersNo' : req.body.othersNo
+  };
+  
+  console.log(chatUsersNo);*/
+  
+  /*
+  dbPool.getConnection(function(err, connection){
+    var query = connection.query('SELECT * from SE_USERS', function(err, rows){
+      if (err) {
+        connection.release(); // to prevent connectino leak.
+        throw err;
+      }
+
+      console.log(rows);
+      res.json(rows);
+      connection.release();   // to prevent connectino leak.
+    });
+    console.log(query);
+  });
+  */
+});
+
+// 서버 실행
+server.listen(app.get('port'), function(){
+  console.log('server is started. port: ', app.get('port'));
+});
+
+/////////////////////////////////////////
+var usernames = '홍길동';       // 현재 접속한 사용자명
 var rooms = ['room1', 'room2', 'room3'];  // 사용가능한 채팅방 목록
 
 io.sockets.on('connection', function (socket) {

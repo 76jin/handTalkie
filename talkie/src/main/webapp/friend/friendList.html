@@ -1,94 +1,103 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>friend List</title>
-		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
-		<link rel="stylesheet" type="text/css" href="../css/friendList.css">
-		<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
-		<link rel="stylesheet" type="text/css" href="../css/main_side.css">
-		<link rel="stylesheet" type="text/css" href="../css/main_Tap.css">
-		<link rel="stylesheet" type="text/css" href="../css/bootflat.css">
-		<link rel="stylesheet" type="text/css" href="../css/bootflat.min.css">
-		<link rel="stylesheet" type="text/css" href="../scss/bootflat.scss">
-		<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-		<script type="text/javascript" src="../js/snap.js"></script>
-		<script type="text/javascript" src="../js/main_Tap.js"></script>
-        <script type="text/javascript" src="../js/main_map.js"></script>
-		<script type="text/javascript" src="../js/icheck.min.js"></script>
-        <script src="../js/jquery-1.11.1.min.js"></script>
+<head>
+<meta charset="UTF-8">
+<title>friend List</title>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="../css/friendList.css">
+<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
+<link rel="stylesheet" type="text/css" href="../css/main_side.css">
+<link rel="stylesheet" type="text/css" href="../css/main_Tap.css">
+<link rel="stylesheet" type="text/css" href="../css/bootflat.css">
+<link rel="stylesheet" type="text/css" href="../css/bootflat.min.css">
+<link rel="stylesheet" type="text/css" href="../scss/bootflat.scss">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="../js/snap.js"></script>
+<script type="text/javascript" src="../js/main_Tap.js"></script>
+<script type="text/javascript" src="../js/main_map.js"></script>
+<script type="text/javascript" src="../js/icheck.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
 
 </script>
-	</head>
+</head>
 
-	<body>
-		<div class="drawers">
-			<div class="left-drawer">
-				<a href="../main_Pro.html"> <img  class="mainIcon_f">
-				<div id="profile">
-		      <h4 id="name"></h4>
-		      <p>
-		        <span id="profileCountry"></span> /
-		        <span id="profileLanguage"></span>
-		      </p>
-		      </div>
-           </a>
-				<div id="imgBox">
-					<img  id="myPic" src="../img/test.jpg" alt="myInfo">
-				</div>
-			</div>
+<body>
+  <div class="drawers">
+    <div class="left-drawer">
+      <a href="../main_Pro.html"> <img class="mainIcon_f">
+        <div id="profile">
+          <h4 id="name"></h4>
+          <p>
+            <span id="profileCountry"></span> / <span id="profileLanguage"></span>
+          </p>
+        </div>
+      </a>
+      <div id="imgBox">
+        <img id="myPic" src="../img/test.jpg" alt="myInfo">
+      </div>
+    </div>
 
-			<div class="snap-drawer snap-drawer-left">
-				<div>
-					<ul>
-						<div>
-							<li id="tagTap">
-								<a href="#" id="tagappend"> <img id="tag" class="mainIcon_s" src="../img/tag.png"> location Tag </a>
-							</li>
-						</div>
+    <div class="snap-drawer snap-drawer-left">
+      <div>
+        <ul>
+          <div>
+            <li id="tagTap"><a href="#" id="tagappend"> <img id="tag"
+                class="mainIcon_s" src="../img/tag.png"> location Tag
+            </a></li>
+          </div>
 
-						<li>
-							<a href="./friend/friendList.html">
-								 <img id="friend" class="mainIcon_s" src="../img/friend.png"> friend List</a>
-						</li>
-						<!--    find friend
+          <li><a href="./friend/friendList.html"> <img id="friend"
+              class="mainIcon_s" src="../img/friend.png"> friend List
+          </a></li>
+          <!--    find friend
 						<li><a href="./friend/findFriend.html"> 
 								<img id="findFriend" class="mainIcon_s" src="../img/friend.png"> find Friend</a></li>
 						  -->
-						<li>
-							<a href="#"> <img id="help" class="mainIcon_s" src="../img/help.png"> help</a>
-						</li>
-						<li>
-							<a href="#"> <img id="setting" class="mainIcon_s" src="../img/setting.png"> setting</a>
-						</li>
-					</ul>
-					<div class="demo-social">
-						<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1400006231.html#_=1400077073883&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fjakiestfu.github.io%2FSnap.js%2Fdemo%2Fapps%2Fdefault.html&amp;size=m&amp;text=Snap.js%20-%20A%20Library%20for%20creating%20beautiful%20mobile%20shelfs%20in%20Javascript&amp;url=http%3A%2F%2Fjakiestfu.github.com%2FSnap.js%2F&amp;via=jakiestfu" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-none" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 56px; height: 20px;"></iframe>
-						<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.1400006231.html#_=1400077073888&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=jakiestfu&amp;show_count=false&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 119px; height: 20px;"></iframe>
-					</div>
-				</div>
-			</div>
+          <li><a href="#"> <img id="help" class="mainIcon_s"
+              src="../img/help.png"> help
+          </a></li>
+          <li><a href="#"> <img id="setting" class="mainIcon_s"
+              src="../img/setting.png"> setting
+          </a></li>
+        </ul>
+        <div class="demo-social">
+          <iframe id="twitter-widget-0" scrolling="no" frameborder="0"
+            allowtransparency="true"
+            src="http://platform.twitter.com/widgets/tweet_button.1400006231.html#_=1400077073883&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fjakiestfu.github.io%2FSnap.js%2Fdemo%2Fapps%2Fdefault.html&amp;size=m&amp;text=Snap.js%20-%20A%20Library%20for%20creating%20beautiful%20mobile%20shelfs%20in%20Javascript&amp;url=http%3A%2F%2Fjakiestfu.github.com%2FSnap.js%2F&amp;via=jakiestfu"
+            class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-none"
+            title="Twitter Tweet Button" data-twttr-rendered="true"
+            style="width: 56px; height: 20px;"></iframe>
+          <iframe id="twitter-widget-1" scrolling="no" frameborder="0"
+            allowtransparency="true"
+            src="http://platform.twitter.com/widgets/follow_button.1400006231.html#_=1400077073888&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=jakiestfu&amp;show_count=false&amp;show_screen_name=true&amp;size=m"
+            class="twitter-follow-button twitter-follow-button"
+            title="Twitter Follow Button" data-twttr-rendered="true"
+            style="width: 119px; height: 20px;"></iframe>
+        </div>
+      </div>
+    </div>
 
-		</div>
+  </div>
 
-		<div id="content">
-			<a id="tap" href="#" id="menuIcon"><img id="menuIcon"src="../img/menuIcon.png"></a>
-			<!--
+  <div id="content">
+    <a id="tap" href="#" id="menuIcon"><img id="menuIcon"
+      src="../img/menuIcon.png"></a>
+    <!--
 			<a id="tap" id="menuIcon" href="./main_Pro_modify.html"><img
 			id="menuIcon" src="./img/profile.png"></a> -->
 
-			<div id="navigation">
-				<div id="map" class="mainIcon">
-					<a href="../main_Tap.html" title="map"> <span id="maps" class="text">map</span></a>
-				</div>
-				<div id="chat" class="mainIcon">
-					<a href="#" title="chat"> <span id="chats" class="text">chat</span></a>
-				</div>
-			</div>
-			<a href="#" id="menuAlarm"><img id="menuAlarm"src="../img/alarm.png"></a>
+    <div id="navigation">
+      <div id="map" class="mainIcon">
+        <a href="../main_Tap.html" title="map"> <span id="maps" class="text">map</span></a>
+      </div>
+      <div id="chat" class="mainIcon">
+        <a href="#" title="chat"> <span id="chats" class="text">chat</span></a>
+      </div>
+    </div>
+    <a href="#" id="menuAlarm"><img id="menuAlarm" src="../img/alarm.png"></a>
 
-			<!--
+    <!--
 			<div class='locationTag' style='display:none'>
 			<div class="locationTag_close">
 			<img id="closeIcon" class="mainIcon_c" src="./img/close.png"></div>
@@ -98,15 +107,15 @@
 			용인 에버랜드</p>
 			</div>
 			-->
-			<div id="center">
-				<!--<div class="main-bar">
+    <div id="center">
+      <!--<div class="main-bar">
 				<div id="mainbar-text">friend List</div>
 				</div> -->
-				<!--    검색창 -->
-				<section class="main">
-					<form class="search" method="post" action="index.html">
-						<input type="text" name="q" placeholder="사용자와 헤시태그 검색" />
-					<!--	<ul class="results">
+      <!--    검색창 -->
+      <section class="main">
+        <form class="search" method="post" action="index.html">
+          <input type="text" name="q" placeholder="사용자와 헤시태그 검색" />
+          <!--	<ul class="results">                                                                                 검색창결과 
 							<li>
 								<a href="index.html">Search Result #1
 								<br />
@@ -126,106 +135,96 @@
 								<a href="index.html">Search Result #4</a>
 							</li>
 						</ul>      -->
-					</form>
-				</section>
+        </form>
+      </section>
 
-				<table class="table">
-					<tr>
-						<td>
-							<img src="../img/man1.jpg" alt="" style="width: 70px; height: 70px;"></td>
-						<td>steve  <br>
-							   language : English <br>
-						       location: canada <br>
-						       </td>
-						<td>
-						<div class="dropdown">
-							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"> 
-								<span class="caret"></span> </a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-								<li>
-									<a href="#"><span class="glyphicon glyphicon-envelope"></span> message</a>
-								</li>
-								<li>
-									<a href="#">Dropdown link</a>
-								</li>
-							</ul>
-					</td>
-					</tr>
-					
-					<tr>
-						<td>
-							<img src="../img/man2.JPG" alt="" style="width: 70px; height: 70px;"></td>
-						<td>Obama <br>
-							   language: English 	
-						       location: U.S.A
-						</td>
-						<td>
-						<div class="dropdown">
-							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
-								 <span class="caret"></span> </a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-								<li>
-									<a href="#"><span class="glyphicon glyphicon-envelope"></span> message</a>
-								</li>
-								<li>
-									<a href="#">Dropdown link</a>
-								</li>
-							</ul>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-							<img src="../img/man3.jpeg" alt="" style="width: 70px; height: 70px;"></td>
-						<td>steve <br>
-							   language: English <br>
-						       location: canada   
-						</td>
-						<td>
-						<div class="dropdown">
-							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"> <span class="caret"></span> </a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-								...
-								<li>
-									<a href="#"><span class="glyphicon glyphicon-envelope"></span> message</a>
-								</li>
-								<li>
-									<a href="#">Dropdown link</a>
-								</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<td><img src="../img/justinbieber.jpg" alt=""
-						style="width: 70px; height: 70px;"></td>
-						<td>steve
-						<br>
-						<br>
-						location: canada</td>
-							</tr>
-						<div class="dropdown">
-							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
-								 <span class="caret"></span> </a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-								<li>
-									<a href="#"><span class="glyphicon glyphicon-envelope"></span> message</a>
-								</li>
-								<li>
-									<a href="#">Dropdown link</a>
-								</li>
-							</ul>
-					</div>
-      
-				</table>
-				<div class="readmore">
-					<button type="button" class="btn btn-default btn-lg btn-block">
-						Read more
-					</button>
-				</div>
+      <table class="table">
+        <tr>
+          <td><img src="../img/man1.jpg" alt=""
+            style="width: 70px; height: 70px;"></td>
+          <td>steve <br> language : English <br> location: canada
+            <br>
+          </td>
+          <td>
+            <div class="dropdown">
+              <a id="dLabel" role="button" data-toggle="dropdown"
+                data-target="#" href="/page.html"> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
+                <li><a href="#"><span
+                    class="glyphicon glyphicon-envelope"></span> message</a></li>
+                <li><a href="#">Dropdown link</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
 
-				<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-				<script src="../js/bootstrap.min.js"></script>
-				<script type="text/javascript" src="./friendList.js"></script>
-                <script src="../js/main_map.js"></script>
-	</body>
+        <tr>
+          <td><img src="../img/man2.JPG" alt=""
+            style="width: 70px; height: 70px;"></td>
+          <td>Obama <br> language: English location: U.S.A
+          </td>
+          <td>
+            <div class="dropdown">
+              <a id="dLabel" role="button" data-toggle="dropdown"
+                data-target="#" href="/page.html"> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
+                <li><a href="#"><span
+                    class="glyphicon glyphicon-envelope"></span> message</a></li>
+                <li><a href="#">Dropdown link</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><img src="../img/man3.jpeg" alt=""
+            style="width: 70px; height: 70px;"></td>
+          <td>jax <br> language: English <br> location: canada
+          </td>
+          <td>
+            <div class="dropdown">
+              <a id="dLabel" role="button" data-toggle="dropdown"
+                data-target="#" href="/page.html"> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
+                <li><a href="#"><span
+                    class="glyphicon glyphicon-envelope"></span> message</a></li>
+                <li><a href="#">Dropdown link</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><img src="../img/justinbieber.jpg" alt=""
+            style="width: 70px; height: 70px;"></td>
+          <td>justinbieber<br> language: English<br> location:
+            canada
+          </td>
+          <td>
+            <div class="dropdown">
+              <a id="dLabel" role="button" data-toggle="dropdown"
+                data-target="#" href="/page.html"> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
+                <li><a href="#"><span
+                    class="glyphicon glyphicon-envelope"></span> message</a></li>
+                <li><a href="#">Dropdown link</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="readmore">
+        <button type="button" class="btn btn-default btn-lg btn-block">
+          Read more</button>
+      </div>
+
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="./friendList.js"></script>
+      <script src="../js/main_map.js"></script>
+</body>
 </html>

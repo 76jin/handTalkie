@@ -80,6 +80,52 @@ function mainTap() {
 		window.openURL("./main_Pro_modify.html");
 	 });
 	
+	// 채팅하기 버튼 클릭 이벤트 처리
+	$("#chattingBtn").on('click', function(){
+	  console.log('chat server url: ', bit.chatServerUrl);
+	  
+	  // 선택한 사람들의 UNO를 배열로 조합하여 넘긴다.
+	  // 1. 먼저 현재 사용자 UNO 넘기기.
+	  var userNo = 1; // 홍길동.
+	  var othersNo = [3, 4]; // 임꺽정, 장보고?
+	  
+	  // 쿠키에 사용자 정보와 채팅하려는 사람 정보 저장하기.
+	  // Todo
+	  
+/*	  var data = {};
+	  data.userNo = '66';*/
+	  
+	  // 채팅 서버로 채팅할 사용자들 정보 전달
+	  $.ajax(  'http://192.168.200.10:9997/startChat.jsonp', {
+	    crossDomain:true,
+	    type: 'GET',
+	    dataType: 'jsonp',
+	    data: {
+	      userNo: userNo,
+	      othersNo: othersNo
+	    },
+	    success: function(jsonObj){
+	      console.log('jsonp reuslt: ', jsonObj);
+	      var result = jsonObj.ajaxResult;
+	      if (result.status == "ok" && result.data == "success") {
+	        console.log('채팅방으로 이동 성공!');
+//	        console.log('read cookie1: ', $.cookie('userNo'));
+//	        console.log('read cookie2: ', $.cookie('othersNo'));
+	        location.href = 'http://192.168.200.10:9997/';
+	      } else {
+	        alert('채팅방으로 이동에 실패했습니다.');
+	      }
+	    },
+	    error: function(xhr, status, errorThrown){
+	      alert('채팅방으로 이동 중 오류 발생!');
+	      console.log(status);
+	      console.log(errorThrown);
+	    }
+	  });
+	});
+	
+	
+	// 사용자 정보를 가져와서 메인 화면 초기화를 한다.(프로그램의 시작 코드)
 	getUserInfo();
 	
 	
