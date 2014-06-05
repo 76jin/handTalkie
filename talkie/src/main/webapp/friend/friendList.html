@@ -15,8 +15,11 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/snap.js"></script>
 		<script type="text/javascript" src="../js/main_Tap.js"></script>
+        <script type="text/javascript" src="../js/main_map.js"></script>
 		<script type="text/javascript" src="../js/icheck.min.js"></script>
+        <script src="../js/jquery-1.11.1.min.js"></script>
 
+</script>
 	</head>
 
 	<body>
@@ -24,11 +27,13 @@
 			<div class="left-drawer">
 				<a href="../main_Pro.html"> <img  class="mainIcon_f">
 				<div id="profile">
-					<h4 id="name"></h4>
-					<p>
-						<span id="profileCountry"></span> / <span id="profileLanguage"></span>
-					</p>
-				</div> </a>
+		      <h4 id="name"></h4>
+		      <p>
+		        <span id="profileCountry"></span> /
+		        <span id="profileLanguage"></span>
+		      </p>
+		      </div>
+           </a>
 				<div id="imgBox">
 					<img  id="myPic" src="../img/test.jpg" alt="myInfo">
 				</div>
@@ -44,11 +49,13 @@
 						</div>
 
 						<li>
-							<a href="./friend/friendList.html"> <img id="friend" class="mainIcon_s" src="../img/friend.png"> friend List</a>
+							<a href="./friend/friendList.html">
+								 <img id="friend" class="mainIcon_s" src="../img/friend.png"> friend List</a>
 						</li>
-						<li>
-							<a href="#"> <img id="findFriend" class="mainIcon_s" src="../img/friend.png"> find Friend</a>
-						</li>
+						<!--    find friend
+						<li><a href="./friend/findFriend.html"> 
+								<img id="findFriend" class="mainIcon_s" src="../img/friend.png"> find Friend</a></li>
+						  -->
 						<li>
 							<a href="#"> <img id="help" class="mainIcon_s" src="../img/help.png"> help</a>
 						</li>
@@ -99,7 +106,7 @@
 				<section class="main">
 					<form class="search" method="post" action="index.html">
 						<input type="text" name="q" placeholder="사용자와 헤시태그 검색" />
-						<ul class="results">
+					<!--	<ul class="results">
 							<li>
 								<a href="index.html">Search Result #1
 								<br />
@@ -118,24 +125,23 @@
 							<li>
 								<a href="index.html">Search Result #4</a>
 							</li>
-						</ul>
+						</ul>      -->
 					</form>
 				</section>
 
 				<table class="table">
 					<tr>
-						<td><img src="../img/man1.jpg" alt=""
-						style="width: 70px; height: 70px;"></td>
-						<td>steve
-						<br>
-						<br>
-						location: canada</td>
+						<td>
+							<img src="../img/man1.jpg" alt="" style="width: 70px; height: 70px;"></td>
+						<td>steve  <br>
+							   language : English <br>
+						       location: canada <br>
+						       </td>
 						<td>
 						<div class="dropdown">
-							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"> <span class="caret"></span> </a>
-
+							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"> 
+								<span class="caret"></span> </a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-								...
 								<li>
 									<a href="#"><span class="glyphicon glyphicon-envelope"></span> message</a>
 								</li>
@@ -143,21 +149,21 @@
 									<a href="#">Dropdown link</a>
 								</li>
 							</ul>
-						</div></td>
+					</td>
 					</tr>
+					
 					<tr>
-						<td><img src="../img/man2.JPG" alt=""
-						style="width: 70px; height: 70px;"></td>
-						<td>steve
-						<br>
-						<br>
-						location: canada</td>
+						<td>
+							<img src="../img/man2.JPG" alt="" style="width: 70px; height: 70px;"></td>
+						<td>Obama <br>
+							   language: English 	
+						       location: U.S.A
+						</td>
 						<td>
 						<div class="dropdown">
-							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"> <span class="caret"></span> </a>
-
+							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+								 <span class="caret"></span> </a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-								...
 								<li>
 									<a href="#"><span class="glyphicon glyphicon-envelope"></span> message</a>
 								</li>
@@ -167,17 +173,17 @@
 							</ul>
 						</td>
 					</tr>
+					
 					<tr>
-						<td><img src="../img/man3.jpeg" alt=""
-						style="width: 70px; height: 70px;"></td>
-						<td>steve
-						<br>
-						<br>
-						location: canada</td>
+						<td>
+							<img src="../img/man3.jpeg" alt="" style="width: 70px; height: 70px;"></td>
+						<td>steve <br>
+							   language: English <br>
+						       location: canada   
+						</td>
 						<td>
 						<div class="dropdown">
 							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"> <span class="caret"></span> </a>
-
 							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
 								...
 								<li>
@@ -196,12 +202,11 @@
 						<br>
 						<br>
 						location: canada</td>
-						<td>
+							</tr>
 						<div class="dropdown">
-							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"> <span class="caret"></span> </a>
-
+							<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+								 <span class="caret"></span> </a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-								...
 								<li>
 									<a href="#"><span class="glyphicon glyphicon-envelope"></span> message</a>
 								</li>
@@ -209,18 +214,18 @@
 									<a href="#">Dropdown link</a>
 								</li>
 							</ul>
-						</td>
-					</tr>
+					</div>
+      
 				</table>
 				<div class="readmore">
 					<button type="button" class="btn btn-default btn-lg btn-block">
-						Read
-						more
+						Read more
 					</button>
 				</div>
 
 				<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 				<script src="../js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="./friendList.js"></script>
+                <script src="../js/main_map.js"></script>
 	</body>
 </html>
