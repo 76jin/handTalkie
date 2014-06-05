@@ -5,7 +5,7 @@ var express = require('express')
   , io = require('socket.io').listen(server)
   , cors = require('cors');
 
-server.listen(9998);
+server.listen(9997);
 
 // Cross domain 문제 해결
 // ("URL" not allowed by Access-Control-Allow-Origin)
@@ -24,11 +24,6 @@ var rooms = ['room1', 'room2', 'room3'];  // 사용가능한 채팅방 목록
 
 io.sockets.on('connection', function (socket) {
 
-  // 웹브라우저가 SEND_CHAT 이벤트를 보내면 실행된다.
-  socket.on('SEND_CHAT', function (data) {
-    // 같은 채팅방 안에 있는 웹브라우저에게 UPDATE_CHAT 이벤트를 보낸다. 
-    io.sockets.in(socket.room).emit('UPDATE_CHAT', socket.username, data);
-  });
 
   // 웹브라우저가 ADD_USER 이벤트를 보내면 실행된다.
   socket.on('ADD_USER', function(username){
@@ -40,6 +35,12 @@ io.sockets.on('connection', function (socket) {
     // 이 사용자에게 채팅 서버에 접속되었다고 알린다.
     socket.emit('UPDATE_CHAT', 'SERVER', 'you have connected to' + socket.room);
     
+    // 웹브라우저가 SEND_CHAT 이벤트를 보내면 실행된다.
+    socket.on('SEND_CHAT', function (data) {
+    	// 같은 채팅방 안에 있는 웹브라우저에게 UPDATE_CHAT 이벤트를 보낸다. 
+    	io.sockets.in(socket.room).emit('UPDATE_CHATS', socket.username, data);
+    });
+
     // 이 채팅방에만 사용자가 추가되었다는 메시지를 보낸다.
     socket.broadcast.to(socket.room).emit('UPDATE_CHAT', 'SERVER', username + ' has connected to this room');
     socket.emit('UPDATE_ROOMS', rooms, socket.room);  // what rooms?

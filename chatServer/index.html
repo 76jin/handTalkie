@@ -2,19 +2,33 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-  var socket = io.connect('http://localhost:9998'); // 서버에 접속 시도
-
+  var socket = io.connect('http://localhost:9997'); // 서버에 접속 시도
+  
   // 서버에 접속되면 실행된다.
   socket.on('connect', function(){
     socket.emit('ADD_USER', prompt("What's your name?")); // 서버에 사용자명 전달
   });
 
-  // 서버에서 UPDATE_CHAT 메시지를 받으면, 채팅 내용을 업데이트한다.
+  // 서버에서 연결되었다 메시지를 받으면, 채팅 내용을 업데이트한다.
   socket.on('UPDATE_CHAT', function (username, data) {
-		  
-    $('#conversation')/*.append('<b>'+username + ':</b> ' + data + '<br>');*/
-    .append('<div class="chatroom"><ul><li class="me"><div class="image"><img src="public/img/test.jpg"><b>'+username+'</b><i class="timesent" data-time=""></i></div><p>'+data+'</li></ul></div>');
-  });
+	    $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+	  });
+  
+  
+  
+  var name ="hong";
+  var email = "hong@test.com";
+  // 서버에서 UPDATE_CHAT 메시지를 받으면, 채팅 내용을 업데이트한다.
+  socket.on('UPDATE_CHATS', function (username, data) {
+	  
+	  if(name == username){
+		   $('#conversation').append('<div class="chatroom"><ul><li class="me"><div class="myimage"><img src="public/img/test.jpg"><b>'+username+'</b></div><div id="mymsg"><p>'+data+'</p></div></li></ul></div>');
+	  } else if (name != username){
+	       $('#conversation').append('<div class="chatroom"><ul><li class="you"><div class="image"><img src="public/img/unnamed.jpg"><b>'+username+'</b></div><div id="msg"><p>'+data+'</p></div></li></ul></div>');
+	  }
+	  
+      scrollToBottom();
+ });
 
   // 서버에서 UPDATE_ROOMS 메시지를 받으면, 화면에 채팅방 목록을 업데이트한다.
   socket.on('UPDATE_ROOMS', function(rooms, current_room) {
@@ -37,19 +51,19 @@
   $(function(){
     // 웹브라우저에서 SEND 버튼을 클릭할 때
     $('#datasend').click( function() {
-      var message = $('#data').val();
+      var message = $('#data').val().replace('\n', '<br>');
       $('#data').val('');
       socket.emit('SEND_CHAT', message);  // 서버를 통해 다른 사용자에게 메시지를 전달한다.
+      $('#data').focus(); 
+    
     });
 
-    // 웹브라우저에서 키보드의 엔터키를 입력할 때
-    $('#data').keypress(function(e) {
-      if(e.which == 13) {
-        $(this).blur();
-        $('#datasend').focus().click();   // SEND 버튼 클릭 효과
-      }
-    });
   });
+ 
+  // 마지막 채팅글로 자동 이동
+  function scrollToBottom(){
+	    $("html, body").animate({ scrollTop: $(document).height()-$(window).height() },1000);
+	  }
 
 </script>
 
