@@ -28,6 +28,15 @@ $(window).load(function(){
 				$('#profileTitle').text(obj.profileTitle);
 				$('#title_pro').text(obj.profileDesc);
 				$('#favoriteTagText').text(obj.favTag);
+				
+        console.log('obj.phoPath:', obj.phoPath);
+        if (obj.phoPath) {
+          $('#profile_img').attr("src", obj.phoPath);
+        } else {
+          $('#profile_img').attr("src", "./img/profile/no-profile-image.jpg");
+        }
+        
+				
 				/*	location.href="./main_slider.html";*/
 			}
 		},
