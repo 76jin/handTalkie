@@ -14,7 +14,7 @@ $(window).load(function(){
 				alert('친구 리스트를 불러 오는데 실패 했습니다.');
 			} else {
 
-				alert('친구 정보를 불러오기 성공');
+				//alert('친구 정보를 불러오기 성공111');
 				console.log('friendList: ', result);
 				console.log('friendList[0]: ', result.data[0].friendNo);
 				
@@ -47,7 +47,7 @@ function getFriendInfo() {
 				alert('친구 정보를 불러 오는데 실패 했습니다.');
 			} else {
 
-				alert('친구 정보를 불러오기 성공');
+				//alert('친구 정보를 불러오기 성공222');
 				console.log('friendList: ', result);
 			}
 		},
