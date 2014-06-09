@@ -1,36 +1,47 @@
-var testEmail = 'hong@test.com';
 
 $(window).load(function(){
+  console.log("bit.userEmail:", bit.userEmail);
+  console.log('cookie bit.userEmail in profile:', bit.userEmail);
+  
 	$.ajax(	bit.contextRoot + '/profileInfo.ajax', {
 		type: 'POST',
-		dataType: 'json', /*서버에서 보내는 데이터의 형식 지정 */
-		data: { /* 서버쪽으로 보내는 데이터 */
-			//email: $('#email').val(),
-			email: testEmail
+		dataType: 'json',
+		data: {
+			email: bit.userEmail
 		},
 		success: function(jsonObj){
 			console.log(jsonObj);
 			var result = jsonObj.ajaxResult;
 			if (result.status == "ok" && result.data == "failure") {
-				alert('등록에 실패했습니다.');
+				alert('프로필 정보를 읽어오지 못했습니다..');
 			} else {
+			  console.log('cookie bit.userNo in profile:', bit.userNo);
 				console.log('profileInfo success!');
-				console.log(result.data);
+				//console.log(result.data);
 				
 				var obj = JSON.parse(result.data);
 				
-				console.log(obj.profileTitle);
-				console.log(obj.profileDesc);
-				console.log(obj.favTag);
+				//console.log(obj.profileTitle);
+				//console.log(obj.profileDesc);
+				//console.log(obj.favTag);
 				
 				$('#profileTitle').text(obj.profileTitle);
 				$('#title_pro').text(obj.profileDesc);
 				$('#favoriteTagText').text(obj.favTag);
+				
+        console.log('obj.phoPath:', obj.phoPath);
+        if (obj.phoPath) {
+          $('#profile_img').attr("src", obj.phoPath);
+        } else {
+          $('#profile_img').attr("src", "./img/profile/no-profile-image.jpg");
+        }
+        
+				
 				/*	location.href="./main_slider.html";*/
 			}
 		},
 		error: function(xhr, status, errorThrown){
-			alert('등록 중 오류 발생!');
+			alert('프로필 정보 읽기 중 오류 발생!');
 			console.log(status);
 			console.log(errorThrown);
 		}

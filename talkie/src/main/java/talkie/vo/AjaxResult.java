@@ -3,7 +3,6 @@ package talkie.vo;
 public class AjaxResult {
 	String status;
 	Object data;
-	
 	public String getStatus() {
 		return status;
 	}
@@ -18,6 +17,9 @@ public class AjaxResult {
 		this.data = data;
 		return this;
 	}
-	
+	@Override
+	public String toString() {
+		return "AjaxResult [status=" + status + ", data=" + data + "]";
+	}
 
 }

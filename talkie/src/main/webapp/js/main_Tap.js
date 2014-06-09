@@ -37,6 +37,9 @@ function aaa(){
 }
 function mainTap() {
 	
+  // 사용자 정보를 가져와서 메인 화면 초기화를 한다.(프로그램의 시작 코드)
+  getUserInfo();
+  
 	//aaa();
 	
     $('#menuIcon').on('click', function(){
@@ -86,7 +89,7 @@ function mainTap() {
 	  
 	  // 선택한 사람들의 UNO를 배열로 조합하여 넘긴다.
 	  // 1. 먼저 현재 사용자 UNO 넘기기.
-	  var userNo = 1; // 홍길동.
+	  //var userNo = 1; // 홍길동.
 	  var othersNo = [3, 4]; // 임꺽정, 장보고?
 	  
 	  // 쿠키에 사용자 정보와 채팅하려는 사람 정보 저장하기.
@@ -101,7 +104,7 @@ function mainTap() {
 	    type: 'GET',
 	    dataType: 'jsonp',
 	    data: {
-	      userNo: userNo,
+	      userNo: bit.userNo,
 	      othersNo: othersNo
 	    },
 	    success: function(jsonObj){
@@ -126,8 +129,6 @@ function mainTap() {
 	
 	
 	// 사용자 정보를 가져와서 메인 화면 초기화를 한다.(프로그램의 시작 코드)
-	getUserInfo();
-	
 	
 }
 
@@ -172,7 +173,7 @@ function getUserInfo() {
 			var result = jsonObj.ajaxResult;
 			if (result.status == "ok") {
 				var user = result.data;
-				console.log(user);
+				console.log('user:', user);
 				
 				$('#name').text(user.name);
 /*				$('#loginEmail').text(user.email);*/
@@ -184,7 +185,7 @@ function getUserInfo() {
 					default: nation = 'Korea';
 				}
 				
-				console.log('nation:', nation);
+				//console.log('nation:', nation);
 				
 				var language;
 				switch (user.nation) {
@@ -192,13 +193,21 @@ function getUserInfo() {
 					case 2: language = 'English';
 					default: language = 'Korean';
 				}
-				console.log('language:', language);
+				//console.log('language:', language);
 				
 				$('#profileCountry').text(nation);
 				$('#profileLanguage').text(language);
+				
+				console.log('user.phoPath:', user.phoPath);
+				if (user.phoPath) {
+			 	  $('#myPic').attr("src", user.phoPath);
+				} else {
+				  $('#myPic').attr("src", "./img/profile/no-profile-image.jpg");
+				}
+				
 			} else {
-				//alert("로그인 하지 않았습니다.111");
-				//location.href = bit.contextRoot + "/auth/main_slider.html";
+				alert("로그인 하지 않았습니다.111");
+				location.href = bit.contextRoot + "/auth/main_slider.html";
 			}
 		});
 }
