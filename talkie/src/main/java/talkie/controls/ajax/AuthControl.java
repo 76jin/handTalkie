@@ -21,18 +21,16 @@ import talkie.vo.TalkieUserVo;
 @SessionAttributes("loginUser")
 public class AuthControl {
 	static Logger log = Logger.getLogger(AuthControl.class);
-	
 	@Autowired
 	AuthService authService;
-	
 	/* 리턴 타입은 JSON으로 출력할 객체이다.
 	 * - 자동으로 JSON 문자열로 변환하려면, 빈 설정파일에
 	 *   JSON 변환 해결사를 등록해야 한다.
 	 */
 	@RequestMapping("/login")
 	public AjaxResult login(
-			String email, 
-			String password, 
+			String email,
+			String password,
 			@RequestParam(required=false) String saveEmail,
 			HttpServletResponse response,
 			Model model) {
@@ -40,51 +38,50 @@ public class AuthControl {
 				log.debug("===== 11111 =====");
 				TalkieUserVo talkieUserVo = authService.getLoginUser(email, password);
 				log.debug("===== 55555 =====");
-				
 				AjaxResult result = null;
 				if (talkieUserVo == null) {
 					result =  new AjaxResult().setStatus("ok").setData("failure");
 					log.debug("===== 66666 fail =====");
-					
 				} else {
 					log.debug("===== 77777 ok =====");
 					result = new AjaxResult().setStatus("ok")	.setData("success");
 					model.addAttribute("loginUser", talkieUserVo);
 					log.debug(talkieUserVo);
 					
-					// add userinfoVo
-					
 					if (saveEmail.equals("true")) {
+						// 쿠키 설정: email
 						Cookie cookie = new Cookie("loginEmail", email);
 						cookie.setDomain("s24.java48.com"); // 서버 범위
 						cookie.setPath("/talkie");					// 하위 폴더 범위
-						
+
 						response.addCookie(cookie);
+
+						// 쿠키 설정: 사용자 번호
+						Cookie userNoCookie =
+								new Cookie("userNo", Integer.toString(talkieUserVo.getNo()));
+						userNoCookie.setDomain("s24.java48.com");
+						userNoCookie.setPath("/talkie");
+
+						response.addCookie(userNoCookie);
 					}
 				}
-				
 				response.setContentType("text/html;charset=UTF-8");
-				
 				return result;
-				
 		} catch (Throwable ex) {
 			return new AjaxResult()
 					.setStatus("error")
 					.setData(ex.getMessage());
 		}
 	}
-	
 	@RequestMapping("/logout")
   public String logout(HttpSession session) {
 	  session.invalidate();
 	  return "redirect:login.bit";
   }
-	
 	@RequestMapping("/getLoginUser")
 	public AjaxResult getLoginUser(HttpSession session) {
 		TalkieUserVo loginUser = (TalkieUserVo) session.getAttribute("loginUser");
 		log.debug(loginUser);
-		
 		if (loginUser == null) {
 			return new AjaxResult()
 									.setStatus("failure")

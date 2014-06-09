@@ -11,11 +11,14 @@
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css" href="./css/main_Tap.css">
 <link rel="stylesheet" type="text/css" href="./css/proFile.css">
-<script type="text/javascript" src="./js/main_Pro_modify.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/main_Pro_modify.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="./js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+<!-- <script type="text/javascript" src="./js/jquery.form.min.js"></script> -->
+<!-- <script type="text/javascript" src="./js/jquery.fileupload.js"></script> -->
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/pro_modify.js"></script>
 
 
 </head>
@@ -23,7 +26,12 @@
 
 	<div id="pro" align="center">
 		<div>
-			<img id="profile_img" src="./img/test.jpg">
+  		<form id="uploadForm" action="profilePhoto.ajax" method="post"
+		  enctype="multipart/form-data">
+		  <input type="file" id="profilePhoto" name=photoData style="display:none">
+		</form>
+		<div id="sendFrom"></div>
+	  <img id="profile_img" src="./img/profile/no-profile-image.jpg">
 		</div>
 		<div id="iconff">
 			<span><img class="iconF" src="./img/chat.png"></span> <span><img
