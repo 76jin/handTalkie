@@ -36,14 +36,14 @@
  
   <select id="getLoginUser" 
       parameterType="map" resultMap="talkieUserMap">
-    select UNO, NAME, EMAIL, NATINO
+    select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,FAVTAG,PHOPATH
     from SE_USERS
     where EMAIL=#{email} and PASSWORD=#{password}
   </select>
   
   <select id="getProfileInfo" 
       parameterType="String" resultMap="talkieUserMap">
-    select FAVTAG, PROFILETITLE, PROFILEDESC
+    select FAVTAG, PHOPATH, PROFILETITLE, PROFILEDESC
     from SE_USERS
     where EMAIL=#{email}
   </select>

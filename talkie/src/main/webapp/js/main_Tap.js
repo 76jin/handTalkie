@@ -173,7 +173,7 @@ function getUserInfo() {
 			var result = jsonObj.ajaxResult;
 			if (result.status == "ok") {
 				var user = result.data;
-				console.log(user);
+				console.log('user:', user);
 				
 				$('#name').text(user.name);
 /*				$('#loginEmail').text(user.email);*/
@@ -193,20 +193,17 @@ function getUserInfo() {
 					case 2: language = 'English';
 					default: language = 'Korean';
 				}
-				//sconsole.log('language:', language);
+				//console.log('language:', language);
 				
 				$('#profileCountry').text(nation);
 				$('#profileLanguage').text(language);
-				//alert("로그인 하지 않았습니다.111");
-				//location.href = bit.contextRoot + "/auth/main_slider.html";
-				// 1. get user picture
-				// 2. change user picture url
-				// $('#myPic')
 				
-				
-				// 서버로부터 받은 쿠키(로그인 사용자 번호) 저장
-				console.log('cookie bit.userNo:', bit.userNo);
-				
+				console.log('user.phoPath:', user.phoPath);
+				if (user.phoPath) {
+			 	  $('#myPic').attr("src", user.phoPath);
+				} else {
+				  $('#myPic').attr("src", "./img/profile/no-profile-image.jpg");
+				}
 				
 			} else {
 				alert("로그인 하지 않았습니다.111");
