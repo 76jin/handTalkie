@@ -1,5 +1,12 @@
 package talkie.controls.ajax;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import talkie.services.SignupService;
+import talkie.services.TalkieUserService;
 import talkie.vo.AjaxResult;
 import talkie.vo.SignupVo;
 import talkie.vo.TalkieUserVo;
@@ -20,6 +28,12 @@ import talkie.vo.TalkieUserVo;
 @SessionAttributes("signup, loginUser")
 public class SignupControl {
 	static Logger log = Logger.getLogger(SignupControl.class);
+	
+	@Autowired
+	ServletContext servletContext;
+	
+	@Autowired
+	TalkieUserService talkieUserService;
 	
 	@Autowired
 	SignupService signupService;
@@ -38,12 +52,11 @@ public class SignupControl {
 			HttpServletResponse response,
 			Model model) {
 		try {
-				log.debug("===== 11111 =====");
-				log.debug("name:" + name);
-				log.debug("email:" + email);
-				log.debug("password:" + password);
-				log.debug("country:" + country);
-				log.debug("language:" + language);
+				log.info("name:" + name);
+				log.info("email:" + email);
+				log.info("password:" + password);
+				log.info("country:" + country);
+				log.info("language:" + language);
 				
 				int nationNo;
 				switch (country) {
@@ -51,7 +64,7 @@ public class SignupControl {
 					case "U.S.A":		nationNo = 2;
 					default:			nationNo = 1;
 				}
-				log.debug("nationNo:" + nationNo);
+				log.info("nationNo:" + nationNo);
 				
 				int languageNo;
 				switch (country) {
@@ -59,7 +72,7 @@ public class SignupControl {
 					case "English":	languageNo = 2;
 					default:			languageNo = 1;
 				}
-				log.debug("languageNo:" + languageNo);
+				log.info("languageNo:" + languageNo);
 				
 				SignupVo svo = new SignupVo();
 				svo.setName(name);
@@ -68,17 +81,62 @@ public class SignupControl {
 				svo.setCountry(nationNo);
 				svo.setLanguage(languageNo);
 				
-				int res = signupService.signup(svo);
-				log.debug("===== 55555 =====");
+				int resultSignUp = signupService.signup(svo);
+				
+				int userNo = signupService.getUserNo(email);
+				
+				// check mysql error
+				if (resultSignUp == 0 || userNo <= 0 ) {
+					AjaxResult result = null;
+					result =  new AjaxResult().setStatus("ok").setData("failure");
+					
+					response.setContentType("text/html;charset=UTF-8");
+					return result;
+				}
+				
+				// 서버에 사용자 사진 저장 (기본사진:no-profile-image.jpg)
+				String fullPath = servletContext.getRealPath("/img/profile");
+				
+				String filename = "profile_" + userNo + ".jpg"; // ex) profile_1.jpg
+				File destFile = new File(fullPath + "/" + filename);
+				String sourceFile = fullPath + "/no-profile-image.jpg";
+				
+				//log.debug("saveFilePath:" + destFile.toPath());
+				//log.debug("sourceFile:" + sourceFile);
+				
+				Path sourcePath = Paths.get(sourceFile);
+				Path destPath = Paths.get(destFile.toPath().toString());
+				
+				boolean resultCopy = false;
+				
+				try {
+					Files.copy(sourcePath, destPath);
+					resultCopy = true;
+				} catch (IOException e) {
+					resultCopy = false;
+					e.printStackTrace();
+				}
+				
+				// DB에 사용자 프로필 사진 경로 저장.
+				boolean resultUpdate = false;
+				
+				try{
+					int resUpdate = talkieUserService.updateProfilePhoto(userNo, "img/profile/" + filename);
+					log.debug("resUpdate:" + resUpdate);
+					resultUpdate = true;
+
+				} catch (Throwable ex) {
+					resultUpdate = false;
+					ex.printStackTrace();
+				}
+
 				
 				AjaxResult result = null;
-				if (res == 0) {
+				if (resultSignUp == 0 || !resultCopy || !resultUpdate ) {
 					result =  new AjaxResult().setStatus("ok").setData("failure");
-					log.debug("===== 66666 fail =====");
 					
 				} else {
-					log.debug("===== 77777 ok =====");
-					result = new AjaxResult().setStatus("ok")	.setData("success");
+					result = new AjaxResult().setStatus("ok").setData("success");
 					model.addAttribute("signup", svo);
 					log.debug("svo.getlang:" + svo.getLanguage());
 				}

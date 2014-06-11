@@ -1,5 +1,7 @@
 package talkie.services;
 
+import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,16 @@ public class TalkieUserServiceImpl implements TalkieUserService {
 		System.out.println(talkieUser);
 	    return talkieUser ;
     }
+
+	@Override
+	public int updateProfilePhoto(int userNo, String filename) {
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("userNo", userNo);
+		params.put("filename", filename);
+		int result = talkieUserDao.updateProfilePhoto(params);
+		log.debug("result:" + result);
+		return result;
+	}
 
 
 }

@@ -38,6 +38,18 @@ public class SignupServiceImpl implements SignupService {
 			throw new RuntimeException(ex);
 		}
 	}
+
+	@Override
+	public int getUserNo(String email) {
+		try {
+			log.debug("===== gooood getUserNo =====");
+			int userNo = signupDao.getUserNo(email);
+			
+			return userNo;
+		} catch (Throwable ex) {
+			throw new RuntimeException(ex);
+		}
+	}
 	
 }
 

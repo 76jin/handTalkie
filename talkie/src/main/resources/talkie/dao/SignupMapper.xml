@@ -22,18 +22,6 @@
     <result column="PHOPATH" property="phoPath"/>
  -->    
   </resultMap> 
-
-  <!-- 
-  <insert id="insert" parameterType="studentVo">
-    insert into SE_STUDS (UNO,COMP,POS,STAT,LAST_SCH,ACCT)
-    values (#{no}, 
-            #{company}, 
-            #{position}, 
-            #{workingState}, 
-            #{lastSchool}, 
-            #{bankingAccount})
-  </insert>
-   -->
  
   <insert id="addUser" parameterType="talkie.vo.SignupVo">
 			insert into SE_USERS (EMAIL,PASSWORD,NAME,NATINO)
@@ -48,32 +36,10 @@
              (SELECT UNO FROM SE_USERS WHERE EMAIL=#{email}));
   </insert>
   
+  
+  <select id="getUserNo" 
+      parameterType="String" resultType="int">
+    select UNO from SE_USERS where EMAIL=#{email};
+  </select>
+  
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
