@@ -48,6 +48,13 @@
     where EMAIL=#{email}
   </select>
   
+  <!--
+    UPDATE [테이블] SET [열] = '변경할값' WHERE [조건] 
+  -->
+  <update id="updateProfilePhoto" 
+      parameterType="hashmap">
+    update SE_USERS set PHOPATH=#{filename} where UNO=#{userNo}
+  </update>
   
 </mapper>
 

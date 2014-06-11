@@ -73,7 +73,7 @@ public class profileControl {
 
 	// file upload
 	//@RequestMapping("/profilePhoto")
-	@RequestMapping(value="/profilePhoto", method=RequestMethod.POST)
+	@RequestMapping(value="/profilePhoto", method=RequestMethod.POST, produces="text/html")
 	public AjaxResult profilePhoto(
 			@RequestParam("photoData") MultipartFile photoData,
 			HttpSession session,
@@ -85,19 +85,34 @@ public class profileControl {
 
 			String fullPath = servletContext.getRealPath("/img/profile");
 			if (!photoData.isEmpty() && loginUser != null) {
-				String filename = "profile_" + loginUser.getNo() + ".jpg"; // ex) profile_1.jpg
+				int loginUserNo = loginUser.getNo();
+				String filename = "profile_" + loginUserNo + ".jpg"; // ex) profile_1.jpg
 				File savedFile = new File(fullPath + "/" + filename);
+				
+				savedFile.delete();
 				photoData.transferTo(savedFile);
 
 				log.debug("=====프로필 사진 업로드 성공 =====");
-				log.debug((new Gson().toJson(fullPath)));
-				result = new AjaxResult().setStatus("ok").setData("success");
+				
+				// DB에 프로필 사진 파일 경로(이름포함) 저장
+				String phoPath = "img/profile/" + filename;
+				log.debug("lastFileName:" + phoPath);
+				if( savePhotoToDB(loginUserNo, phoPath) == 1 ) {
+					log.debug("===== DB에 파일 경로 저장 성공!");
+					
+					result = new AjaxResult().setStatus("ok").setData(phoPath);
+				} else {
+					log.debug("===== DB에 파일 경로 저장 실패!");
+					result =  new AjaxResult().setStatus("ok").setData("failure");
+				}
+				
 			} else {
 				result =  new AjaxResult().setStatus("ok").setData("failure");
 				log.debug("프로필 사진 업로드 실패");
+				log.debug("photoData:" + photoData + ", loginUser:" + loginUser);
 			}
 
-			response.setContentType("text/html;charset=UTF-8");
+			//response.setContentType("text/html;charset=UTF-8");
 
 			log.debug("result:" + result);
 
@@ -107,6 +122,17 @@ public class profileControl {
 			return new AjaxResult()
 			.setStatus("error")
 			.setData(ex.getMessage());
+		}
+	}
+
+	public int savePhotoToDB(int loginUserNo, String filename) {
+		try{
+			int res = talkieUserService.updateProfilePhoto(loginUserNo, filename);
+			log.debug("res:" + res);
+			return res;
+
+		} catch (Throwable ex) {
+			return 0;
 		}
 	}
 

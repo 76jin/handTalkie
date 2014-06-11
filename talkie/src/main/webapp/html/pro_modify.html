@@ -3,20 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="./css/main_Tap.css">
 <link rel="stylesheet" type="text/css" href="./css/proFile.css">
 <link rel="stylesheet" type="text/css" href="./css/main_Pro_modify.css">
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
 <!-- <script type="text/javascript" src="./js/jquery.form.min.js"></script> -->
 <!-- <script type="text/javascript" src="./js/jquery.fileupload.js"></script> -->
+<script src="js/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
 <script type="text/javascript" src="./js/common.js"></script>
 <script type="text/javascript" src="./js/pro_modify.js"></script>
 
@@ -26,12 +24,14 @@
 
 	<div id="pro" align="center">
 		<div>
-  		<form id="uploadForm" action="profilePhoto.ajax" method="post"
-		  enctype="multipart/form-data">
-		  <input type="file" id="profilePhoto" name=photoData style="display:none">
-		</form>
-		<div id="sendFrom"></div>
-	  <img id="profile_img" src="./img/profile/no-profile-image.jpg">
+			<input type="file" id="fileupload" name=photoData
+				data-url="profilePhoto.ajax" style="display: none">
+			<div id="progress">
+				<div class="bar" style="width: 0%; height: 5px;"></div>
+			</div>
+
+			<div id="sendFrom"></div>
+			<img id="profile_img" src="./img/profile/no-profile-image.jpg">
 		</div>
 		<div id="iconff">
 			<span><img class="iconF" src="./img/chat.png"></span> <span><img
