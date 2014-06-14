@@ -7,70 +7,97 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="./js/jquery.cookie.js"></script>
+
 <script>
   var socket = io.connect('http://localhost:9997'); // 서버에 접속 시도
   
   // 서버에 접속되면 실행된다.
   socket.on('connect', function(){
-    socket.emit('ADD_USER', prompt("What's your name?")); // 서버에 사용자명 전달
+    
+    // 쿠키 설정
+    console.log('$.cookie("chatUserNo"): ', $.cookie('chatUserNo'));
+    console.log('$.cookie("chatOthersNo"): ', $.cookie('chatOthersNo'));
+
+    var cookies = $.cookie('chatOthersNo').split(':');
+    console.log('cookies:', cookies);
+    $.cookie('chatOthersNo', cookies[1]);
+    console.log('after cookie:', $.cookie('chatOthersNo'));
+
+    console.log(socket);
+    socket.emit('ADD_USER', $.cookie('chatUserNo')); // 서버에 사용자명 전달
   });
 
   // 서버에서 연결되었다 메시지를 받으면, 채팅 내용을 업데이트한다.
-  socket.on('UPDATE_CHAT', function (username, data) {
-	    $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
-	  });
-  
-  
-  
-  var name ="hong";
+  socket.on('UPDATE_CHAT', function(username, data) {
+    $('#conversation').append('<b>' + username + ':</b> ' + data + '<br>');
+  });
+
+  var name = "hong";
   var email = "hong@test.com";
   // 서버에서 UPDATE_CHAT 메시지를 받으면, 채팅 내용을 업데이트한다.
-  socket.on('UPDATE_CHATS', function (username, data) {
-	  
-	  if(name == username){
-		   $('#conversation').append('<div class="chatroom"><ul><li class="me"><div class="myimage"><img src="public/img/test.jpg"><b>'+username+'</b></div><div id="mymsg"><p>'+data+'</p></div></li></ul></div>');
-	  } else if (name != username){
-	       $('#conversation').append('<div class="chatroom"><ul><li class="you"><div class="image"><img src="public/img/unnamed.jpg"><b>'+username+'</b></div><div id="msg"><p>'+data+'</p></div></li></ul></div>');
-	  }
-	  
-      scrollToBottom();
- });
+  socket
+      .on(
+          'UPDATE_CHATS',
+          function(username, data) {
+
+            if (name == username) {
+              $('#conversation')
+                  .append(
+                      '<div class="chatroom"><ul><li class="me"><div class="myimage"><img src="public/img/test.jpg"><b>'
+                          + username
+                          + '</b></div><div id="mymsg"><p>'
+                          + data
+                          + '</p></div></li></ul></div>');
+            } else if (name != username) {
+              $('#conversation')
+                  .append(
+                      '<div class="chatroom"><ul><li class="you"><div class="image"><img src="public/img/unnamed.jpg"><b>'
+                          + username
+                          + '</b></div><div id="msg"><p>'
+                          + data
+                          + '</p></div></li></ul></div>');
+            }
+
+            scrollToBottom();
+          });
 
   // 서버에서 UPDATE_ROOMS 메시지를 받으면, 화면에 채팅방 목록을 업데이트한다.
   socket.on('UPDATE_ROOMS', function(rooms, current_room) {
     $('#rooms').empty();
     $.each(rooms, function(key, value) {
-      if(value == current_room){
+      if (value == current_room) {
         $('#rooms').append('<div>' + value + '</div>');
-      }
-      else {
-        $('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+      } else {
+        $('#rooms').append(
+            '<div><a href="#" onclick="switchRoom(\'' + value + '\')">' + value
+                + '</a></div>');
       }
     });
   });
 
-  function switchRoom(room){
+  function switchRoom(room) {
     socket.emit('SWITCH_ROOM', room);
   }
 
   // DOM 트리가 완성되고, 화면에 HTML 태그 랜더링이 완료되면 아래 코드 실행됨.
-  $(function(){
+  $(function() {
     // 웹브라우저에서 SEND 버튼을 클릭할 때
-    $('#datasend').click( function() {
-      var message = $('#data').val().replace('\n', '<br>');
+    $('#datasend').click(function() {
+      var message = $('#data').val().replace( /\n/gi, '<br//>');
       $('#data').val('');
-      socket.emit('SEND_CHAT', message);  // 서버를 통해 다른 사용자에게 메시지를 전달한다.
-      $('#data').focus(); 
-    
+      socket.emit('SEND_CHAT', message); // 서버를 통해 다른 사용자에게 메시지를 전달한다.
+      $('#data').focus();
+
     });
 
   });
- 
-  // 마지막 채팅글로 자동 이동
-  function scrollToBottom(){
-	    $("html, body").animate({ scrollTop: $(document).height()-$(window).height() },1000);
-	  }
 
+  // 마지막 채팅글로 자동 이동
+  function scrollToBottom() {
+    $("html, body").animate({
+      scrollTop : $(document).height() - $(window).height()
+    }, 1000);
+  }
 </script>
 </head>
 
@@ -100,7 +127,8 @@
 
   <footer>
     <form id="chatform">
-      <textarea id="data" placeholder="Write something.."></textarea>
+      <textarea id="data" style="overflow:hidden"
+        placeholder="Write something.."></textarea>
       <input type="button" id="datasend" value="SEND" />
     </form>
   </footer>
