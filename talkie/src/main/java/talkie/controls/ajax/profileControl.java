@@ -27,7 +27,9 @@ import com.google.gson.Gson;
 public class profileControl {
 	static Logger log = Logger.getLogger(SubjectControl.class);
 
-	static long fileCount;
+	final static String SERVER_IMAGE_PATH = "img/profile/"; 
+	final static int MAX_FILE_COUNTER = 10; 
+	static long g_fileCount;
 	@Autowired
 	TalkieUserService talkieUserService;
 
@@ -83,22 +85,61 @@ public class profileControl {
 
 			TalkieUserVo loginUser = (TalkieUserVo) session.getAttribute("loginUser");
 
-			String fullPath = servletContext.getRealPath("/img/profile");
+			String fullPath = servletContext.getRealPath(SERVER_IMAGE_PATH);
+			log.debug("fullPath:" + fullPath);
+			
 			if (!photoData.isEmpty() && loginUser != null) {
 				int loginUserNo = loginUser.getNo();
-				String filename = "profile_" + loginUserNo + ".jpg"; // ex) profile_1.jpg
-				File savedFile = new File(fullPath + "/" + filename);
+				String loginUserPhotoPath = loginUser.getPhoPath();//img/profile/profile_1.jpg
+				String loginUserPhotoFileName = loginUserPhotoPath.substring(12); //split:img/profile/
+				log.debug("loginUserPhotoFileName:" + loginUserPhotoFileName);
+				log.debug("loginUser.getPhotoPath:" + loginUserPhotoPath);
+				log.debug("fullPath + SERVER_IMAGE_PATH + loginUserPhotoFileName:" + (fullPath + "/" + loginUserPhotoFileName));
 				
-				savedFile.delete();
-				photoData.transferTo(savedFile);
+				// 현재 파일 삭제
+				File savedFile = new File(fullPath + "/" + loginUserPhotoFileName);
+				
+				boolean deleteResult = false;
+				try {
+					deleteResult = savedFile.delete();
+				}catch(Exception e){
+					log.error("Error: Can't delete this file:" + fullPath + "/" + loginUserPhotoFileName);
+					e.printStackTrace();
+				
+				} finally {
+					if (!deleteResult) {
+						System.out.println("Failed delete this file!");
+						result =  new AjaxResult().setStatus("ok").setData("failure");
+						return result;
+					}
+				}
+				
+				// 새 파일명으로 프로필 사진 저장.
+				// 파일명이 동일하면 웹브라우저에서 사진업데이트가 안됨.
+				if ( g_fileCount > 10000) {
+					g_fileCount = 0;
+				} else {
+					g_fileCount++;
+				}
+				
+				String newFileName = "profile_" + loginUser.getNo() +
+						"_createdAt_" + System.currentTimeMillis() + 
+						"_" + g_fileCount + ".jpg";
+				
+				log.debug("newFileName:" + newFileName +",\n\n=====full:" + (fullPath + "/" + newFileName));
+				File savingFile = new File(fullPath + "/" + newFileName);
+				photoData.transferTo(savingFile);
 
 				log.debug("=====프로필 사진 업로드 성공 =====");
 				
 				// DB에 프로필 사진 파일 경로(이름포함) 저장
-				String phoPath = "img/profile/" + filename;
+				String phoPath = SERVER_IMAGE_PATH + newFileName;
 				log.debug("lastFileName:" + phoPath);
 				if( savePhotoToDB(loginUserNo, phoPath) == 1 ) {
 					log.debug("===== DB에 파일 경로 저장 성공!");
+					// 세션에 현재 사용자 프로필 사진 경로 업데이트
+					loginUser.setPhoPath(phoPath);
+					session.setAttribute("loginUser", loginUser);
 					
 					result = new AjaxResult().setStatus("ok").setData(phoPath);
 				} else {

@@ -1,4 +1,3 @@
-// Variable to store your files
 $(function () {
   $('#profile_img').on('click', function() {
     $('#fileupload').click();
@@ -31,7 +30,7 @@ $(function () {
     },
     done: function (e, data) {
       var result = data.result.ajaxResult;
-//파일전송 후 실행할 콜백 함수
+      //파일전송 후 실행할 콜백 함수
       var currPath = location.pathname;
       var end = currPath.indexOf('/', 1);
       var rootPath =  currPath.substring(0, end);
@@ -47,6 +46,7 @@ $(function () {
         alert('프로필 사진 업로드 실패했습니다.');
       } else { // success
         console.log('result.phoPath:',result.data);
+        console.log('bit.serverUrl:',bit.serverUrl);
         $('#profile_img').attr("src", result.data);
       }
       data.context.text('Upload finished.');

@@ -1,3 +1,16 @@
+/* 생성자 함수
+ * 목적: 지도에 표시되는 사용자 위치 정보를 저장하는 객체
+ * 사용법
+ *   ex) UserPositionInfo.me = new UserPositionInfo.Create([userNo], [userGPSPos]);
+ *   ex) UserPositionInfo.others_01 = new UserPositionInfo.Create([userNo], [userGPSPos]);
+ *   - [userNo] : DB에서 읽어온 사용자 번호
+ *   - [userGPSPos]: 서버에서 받은 이 사용자의 현재 위치정보
+ 
+var UserPositionInfo.Create = function(userNo, userPosition) {
+  this.userNo = userNo;
+  this.userPosition = userPosition;
+}*/
+
 var snapper;
 window.onload = mainTap;
 
@@ -99,7 +112,7 @@ function mainTap() {
 	  data.userNo = '66';*/
 	  
 	  // 채팅 서버로 채팅할 사용자들 정보 전달
-	  $.ajax(  'http://192.168.200.10:9997/startChat.jsonp', {
+	  $.ajax(  'http://s24.java48.com:9997/newSetupChat.jsonp', {
 	    crossDomain:true,
 	    type: 'GET',
 	    dataType: 'jsonp',
@@ -111,10 +124,18 @@ function mainTap() {
 	      console.log('jsonp reuslt: ', jsonObj);
 	      var result = jsonObj.ajaxResult;
 	      if (result.status == "ok" && result.data == "success") {
-	        console.log('채팅방으로 이동 성공!');
-//	        console.log('read cookie1: ', $.cookie('userNo'));
-//	        console.log('read cookie2: ', $.cookie('othersNo'));
-	        location.href = 'http://192.168.200.10:9997/';
+	        
+	        console.log('새 채팅방 만들고, 채팅방 기본 설정 성공!');
+	        console.log('read cookie chatUserNo: ', $.cookie('chatUserNo'));
+	        console.log('read cookie chatOthersNo: ', $.cookie('chatOthersNo'));
+	        
+	        var cookies = $.cookie('chatOthersNo').split(':');
+	        console.log('cookies:', cookies);
+	        $.cookie('chatOthersNo', cookies[1]);
+	        console.log('after cookie:', $.cookie('chatOthersNo'));
+	        
+	        
+	        location.href = 'http://s24.java48.com:9997/';
 	      } else {
 	        alert('채팅방으로 이동에 실패했습니다.');
 	      }
@@ -206,8 +227,8 @@ function getUserInfo() {
 				}
 				
 			} else {
-				alert("로그인 하지 않았습니다.111");
-				location.href = bit.contextRoot + "/auth/main_slider.html";
+			//	alert("로그인 하지 않았습니다.111");
+			//	location.href = bit.contextRoot + "/auth/main_slider.html";
 			}
 		});
 }

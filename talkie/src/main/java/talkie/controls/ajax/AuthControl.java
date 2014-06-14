@@ -48,22 +48,23 @@ public class AuthControl {
 					model.addAttribute("loginUser", talkieUserVo);
 					log.debug(talkieUserVo);
 					
+					// 쿠키 설정: 사용자 번호
+					Cookie userNoCookie =
+							new Cookie("userNo", Integer.toString(talkieUserVo.getNo()));
+					userNoCookie.setDomain("s24.java48.com");
+					userNoCookie.setPath("/talkie");
+					
+					response.addCookie(userNoCookie);
+					
+					// 쿠키 설정: email
 					if (saveEmail.equals("true")) {
-						// 쿠키 설정: email
 						Cookie cookie = new Cookie("loginEmail", email);
 						cookie.setDomain("s24.java48.com"); // 서버 범위
-						cookie.setPath("/talkie");					// 하위 폴더 범위
+						cookie.setPath("/talkie");			// 하위 폴더 범위
 
 						response.addCookie(cookie);
-
-						// 쿠키 설정: 사용자 번호
-						Cookie userNoCookie =
-								new Cookie("userNo", Integer.toString(talkieUserVo.getNo()));
-						userNoCookie.setDomain("s24.java48.com");
-						userNoCookie.setPath("/talkie");
-
-						response.addCookie(userNoCookie);
 					}
+
 				}
 				response.setContentType("text/html;charset=UTF-8");
 				return result;
