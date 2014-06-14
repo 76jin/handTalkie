@@ -32,9 +32,6 @@ public class ShortProfileControl {
     @RequestMapping("/ShortProfile")
 	public AjaxResult shortProfile(
 			int 		no,
-			String 	name,
-			String nation,
-			String languageNo,
 			HttpServletResponse response,
 			Model model){
 		log.debug("여긴가?"+no);

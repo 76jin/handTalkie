@@ -50,12 +50,23 @@ var markerImage3 = 'http://www.larva.re.kr/home/img/boximage3.png';
 var size_x = 45; // 마커로 사용할 이미지의 가로 크기
 var size_y = 45; // 마커로 사용할 이미지의 세로 크기
 
-//마커로 사용할 이미지 주소
+//마커 이미지 만들기
+function makeMarkerImage(markerImage) {
+  console.log('markerImage:', markerImage);
+  
+  return new google.maps.MarkerImage( markerImage,
+            new google.maps.Size(size_x, size_y),
+            '',
+            '',
+            new google.maps.Size(size_x, size_y) );
+}
+/*
 var markerImage = new google.maps.MarkerImage( markerImage3,
     new google.maps.Size(size_x, size_y),
     '',
     '',
     new google.maps.Size(size_x, size_y));
+*/
 ////마커 정보 끝 ////////////////////////
 
 var displayCurrentLocation = function (position) {
@@ -80,10 +91,10 @@ var displayCurrentLocation = function (position) {
   addUserMarker(currentPosition);
 }
 
-var displayOtherLocation = function (position) {
+var displayOtherLocation = function (position, userPhotoPath) {
 
   // 주위 사람들 위치를 지도에 표시
-  addMarker(position);
+  addMarker(position, userPhotoPath);
 }
 
 function initialize() {
@@ -120,6 +131,14 @@ function initialize() {
                            [37.498593083824986, 127.03276634216309]
                            ];
       
+      var othersTempPhotoPath = [
+                                 "img/profile/profile_2.jpg",
+                                 "img/profile/profile_3.jpg",
+                                 "img/profile/profile_4.jpg",
+                                 "img/profile/profile_5.jpg",
+                                 "img/profile/profile_6.jpg",
+                                 ];
+      
       for (var i=0; i < othersTempNo.length; i++) {
         var otherLength = UserPositionInfo.others.length;
         UserPositionInfo.others[otherLength] = [];
@@ -128,7 +147,7 @@ function initialize() {
         var tempLatLng = new google.maps.LatLng(othersTempPos[i][0], othersTempPos[i][1]);
         UserPositionInfo.others[otherLength].push(tempLatLng);  // othersPosition
         
-        displayOtherLocation(UserPositionInfo.others[i][1]);    // display other positon in map.
+        displayOtherLocation(UserPositionInfo.others[i][1], othersTempPhotoPath[i]);    // display other positon in map.
       }
       console.log('UserPositionInfo.others:', UserPositionInfo.others);
       //console.log('UserPositionInfo:', UserPositionInfo);
@@ -198,13 +217,15 @@ function addUserMarker(location) {
 }
 
 var count = 0;
-function addMarker(location) {
+function addMarker(location, userPhotoPath) {
   console.log('called addMarker, location:', location);
+  console.log('called addMarker, userPhotoPath:', userPhotoPath);
   
 //  var tempContent = "I am newview" + ++count; 
+  var newMarkerImage = makeMarkerImage(userPhotoPath);
   var marker = new google.maps.Marker({
     position:location,
-    icon: markerImage,
+    icon: newMarkerImage,
 /*    content: tempContent*/
   });
 
@@ -241,6 +262,7 @@ function addMarker(location) {
 					var volist = JSON.parse(result.data);
 					var nation = '';
 					var languageNo = '';
+					var photoPath = '';
 					$.each( volist, function( key, value ) {
 							switch (value.nation) {
 							case 1:  nation ="korea"; break;
@@ -253,11 +275,13 @@ function addMarker(location) {
  							case  2 :	languageNo += "English "; break;
 							default:			languageNo += "Korean "; break;
 							}
+							photoPath = value.photoPath;
 						});
 					
 					$('#friName').text(volist[0].name);
 					$('#friCountry').text(nation);
 					$('#friLanguage').text(languageNo);
+					$('#imgproFile').attr("src",photoPath);
 				}
 			},
 			error: function(xhr, status, errorThrown){
