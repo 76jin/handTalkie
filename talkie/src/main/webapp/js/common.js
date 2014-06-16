@@ -18,6 +18,7 @@ bit.getCookie = function(name) {
   }
 }
 bit.contextRoot = bit.getContextRootPath();
-bit.chatServerUrl = "192.168.200.10:9997";
+bit.chatServerUrl = "http://192.168.200.10:9998";
 bit.userNo = bit.getCookie('userNo');
 bit.userEmail = bit.getCookie('loginEmail');
+bit.serverUrl = "http://java48.com:9999/talkie/";

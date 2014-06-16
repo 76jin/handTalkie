@@ -11,6 +11,7 @@
     <result column="NAME" property="name"/>
     <result column="NATINO" property="nation"/>
     <result column="LANNO" property="languageNo"/>
+    <result column="PHOPATH" property="photoPath"/>
 <!--     
     <result column="PASSWORD" property="password"/>
     <result column="AGENO" property="age"/>
@@ -19,7 +20,6 @@
     <result column="GRADE" property="grade"/>
     <result column="ISEMAIL" property="isEmail"/>
     <result column="FAVTAG" property="favTag"/>
-    <result column="PHOPATH" property="phoPath"/>
  -->    
   </resultMap> 
    
@@ -33,7 +33,7 @@
   
   <select id="getShortProfile" 
       parameterType="map" resultMap="userInfoMap">
-    select T1.UNO, T1.NAME, T1.NATINO, T2.LANNO
+    select T1.UNO, T1.NAME, T1.NATINO, T2.LANNO, T1.PHOPATH
     from SE_USERS T1 left outer join SE_ADDLANG T2
     on T1.UNO = T2.UNO
     where T1.UNO=#{no}

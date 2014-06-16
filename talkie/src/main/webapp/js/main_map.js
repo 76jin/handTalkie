@@ -18,7 +18,25 @@
 var map;                // html div id='map'
 var currentPosition;    // 사용자의 현재 위치 정보
 var isTest = true;		// 테스트용 코드인지.
-var otherPosition = [];		// 사용자 주변에 있는 다른 사용자의 현재 위치 정보
+//var otherPosition = [];		// 사용자 주변에 있는 다른 사용자의 현재 위치 정보
+
+/* 생성자 함수
+ * 목적: 지도에 표시되는 사용자 위치 정보를 저장하는 객체
+ * 사용법
+ *   ex) UserPositionInfo.me = new UserPositionInfo.Create([userNo], [userGPSPos]);
+ *   ex) UserPositionInfo.others_01 = new UserPositionInfo.Create([userNo], [userGPSPos]);
+ *   - [userNo] : DB에서 읽어온 사용자 번호
+ *   - [userGPSPos]: 서버에서 받은 이 사용자의 현재 위치정보
+ *      - 다음과 같이 배열로 구성됨: [위도, 경도] 
+ *  
+ *  ToDo - 나중에 이 변수를 main_Tap.js로 옮겨야함. 거기서 사용자 위치정보 받아 저장해야 함.
+ */
+var UserPositionInfo = {};    // 내 주변에 있는 다른 사용자정보 관리를 위한 객체.
+UserPositionInfo.others = []; // 내 주변에 있는 다른 사용자의 userNo와 위치정보.
+UserPositionInfo.Create = function(userNo, userPosition) {
+  this.userNo = userNo;
+  this.userPosition = userPosition;
+}
 
 
 ////마커 정보 ////////////////////////
@@ -32,12 +50,23 @@ var markerImage3 = 'http://www.larva.re.kr/home/img/boximage3.png';
 var size_x = 45; // 마커로 사용할 이미지의 가로 크기
 var size_y = 45; // 마커로 사용할 이미지의 세로 크기
 
-//마커로 사용할 이미지 주소
+//마커 이미지 만들기
+function makeMarkerImage(markerImage) {
+  console.log('markerImage:', markerImage);
+  
+  return new google.maps.MarkerImage( markerImage,
+            new google.maps.Size(size_x, size_y),
+            '',
+            '',
+            new google.maps.Size(size_x, size_y) );
+}
+/*
 var markerImage = new google.maps.MarkerImage( markerImage3,
     new google.maps.Size(size_x, size_y),
     '',
     '',
     new google.maps.Size(size_x, size_y));
+*/
 ////마커 정보 끝 ////////////////////////
 
 var displayCurrentLocation = function (position) {
@@ -46,6 +75,11 @@ var displayCurrentLocation = function (position) {
   var pos = new google.maps.LatLng(position.coords.latitude,
       position.coords.longitude);
    */
+  
+  // 사용자 정보를 전역변수에 저장
+  UserPositionInfo.me = new UserPositionInfo.Create(1, [37.494631, 127.027583]);
+  console.log('UserPositionInfo.me:', UserPositionInfo.me);
+  
   var pos = new google.maps.LatLng(37.494631, 127.027583); //비트컴퓨터
   map.setCenter(pos); // 현재 위치를 지도 가운데로 하기.
 
@@ -57,15 +91,10 @@ var displayCurrentLocation = function (position) {
   addUserMarker(currentPosition);
 }
 
-var displayOtherLocation = function (position) {
+var displayOtherLocation = function (position, userPhotoPath) {
 
-
-  // 주위 사용자의 현재 위치 저장.(필요할까?)
-  otherPosition.push(position);
-  //currentPosition = pos;
-
-  // 2. 주위 사람들 위치를 지도에 표시
-  addMarker(position);
+  // 주위 사람들 위치를 지도에 표시
+  addMarker(position, userPhotoPath);
 }
 
 function initialize() {
@@ -86,19 +115,43 @@ function initialize() {
     // 테스트용 코드
     if(isTest) {
     /* 임의로 사용자 5명의 위치 정보를 지정하고 화면에 출력함.
-     * 임꺽정. 	37.49760569477413, 127.02422618865967
-     * 장보고. 	37.49338360812417, 127.02311038970947
-     * 이순신. 	37.49103411783421, 127.0259428024292
-     * 강감찬. 	37.492838805363476, 127.03263759613037
-     * tom. 	37.498593083824986, 127.03276634216309
-     * 
+     * 2.임꺽정. 	37.49760569477413, 127.02422618865967
+     * 3.장보고. 	37.49338360812417, 127.02311038970947
+     * 4.이순신. 	37.49103411783421, 127.0259428024292
+     * 5.강감찬. 	37.492838805363476, 127.03263759613037
+     * 6.tom. 	37.498593083824986, 127.03276634216309
      */
+      // 사용자 정보를 전역변수에 저장
+      var othersTempNo = [2, 3, 4, 5, 6];
+      var othersTempPos = [   // 내 주변에 있는 다른 사람들 위치 정보.(LatLng type)
+                           [37.49760569477413, 127.02422618865967],
+                           [37.49338360812417, 127.02311038970947],
+                           [37.49103411783421, 127.0259428024292],
+                           [37.492838805363476, 127.03263759613037],
+                           [37.498593083824986, 127.03276634216309]
+                           ];
+      
+      var othersTempPhotoPath = [
+                                 "img/profile/profile_2.jpg",
+                                 "img/profile/profile_3.jpg",
+                                 "img/profile/profile_4.jpg",
+                                 "img/profile/profile_5.jpg",
+                                 "img/profile/profile_6.jpg",
+                                 ];
+      
+      for (var i=0; i < othersTempNo.length; i++) {
+        var otherLength = UserPositionInfo.others.length;
+        UserPositionInfo.others[otherLength] = [];
+        UserPositionInfo.others[otherLength].push(othersTempNo[i]); // othersNo
+        
+        var tempLatLng = new google.maps.LatLng(othersTempPos[i][0], othersTempPos[i][1]);
+        UserPositionInfo.others[otherLength].push(tempLatLng);  // othersPosition
+        
+        displayOtherLocation(UserPositionInfo.others[i][1], othersTempPhotoPath[i]);    // display other positon in map.
+      }
+      console.log('UserPositionInfo.others:', UserPositionInfo.others);
+      //console.log('UserPositionInfo:', UserPositionInfo);
 
-      displayOtherLocation(new google.maps.LatLng(37.49760569477413, 127.02422618865967));
-      displayOtherLocation(new google.maps.LatLng(37.49338360812417, 127.02311038970947));
-      displayOtherLocation(new google.maps.LatLng(37.49103411783421, 127.0259428024292));
-      displayOtherLocation(new google.maps.LatLng(37.492838805363476, 127.03263759613037));
-      displayOtherLocation(new google.maps.LatLng(37.498593083824986, 127.03276634216309));
       //infowindow.open(map,marker);
       //
     	  
@@ -164,15 +217,16 @@ function addUserMarker(location) {
 }
 
 var count = 0;
-function addMarker(location) {
-  console.log('called addMarker');
+function addMarker(location, userPhotoPath) {
+  console.log('called addMarker, location:', location);
+  console.log('called addMarker, userPhotoPath:', userPhotoPath);
   
-  var tempContent = "I am newview" + ++count; 
-
+//  var tempContent = "I am newview" + ++count; 
+  var newMarkerImage = makeMarkerImage(userPhotoPath);
   var marker = new google.maps.Marker({
     position:location,
-    icon: markerImage,
-    content: tempContent
+    icon: newMarkerImage,
+/*    content: tempContent*/
   });
 
   marker.setMap(map);
@@ -180,32 +234,27 @@ function addMarker(location) {
 
   google.maps.event.addListener(marker, "click", function(event) {
 
-    /*    $.each(markersArray, function( index, value ) {
-      console.log( index + ": " + value );
-    });*/
-	  var num = 0;
-	  for (var i=0; i<otherPosition.length;i++) {
-		  if (event.latLng == otherPosition[i]) {
-			  num = i + 2;
+    console.log('event.latLng:', event.latLng);
+	  var foundUserNo = 0;
+	  for (var i=0; i<UserPositionInfo.others.length;i++) {
+		  if (event.latLng == UserPositionInfo.others[i][1]) {
+		    foundUserNo = UserPositionInfo.others[i][0];
 			  break;
 		  }
 	  }
 
-    //openInfoWindow("profile: " + count, marker);
 	  console.log("clicked other postion");
 		$.ajax(	bit.contextRoot + '/ShortProfile.ajax', {
 			type: 'POST',
-			dataType: 'json', /*서버에서 보내는 데이터의 형식 지정 */
-			data: { /* 서버쪽으로 보내는 데이터 */
-				//email: $('#email').val(),
-				no: num
-				
+			dataType: 'json',
+			data: {
+				no: foundUserNo
 			},
 			success: function(jsonObj){
 				console.log(jsonObj);
 				var result = jsonObj.ajaxResult;
-				if (result.status == "ok" && result.data == "failure") {
-					alert('등록에 실패했습니다.');
+				if (result.status != "ok" || result.data == "failure") {
+					alert('사용자 정보를 읽어오는 데 실패했습니다.');
 				} else {
 					console.log('friendInfo success!');
 					console.log(result.data);
@@ -213,6 +262,7 @@ function addMarker(location) {
 					var volist = JSON.parse(result.data);
 					var nation = '';
 					var languageNo = '';
+					var photoPath = '';
 					$.each( volist, function( key, value ) {
 							switch (value.nation) {
 							case 1:  nation ="korea"; break;
@@ -225,35 +275,23 @@ function addMarker(location) {
  							case  2 :	languageNo += "English "; break;
 							default:			languageNo += "Korean "; break;
 							}
+							photoPath = value.photoPath;
 						});
 					
 					$('#friName').text(volist[0].name);
 					$('#friCountry').text(nation);
 					$('#friLanguage').text(languageNo);
+					$('#imgproFile').attr("src",photoPath);
 				}
 			},
 			error: function(xhr, status, errorThrown){
-				//alert('등록 중 오류 발생!');
+				alert('용자 정보를 읽어오는 중 오류 발생!');
 				console.log(status);
 				console.log(errorThrown);
 			}
 		});
+		
 	  showShortProfile();
-        
-        
-        /*
-        $('#menuIcon').on('click', function(){
-	  		snapper = new Snap({
-	        element: document.getElementById('footer')
-	        });
-  
-            if( snapper.state().state=="bottom" ){
-                snapper.close();
-            } else {
-                snapper.open('bottom');
-            }
-        });
-        */
   });
     
 }

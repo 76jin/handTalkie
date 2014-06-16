@@ -6,14 +6,12 @@ public class UserInfoVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	static final int MAX_LANGUAGE_NO = 3;
 	
-	int 		no;
+	int		no;
 	String 	name;
 	String 	email;
-	int			nation;
-	int 		languageNo;
-
-	
-	
+	int		nation;
+	int		languageNo;
+	String	photoPath;
 	
 	@Override
     public String toString() {
@@ -62,6 +60,15 @@ public class UserInfoVo implements Serializable {
 
 	public UserInfoVo setNation(int nation) {
 		this.nation = nation;
+		return this;
+	}
+	
+	public String getPhotoPath() {
+		return photoPath;
+	}
+	
+	public UserInfoVo setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
 		return this;
 	}
 	
