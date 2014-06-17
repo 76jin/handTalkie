@@ -112,7 +112,7 @@ function mainTap() {
 	  data.userNo = '66';*/
 	  
 	  // 채팅 서버로 채팅할 사용자들 정보 전달
-	  $.ajax(  'http://s24.java48.com:9997/newSetupChat.jsonp', {
+	  $.ajax(  'http://s24.java48.com:9998/newSetupChat.jsonp', {
 	    crossDomain:true,
 	    type: 'GET',
 	    dataType: 'jsonp',
@@ -135,7 +135,7 @@ function mainTap() {
 	        console.log('after cookie:', $.cookie('chatOthersNo'));
 	        
 	        
-	        location.href = 'http://s24.java48.com:9997/';
+	        location.href = 'http://s24.java48.com:9998/';
 	      } else {
 	        alert('채팅방으로 이동에 실패했습니다.');
 	      }

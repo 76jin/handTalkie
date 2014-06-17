@@ -285,7 +285,7 @@ function addMarker(location, userPhotoPath) {
 				}
 			},
 			error: function(xhr, status, errorThrown){
-				alert('용자 정보를 읽어오는 중 오류 발생!');
+				alert('사용자 정보를 읽어오는 중 오류 발생!');
 				console.log(status);
 				console.log(errorThrown);
 			}
@@ -344,7 +344,7 @@ function initialize_Polygon(){
   };
 
   var map02 = new google.maps.Map(document.getElementById('map'), myOptions);
-
+  
   var polygoneCoords = [ // Polygon의 꼭지점 좌표
                          new google.maps.LatLng(37.486233,127.174387),
                          new google.maps.LatLng(37.482487,127.190523),
@@ -356,11 +356,11 @@ function initialize_Polygon(){
 
   namhansanseongPolygon = new google.maps.Polygon({
     paths: polygoneCoords,
-    strokeColor: '#FF0000', // 선의 색상
+    strokeColor: '#000000', // 선의 색상
     strokeOpacity: 0.8, // 선의 투명도
-    strokeWeight: 1, // 선의 굵기 px
-    fillColor: '#784d9d', // 채우기 색상
-    fillOpacity: 0.2 // 채우기 색상의 투명도
+    strokeWeight: 2, // 선의 굵기 px
+    fillColor: '#808080', // 채우기 색상
+    fillOpacity:0.5// 채우기 색상의 투명도
   });
 
   namhansanseongPolygon.setMap(map02);// setMap 함수로 기존 지도 위에 Polygon을 올려놓음
