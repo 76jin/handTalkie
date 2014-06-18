@@ -161,7 +161,8 @@ margin-top: 10px;
        page-break-inside: avoid;  
        max-width: 100%;
        vertical-align: middle; 
-       
+       width: 267px;
+height: 180px;
      }
       #imgBox {
         width: 267px;
@@ -247,7 +248,7 @@ margin-top: 10px;
      #footer {
 /*      background-color: #696969; */
     background-color : #358fbc;
-    height: 35px;
+    height: 8px;
      }
 
     #fri_li{

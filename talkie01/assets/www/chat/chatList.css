@@ -29,69 +29,39 @@ height: 564px;
 	height: 50px;
 } */
 #grChat {
-/* padding: 10px 0px; */
+padding: 10px 0px;
+border: 0px;
 width: 50%;
 display: inherit;
 margin: 0px;
-/* margin-bottom: 0; */
-/* font-weight: 400; */
 text-align: center;
-/* vertical-align: middle; */
-/* cursor: pointer; */
-/* background-image: none; */
-/* white-space: nowrap; */
-font-size: 14px;
-/* line-height: 1.42857143; */
-/* border-radius: 4px; */
-/* -webkit-user-select: none; */
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
-/* background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%); */
-/* background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%); */
 background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
 filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-/* background-repeat: repeat-x; */
-/* border-color: #dbdbdb; */
-/* text-shadow: 0 1px 0 #fff; */
-/* border-color: #ccc; */
-/* background-color: #e0e0e0; */
-/* border-color: #dbdbdb; */
 border-radius: 0px;
+background-color: gainsboro;
+
 }
 #prChat{
-/* padding: 10px 0px; */
+padding: 10px 0px;
 width: 50%;
 display: inherit;
 margin: 0px;
-/* margin-bottom: 0; */
-/* font-weight: 400; */
 text-align: center;
-/* vertical-align: middle; */
-/* cursor: pointer; */
-/* background-image: none; */
-/* white-space: nowrap; */
-font-size: 14px;
-/* line-height: 1.42857143; */
-/* border-radius: 4px; */
-/* -webkit-user-select: none; */
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
-/* background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%); */
-/* background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%); */
 background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
 filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-/* background-repeat: repeat-x; */
-/* border-color: #dbdbdb; */
-/* text-shadow: 0 1px 0 #fff; */
-/* border-color: #ccc; */
-/* background-color: #e0e0e0; */
-/* border-color: #dbdbdb; */
-float: left;
 border-radius: 0px;
+background-color: gainsboro;
+border: 0px;
+float: left;
+border-right: 1px solid rgb(24, 115, 138);
 }
 
 .list {

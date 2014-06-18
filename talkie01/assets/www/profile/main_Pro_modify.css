@@ -37,7 +37,8 @@ height: 12%;
 text-align: left;
 width: 85%;
 float: left;
-padding-top: 3%;
+padding-top: 8%;
+text-align: center;
 }
 
 img#delete_img {
@@ -45,12 +46,14 @@ width: 1em;
 height: 1em;
 float: right;
 padding-top: 3%;
+margin: 0 0 16px;
 
 }
 div#location_delete {
 float: right;
 /* margin-top: 10px; */
-padding-top: 3%;
+padding-top: 10%;
+
 }
 #iconff {
 margin-top: 4%;
