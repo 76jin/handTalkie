@@ -114,6 +114,7 @@ function mainTap() {
 	
 	// 채팅하기 버튼 클릭 이벤트 처리
 	$("#chattingBtn").on('click', function(){
+	  console.log('chat server url: ', bit.chatServerUrl);
 	  
 	  // 선택한 사람들의 UNO를 배열로 조합하여 넘긴다.
 	  // 1. 먼저 현재 사용자 UNO 넘기기.
@@ -132,13 +133,14 @@ function mainTap() {
 	  
 	  console.log("이거안되나???????????????");
 	  // 채팅 서버로 채팅할 사용자들 정보 전달
-	  $.ajax("http://192.168.200.19:9998/newSetupChat.jsonp", {
-//	  $.ajax(bit.chatServerUrl +'/startChat.jsonp', {
+//	  $.ajax("http://192.168.200.19:9998/newSetupChat.jsonp", {
+	  $.ajax(bit.chatServerUrl +'/newSetupChat.jsonp', {
 	    crossDomain:true,
 	    type: 'GET',
 	    dataType: 'jsonp',
 	    data: {
-	      userNo: user.name,
+	     // userNo: user.name,
+	      userNo: bit.userNo,
 	      othersNo: othersNo
 	    },
 	    success: function(jsonObj){
@@ -242,6 +244,7 @@ function getUserInfo() {
 				$('#profileCountry').text(nation);
 				$('#profileLanguage').text(language);
 				
+				console.log('user.phoPath:', user.phoPath);
 				if (user.phoPath) {
 			 	  $('#myPic').attr("src", user.phoPath);
 				} else {

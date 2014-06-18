@@ -47,6 +47,7 @@ $(function () {
         alert('프로필 사진 업로드 실패했습니다.');
       } else { // success
         console.log('result.phoPath:',result.data);
+        console.log('bit.serverUrl:',bit.serverUrl);
         $('#profile_img').attr("src", result.data);
       }
       data.context.text('Upload finished.');
