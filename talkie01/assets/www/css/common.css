@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+.container {
+	width: 300px;
+}
+#btnLogin, #signUpBtn{
+	margin-top: 5%;
+/* 	margin-left: 15px; */
+}
+

@@ -1,0 +1,262 @@
+ @CHARSET "UTF-8";
+    html,
+    body {
+        background-color: #696969;
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+    }
+    .form-search{
+    	margin-left : 10%;
+    	
+    }
+    .drawers {
+        position: absolute;
+        width: 300px;
+        color: white;
+        background-color: #696969;
+    }
+
+    #content {
+/*         position: fixed; */
+position:absolute;
+        width: 100%;
+        background-color: #358fbc;
+        margin: 0px;
+        padding: 0px;
+        text-align:center; 
+    }
+
+    #tap {
+        text-decoration: none;
+        border: solid 1px #358fbc;
+        color: white;
+        background-color: #358fbc;
+    }
+    #menuIcon {
+      background-size:100% 1em;
+			width: 4em;
+			height: 4em;
+      float: left;
+      padding: 15px;
+      margin-top: -10px;
+    }
+#menuAlarm {
+background-size: 100% 1em;
+width: 4em;
+height: 4em;
+float: right;
+padding: 15px;
+margin-top: -10px;
+}
+
+    #navigation{ 
+      text-align: center;
+      float: left;
+      margin:0 auto;
+      text-align:left;
+      position: absolute;
+      left: 50%;
+      margin: -5px 0px 10px -95px;
+      padding: 15px;
+    }
+#navigation {
+text-align: center;
+text-align: left;
+/* float: left; */
+position: absolute;
+/* padding: 0px; */
+/* left: 25%; */
+/* margin: 0% 5%; */
+padding-top: 1%;
+}
+   문제의 navigation
+#header {
+width: 100%;
+height: 56px;
+text-align: center;
+border-bottom: 1px solid #358fbc;
+border-top: 1px solid #358fbc;
+}
+    #navigation_tap{
+    height: 31px;
+border: 2px solid #358fbc;
+width: 209px;
+margin: 0 auto;
+margin-top: 10px;
+}
+    
+    
+    
+    
+    
+    
+    
+    .mainIcon {
+      height: 3.0em;
+      border: 1px solid white;
+      text-decoration: none;
+      text-align: center;
+    }
+    .mainIcon_s {
+      background-size: 100% 2em;
+			width: 2.5em;
+			height: 2.5em;
+			padding: 8px;
+    }
+  
+    .mainIcon_f {
+      background-size:100% 4em;
+      width: 4em;
+      height: 4em;
+      padding: 15px;
+    }
+   
+    #map {
+      display:inline-block;
+      float: left;
+      width: 80px;
+      height: 26px;
+      border-radius: 5px 0px 0px 5px;
+      background-color: white;
+    }
+    #maps {
+      color: #358fbc;
+    }
+    #chat {
+      display:inline-block;
+      float: right;
+      width: 80px;
+      height: 26px;
+      border-radius: 0px 5px 5px 0px;
+      background-color: #358fbc;
+    }
+    .text {
+      display: inline-block;
+      color: white;
+      vertical-align: middle;
+    }
+    
+   
+    .snap-drawers {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      height: auto;
+     }
+     
+       #center {
+		height: 556px;
+		/* z-index: 99; */
+		/* background-color: white; */
+		/* padding: 0px 3px 0px 3px; */
+		}
+     
+     #myPic {
+       border: 0;  
+       page-break-inside: avoid;  
+       max-width: 100%;
+       vertical-align: middle; 
+       
+     }
+      #imgBox {
+        width: 267px;
+        height: 180px;
+      }
+      #name {
+        padding: 0px 0px 0px 10px;
+        margin: 9px 0px 0px 0px;
+      }    
+     .left-drawer p{
+       margin: 1.5px 0px 3px 0px;
+       padding: 0px 0px 0px 10px;
+       font-size: small;
+     }  
+     #profile {
+       display: inline-block;
+       color: white;
+       margin-left: 10%;
+     }
+     #tagTap {
+     background-color: 358fbc;
+     } 
+     
+          #selectBtn {
+    position: absolute;
+    bottom: 33.5px;
+    width: 100%;
+    height: 80px;
+    background-color: #333;
+    opacity: 0.7;
+    padding: 5px 0 ;
+    text-align:center;
+    color: #eee;
+    font-family: lucida Grande;
+    font-size: smaller;
+     }
+     
+    #hh {
+     z-index: 200;
+/*      top: 40px; */
+/*    position: relative; */
+   width: 100%;
+   
+     }
+     
+         #f_Btn {
+    position: absolute;
+    top: 52px;
+    float: left;
+    width: 100%;
+    height: 80px;
+    background-color: #333;
+    opacity: 0.7;
+    padding: 5px 0 ;
+    text-align:center;
+    color: #eee;
+    font-family: lucida Grande;
+    font-size: smaller;
+    z-index: 400;
+     }
+
+     #chattingBtn{
+     border: #3a5995;
+     background-color: #3a5995;
+     margin: 10px;
+     width: 120px;
+     }
+     #radioBtn{
+     border: #358fbc;
+     background-color: #358fbc;
+     margin: 10px;
+     width: 120px;
+     }
+     
+     #imgproFile {
+			float: left;
+			z-index: auto;
+			width: 20%;
+			height: 90%;
+			margin-left: 25%;
+			margin-top: 3px;
+     }
+     #footer {
+/*      background-color: #696969; */
+    background-color : #358fbc;
+    height: 35px;
+     }
+
+    #fri_li{
+     list-style: none;
+		display: table;
+		margin-top: 5px;
+		text-align: left;
+		margin-left: -5%;
+    }
+    #friName{
+    font-weight: bold;
+    font-size: larger;
+    }

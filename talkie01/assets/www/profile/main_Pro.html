@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 공통 css -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../css/jquery.mobile-1.4.2.min.css">
+<!-- talkie css -->
+<link rel="stylesheet" type="text/css" href="../css/main_side.css">
+<link rel="stylesheet" type="text/css" href="../css/main_Tap.css">
+<link rel="stylesheet" type="text/css" href="../css/toast.css">
+<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
+<!--  profile  -->
+<link rel="stylesheet" type="text/css" href="./profile.css">
+<link rel="stylesheet" type="text/css" href="./main_Pro_modify.css">
+
+ <script type="text/javascript" src="../js/jquery-1.4.1.min.js"></script>
+ <script type="text/javascript" src="../js/custom.js"></script>
+ 
+<script>
+console.log('cookie bit.userNo in profile sdfsd:', bit.userNo);
+</script>
+
+</head>
+<body>
+	<!-- 사이드메뉴바  시작-->
+	<div class="drawers">
+		<div class="left-drawer">
+			<a href="../profile/main_Pro.html"> <img class="mainIcon_f">
+				<div id="profile">
+					<h4 id="name"></h4>
+					<p>
+						<span id="profileCountry"></span> / <span id="profileLanguage"></span>
+					</p>
+				</div>
+			</a>
+			<div id="imgBox">
+				<img id="myPic" src="../img/profile/profile-image.jpg" alt="myInfo">
+			</div>
+		</div>
+
+		<div class="snap-drawer snap-drawer-left">
+			<div>
+				<ul>
+					<div>
+						<li id="tagTap"><a href="#" id="tagappend"> <img id="tag"
+								class="mainIcon_s" src="../img/tag.png"> location Tag
+						</a></li>
+					</div>
+
+					<li><a href="../friend/friendList.html"> <img id="friend"
+							class="mainIcon_s" src="../img/friend.png"> friend List
+					</a></li>
+					<li><a href="../help/help.html"> <img id="help"
+							class="mainIcon_s" src="../img/help.png"> help
+					</a></li>
+					<li><a href="../setting/setting.html"> <img id="setting"
+							class="mainIcon_s" src="../img/setting.png"> setting
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 사이드메뉴바 끝 -->
+
+	<!-- 메인메뉴바 시작 -->
+	<div id="content">
+		<div id="header">
+			<a id="tap" href="#" id="menuIcon"><img id="menuIcon"
+				src="../img/menuIcon.png"></a>
+			<div id="navigation_tap">
+				<div id="navigation">
+					<div id="map2" class="mainIcon">
+						<a href="../map/main_Tap.html" title="map"> <span id="maps2"
+							class="text">map</span></a>
+					</div>
+					<div id="chat2" class="mainIcon">
+						<a href="../chat/chat.html" title="chat"> <span id="chats2"
+							class="text">chat</span></a>
+					</div>
+				</div>
+			</div>
+			<a href="../alarm/alarm.html"><img id="menuAlarm"
+				src="../img/alarm.png"></a>
+		</div>
+		<!-- 메인메뉴바 끝 -->
+
+		<!-- 내용부분 시작 -->
+		<div id="center">
+
+			<div id="pro" align="center">
+				<div>
+      <input type="file" id="fileupload" name=photoData
+        data-url="profilePhoto.ajax" style="display: none">
+      <div id="progress">
+        <div class="bar" style="width: 0%; height: 5px;"></div>
+      </div>
+
+      <div id="sendFrom"></div>
+      <img id="profile_img" src="../img/profile/no-profile-image.jpg">
+    </div>
+				<div id="iconff">
+					<span><img class="iconF" src="../img/chat.png"></span> <span></span>
+					<span> <a href='./main_Pro_modify.html'> <img
+							class="iconF" src="../img/addF.png">
+					</a>
+					</span>
+				</div>
+
+				<h1 id="profileTitle"></h1>
+				<div id="title_pro"></div>
+
+				<div id="favoriteTag">
+					<label id="favoriteTagLabel"> <img id="favoriteTagImage"
+						src="../img/profile/profile_tag.png"> <span
+						id="favoriteTagText"><input type="text"
+							id="favoriteTagContent" readonly></span>
+					</label>
+				</div>
+
+
+    <div>
+          <div id="location_log">
+            <div class="log_div">
+              <div class="log_text">
+                <p>경기도 용인시 처인구 에버랜드</p>
+              </div>
+              </div>
+            </div>
+              <br>
+          </div>
+        </div>
+  
+		</div>
+
+		<!-- 내용부분 끝 -->
+
+		<!-- footer 시작 -->
+		<div id="footer"></div>
+	</div>
+	<!-- footer 끝  -->
+
+	<!-- 위치로그 나타내기 -->
+	<div class='locationTag' style='display: none'>
+		<div class="locationTag_close">
+			<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
+		</div>
+		<div class="locationTag_image">
+			<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
+		</div>
+		<p>
+			경기도 용인시 처인구<br> 용인 에버랜드
+		</p>
+	</div>
+	<!-- 위치로그 끝  -->
+
+
+	<!-- 자바스크립트 -->
+	<script type="text/javascript"
+		src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../js/snap.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/main_Tap.js"></script>
+	<!--  profile  -->
+	 <script type="text/javascript" src="./profile.js"></script>
+
+  <script>
+
+
+  console.log("User Email :"+window.localStorage.getItem("email"));
+  
+  
+  
+  </script>
+
+</body>
+</html>

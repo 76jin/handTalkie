@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+#profile_modify{
+	  width: 70%;
+	  margin-bottom: 6%;
+}
+#profileTitleDiv{
+      text-align: left;
+      width: 80%;
+}
+#favoriteTagText_modify{
+		  text-align: left;
+}
+#title_proDiv{
+      text-align: left;
+      width: 80%;
+}
+#favoriteTagLabel_modify{
+	width: 80%;
+}
+button#location_delete {
+float: right;
+width: 10%;
+}
+  
+.btn btn-default_com{
+margin-top: 5%;
+}
+div.log_div {
+font-size: small;
+width: 100%;
+padding-left: 10%;
+padding-right: 10%;
+height: 12%;
+}
+
+.log_text{
+text-align: left;
+width: 85%;
+float: left;
+padding-top: 3%;
+}
+
+img#delete_img {
+width: 1em;
+height: 1em;
+float: right;
+padding-top: 3%;
+
+}
+div#location_delete {
+float: right;
+/* margin-top: 10px; */
+padding-top: 3%;
+}
+#iconff {
+margin-top: 4%;
+margin-bottom: 4%;
+}
+
+
+    #map2 {
+      display:inline-block;
+      float: left;
+      width: 80px;
+      height: 26px;
+      border-radius: 5px 0px 0px 5px;
+      background-color: #358fbc;
+    }
+       #maps2 {
+      color: white;
+    }
+    #chat2 {
+      display:inline-block;
+      float: right;
+      width: 80px;
+      height: 26px;
+      border-radius: 0px 5px 5px 0px;
+      background-color: #358fbc;
+    }
+    #chats2 {
+      color: white;
+    }

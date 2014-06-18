@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+#center{
+	background-color: white;
+}
+.main-bar {
+	text-align: center;
+	font-size:25px;
+	color: white;
+	width: 100%;
+	height: 25px;
+	background-color: #358fbc;
+}
+
+#mainbar-text{
+	border:1px solid #358fbc; 
+	margin-top: 12px;
+}
+
+    #map2 {
+      display:inline-block;
+      float: left;
+      width: 80px;
+      height: 26px;
+      border-radius: 5px 0px 0px 5px;
+      background-color: #358fbc;
+    }
+       #maps2 {
+      color: white;
+    }
+    #chat2 {
+      display:inline-block;
+      float: right;
+      width: 80px;
+      height: 26px;
+      border-radius: 0px 5px 5px 0px;
+      background-color: #358fbc;
+    }
+    #chats2 {
+      color: white;
+    }
