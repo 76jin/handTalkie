@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+width: 300px;
+margin-top: 20%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:link {
+  text-decoration: none;
+}
+a img {
+  border: 0;
+}
+
+body {
+  max-width: 100%;
+  background: url(../img/MainMapImg.png) no-repeat left top fixed;
+  background-size: cover; /* 諛곌꼍�대�吏 �먮룞議곗젅 */
+}
+#title {
+  margin-top: 30%;
+  position: relative;
+  color: white;
+  text-align: center;
+  font-size: 3.70em;
+  font-weight: bold;
+}
+#Login-with-Email {
+/* margin: 0 6%; */
+}
+#Not-Registered {
+color: rgb(47, 101, 182);
+margin: 10% 20%;
+}
+
+#signUp {
+  margin-left: -6%;
+  padding-bottom: 20%;
+}
+
+#signup_form {
+  width: 80%;
+  position: relative;
+  left: 50%;
+  margin-left: -41%;
+}
+#name, #email, #password, #country, #language {
+  border: 0px;
+  border-bottom: 1px solid #DCDCDC;
+  border-radius: 0px;
+}
+.form-group {
+  margin-bottom: 5px;
+}
+#signupBtn {
+  background-color: #4BAF4B;
+}
+#already {
+color: white;
+/* margin-left: 20%; */
+margin-top: 10%;
+/* position: relative; */
+text-align: center;
+}
+#already2{
+	color: white;
+/* margin-left: 20%; */
+margin-top: 5%;
+/* position: relative; */
+text-align: center;
+}
+#signupBtn {
+/*   margin-top: 10%; */
+}
+signUp-form {
+  margin-top: -70px;
+}
+.LoginBox {
+margin-top: 24%;
+}
+
+#LoginBox_1{
+	margin-top: 81%;
+}
+#country, #language {
+text-align: center;
+/* margin: 2% 0% 0% 0%; */
+width: 48%;
+/* margin-left: 19%; */
+}
+
+select#country {
+float: left;
+margin-top: 6%;
+}
+select#language {
+float: right;
+margin-top: 6%;
+margin-bottom: 8%;
+}
+
+#login_start {
+margin-right: auto;
+margin-left: auto;
+padding-left: 15px;
+padding-right: 15px;
+width: 300px;
+}
+#signup_Box{
+	margin-right: auto;
+margin-left: auto;
+padding-left: 15px;
+padding-right: 15px;
+width: 300px;
+}
+div.col-sm-offset-2.col-sm-10 {
+padding: 0px;
+}

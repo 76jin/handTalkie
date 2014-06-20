@@ -1,5 +1,30 @@
 $(document).ready(function(){
 	// 화면 로딩이 완료되면, 로그인 버튼의 리스너를 등록한다.
+	
+	
+	$("#loginBtn").on('click',function(){
+		$("#LoginBox_1").css("display","none");
+		$("#login_start").css('display',"");
+	});
+	
+	$("#already").on('click',function(){
+		$("#LoginBox_1").css('display',"");
+		$("#login_start").css("display","none");
+	});
+  
+	$("#signup").on('click',function(){
+		$("#LoginBox_1").css("display","none");
+		$("#signup_Box").css('display',"");
+	});
+
+	$("#already2").on('click',function(){
+		$("#LoginBox_1").css('display',"");
+		$("#signup_Box").css("display","none");
+	});
+  
+	
+	
+	
 	$('#btnLogin').on('click', function(event){
 		event.preventDefault();
 		if ($('#email').val().length == 0 ||

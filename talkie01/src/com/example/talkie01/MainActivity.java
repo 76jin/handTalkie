@@ -9,7 +9,7 @@ public class MainActivity extends DroidGap {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.loadUrl("file:///android_asset/www/auth/main_slider.html");
+		super.loadUrl("file:///android_asset/www/auth/NewMainLogin.html");
 		
 	}
 
