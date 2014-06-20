@@ -3,28 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <title>ChatRoom</title>
-<link rel="stylesheet" type="text/css" href="public/css/chat.css">
+<link rel="stylesheet" type="text/css" href="../public/css/chat.css">
 <script src="/socket.io/socket.io.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="./js/jquery.cookie.js"></script>
+<script src="../js/jquery.cookie.js"></script>
 
 <script>
-  var socket = io.connect('http://s24.java48.com:9998'); // 서버에 접속 시도
+  var serverUrl = "http://home.java48.com:9977/talkie/";
+  var chatServerUrl = "http://home.java48.com:9978";
+  var addUserParam = {};  // 사용자 정보
+
+  var socket = io.connect(chatServerUrl); /* 서버에 접속 시도 */
   
   // 서버에 접속되면 실행된다.
   socket.on('connect', function(){
     
     // 쿠키 설정
     console.log('$.cookie("chatUserNo"): ', $.cookie('chatUserNo'));
-    console.log('$.cookie("chatOthersNo"): ', $.cookie('chatOthersNo'));
+    console.log('$.cookie("currentChatRoomNumber"): ', $.cookie('currentChatRoomNumber'));
+    console.log('$.cookie("memberList"): ', $.cookie('memberList'));
+    console.log('$.cookie("membersData"): ', $.cookie('membersData'));
+    
+    if (typeof($.cookie) == 'function') { // 웹 환경이며, 쿠키가 있는 경우
+    
+      // set cookie : realMemberList
+      var cookies = $.cookie('memberList').split(':');
+      console.log('cookies:', cookies);
+      console.log('cookies[1]:', cookies[1]);
+      $.cookie('realMemberList', cookies[1]);
+      console.log('after realMemberList:', $.cookie('realMemberList'));
 
-    var cookies = $.cookie('chatOthersNo').split(':');
-    console.log('cookies:', cookies);
-    $.cookie('chatOthersNo', cookies[1]);
-    console.log('after cookie:', $.cookie('chatOthersNo'));
+      // set cookie : realMembersData
+      var tempIndex = $.cookie('membersData').indexOf(':') + 1;
+      console.log('tempIndex:', tempIndex);
 
-    console.log(socket);
-    socket.emit('ADD_USER', $.cookie('chatUserNo')); // 서버에 사용자명 전달
+      var tempLength = $.cookie('membersData').length;
+      console.log('total-length:', tempLength);
+      var tempData = $.cookie('membersData').substring(tempIndex, tempLength);
+      console.log('tempData:', tempData);
+
+      var realMembersData = JSON.parse(tempData);
+      $.cookie('realMembersData', JSON.stringify(realMembersData));
+      console.log('realMembersData:', realMembersData);
+
+      /*  - realMembersData 쿠키값 가져오는 방법.
+       * var ccc = $.cookie('realMembersData');
+       * var getRealMembersData = JSON.parse(ccc);
+       * console.log('getRealMembersData:',getRealMembersData);
+       * console.log('getRealMembersData[0].NAME:', getRealMembersData[0].NAME); // 홍길동
+       */
+    } else { // 쿠키가 없는 모바일 환경인 경우
+      console.log("Error! Can't cookie data. Do save to localStorage.");
+    }
+
+    //console.log(socket);
+    // fine my name
+    var myInfo;
+    for (var i=0; i<realMembersData.length; i++) {
+      if (realMembersData[i].UNO == $.cookie('chatUserNo')) {
+        myInfo = realMembersData[i];
+        break;
+      }
+    }
+    
+    console.log('myInfo:', myInfo);
+    
+    addUserParam.userInfo = myInfo;
+    addUserParam.currentChatRoomNumber = $.cookie('currentChatRoomNumber');
+    console.log('addUserParam:',addUserParam);
+    
+    socket.emit('ADD_USER', addUserParam); // 서버에 사용자명 전달
   });
 
   // 서버에서 연결되었다 메시지를 받으면, 채팅 내용을 업데이트한다.
@@ -32,27 +80,31 @@
     $('#conversation').append('<b>' + username + ':</b> ' + data + '<br>');
   });
 
-  var name = "hong";
-  var email = "hong@test.com";
+  //var name = "hong";
+  //var email = "hong@test.com";
   // 서버에서 UPDATE_CHAT 메시지를 받으면, 채팅 내용을 업데이트한다.
   socket
       .on(
           'UPDATE_CHATS',
-          function(username, data) {
+          function(userInfo, data) {
 
-            if (name == username) {
+            if (addUserParam.userInfo.NAME == userInfo.NAME) {
               $('#conversation')
                   .append(
-                      '<div class="chatroom"><ul><li class="me"><div class="myimage"><img src="public/img/test.jpg"><b>'
-                          + username
+                      '<div class="chatroom"><ul><li class="me"><div class="myimage"><img src="'
+                          + (serverUrl + userInfo.PHOPATH)
+                          + '"><b>'
+                          + userInfo.NAME
                           + '</b></div><div id="mymsg"><p>'
                           + data
                           + '</p></div></li></ul></div>');
-            } else if (name != username) {
+            } else {
               $('#conversation')
                   .append(
-                      '<div class="chatroom"><ul><li class="you"><div class="image"><img src="public/img/unnamed.jpg"><b>'
-                          + username
+                      '<div class="chatroom"><ul><li class="you"><div class="image"><img src="'
+                          + (serverUrl + userInfo.PHOPATH)
+                          + '"><b>'
+                          + userInfo.NAME
                           + '</b></div><div id="msg"><p>'
                           + data
                           + '</p></div></li></ul></div>');
@@ -61,6 +113,7 @@
             scrollToBottom();
           });
 
+  /* 
   // 서버에서 UPDATE_ROOMS 메시지를 받으면, 화면에 채팅방 목록을 업데이트한다.
   socket.on('UPDATE_ROOMS', function(rooms, current_room) {
     $('#rooms').empty();
@@ -75,15 +128,20 @@
     });
   });
 
-  function switchRoom(room) {
-    socket.emit('SWITCH_ROOM', room);
-  }
+ */
+ 
+ /* 
+ function switchRoom(room) {
+   socket.emit('SWITCH_ROOM', room);
+ }
+ */
+ 
 
   // DOM 트리가 완성되고, 화면에 HTML 태그 랜더링이 완료되면 아래 코드 실행됨.
   $(function() {
     // 웹브라우저에서 SEND 버튼을 클릭할 때
     $('#datasend').click(function() {
-      var message = $('#data').val().replace( /\n/gi, '<br//>');
+      var message = $('#data').val().replace(/\n/gi, '<br//>');
       $('#data').val('');
       socket.emit('SEND_CHAT', message); // 서버를 통해 다른 사용자에게 메시지를 전달한다.
       $('#data').focus();
