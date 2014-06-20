@@ -44,7 +44,7 @@ public class AuthControl {
 					log.debug("===== 66666 fail =====");
 				} else {
 					log.debug("===== 77777 ok =====");
-					result = new AjaxResult().setStatus("ok")	.setData("success");
+					result = new AjaxResult().setStatus("ok")	.setData(talkieUserVo.getNo());
 					model.addAttribute("loginUser", talkieUserVo);
 					log.debug(talkieUserVo);
 					
