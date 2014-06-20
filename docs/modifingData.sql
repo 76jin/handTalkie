@@ -26,6 +26,12 @@ VALUES (1,30,2,"","N","1,2");
 
 SELECT * FROM SE_CHATTINGROOM;
 
+select CHATROOMNO from SE_CHATTINGROOM where MEMBER="1,2,3";
+SELECT CHATROOMNO from SE_CHATTINGROOM where MEMBER='1,2,3';
+
+SELECT UNO,NAME,PHOPATH from SE_USERS where UNO=1 or UNO=2;
+
+SELECT UNO,NAME,PHOPATH from SE_USERS where UNO in (1,2,4);
 -- ====================================================================================
 -- 문자채팅로그
 INSERT INTO `talkiedb`.`SE_CHATLOG`
@@ -48,3 +54,7 @@ select * FROM SE_CHATLOG;
 
 -- ====================================================================================
 
+select T1.UNO, T1.NAME, T1.NATINO, T2.LANNO, T1.PHOPATH
+    from SE_USERS T1 left outer join SE_ADDLANG T2
+    on T1.UNO = T2.UNO
+    where T1.UNO=1;
