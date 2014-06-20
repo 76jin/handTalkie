@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>friend List</title>
+<!-- 공통 css -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+
+<!-- talkie css -->
+<link rel="stylesheet" type="text/css" href="../css/main_side.css">
+<link rel="stylesheet" type="text/css" href="../css/main_Tap.css">
+<link rel="stylesheet" type="text/css" href="../css/main_map.css">
+<link rel="stylesheet" type="text/css" href="../css/toast.css">
+<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
+
+<link rel="stylesheet" type="text/css" href="./friendList.css">
+
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+ <script type="text/javascript" src="../js/jquery-1.4.1.min.js"></script>
+ <script type="text/javascript" src="../js/custom.js"></script>
+ 
+</head>
+<body>
+	<!-- 사이드메뉴바  시작-->
+	<div class="drawers">
+		<div class="left-drawer">
+			<a href="../profile/main_Pro.html"> 
+				<div id="profile">
+					<h4 id="name"></h4>
+					<p>
+						<span id="profileCountry"></span> / <span id="profileLanguage"></span>
+					</p>
+				</div>
+			</a>
+			<div id="imgBox">
+				<img id="myPic" src="../img/profile/profile-image.jpg" alt="myInfo">
+			</div>
+		</div>
+
+		<div class="snap-drawer snap-drawer-left">
+			<div>
+				<ul>
+					<div>
+						<li id="tagTap"><a href="#" id="tagappend"> <img id="tag"
+								class="mainIcon_s" src="../img/tag.png"> location Tag
+						</a></li>
+					</div>
+
+					<li><a href="../friend/friendList.html"> <img id="friend"
+							class="mainIcon_s" src="../img/friend.png"> friend List
+					</a></li>
+					<li><a href="../help/help.html"> <img id="help"
+							class="mainIcon_s" src="../img/help.png"> help
+					</a></li>
+					<li><a href="../setting/setting.html"> <img id="setting"
+							class="mainIcon_s" src="../img/setting.png"> setting
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 사이드메뉴바 끝 -->
+
+	<!-- 메인메뉴바 시작 -->
+	<div id="content">
+		<div id="header">
+			<a href="#"><img id="menuIcon"
+				src="../img/menuIcon.png"></a>
+			<div id="navigation_tap">
+				<div id="navigation">
+					<div id="map2" class="mainIcon">
+						<a href="../map/main_Tap.html" title="map"> <span id="maps2"
+							class="text">map</span></a>
+					</div>
+					<div id="chat2" class="mainIcon">
+						<a href="../chat/chat.html" title="chat"> <span id="chats2"
+							class="text">chat</span></a>
+					</div>
+				</div>
+			</div>
+			<a href="../alarm/alarm.html"><img id="menuAlarm"
+				src="../img/alarm.png"></a>
+		</div>
+		<!-- 메인메뉴바 끝 -->
+
+		<!-- 내용부분 시작 -->
+		<div id="center">
+			<section class="main">
+				<form class="search" method="post" action="index.html">
+					<input type="text" name="q" placeholder="사용자와 헤시태그 검색" />
+				</form>
+
+			<table class="table">
+				<tr>
+					<td><img src="../img/man1.jpg" alt=""
+						style="width: 70px; height: 70px;"></td>
+					<td>steve <br>
+					<br> language : English <br>
+					<br> location: canada <br>
+					</td>
+
+				</tr>
+
+				<tr>
+					<td><img src="../img/man2.JPG" alt=""
+						style="width: 70px; height: 70px;"></td>
+					<td>Obama <br>
+					<br> language: English <br>
+					<br>location: U.S.A
+					</td>
+				</tr>
+
+				<tr>
+					<td><img src="../img/man3.jpeg" alt=""
+						style="width: 70px; height: 70px;"></td>
+					<td>jax <br>
+					<br> language: English <br>
+					<br> location: canada
+					</td>
+				</tr>
+
+				<tr>
+					<td><img src="../img/justinbieber.jpg" alt=""
+						style="width: 70px; height: 70px;"></td>
+					<td>justinbieber<br>
+					<br> language: English<br>
+					<br> location: canada
+					</td>
+				</tr>
+			</table>
+			<div class="readmore">
+				<button type="button" class="btn btn-default btn-lg btn-block">
+					Read more</button>
+			</div>
+
+
+      </section>
+		</div>
+		<!-- 내용부분 끝 -->
+
+
+
+		<!-- footer 시작 -->
+		<div id="footer"></div>
+	</div>
+	<!-- footer 끝  -->
+
+
+
+	<!-- 위치로그 나타내기 -->
+	<div class='locationTag' style='display: none'>
+		<div class="locationTag_close">
+			<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
+		</div>
+		<div class="locationTag_image">
+			<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
+		</div>
+		<p>
+			경기도 용인시 처인구<br> 용인 에버랜드
+		</p>
+	</div>
+	<!-- 위치로그 끝  -->
+	
+	
+	  <!-- 자바스크립트 -->
+	<script src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/snap.js"></script>
+<script type="text/javascript" src="../js/main_Tap.js"></script>
+<script type="text/javascript" src="../js/icheck.min.js"></script>
+<script type="text/javascript" src="./chat.js"></script>
+<script type="text/javascript" src="./friendList.js"></script>
+
+
+</body>
+</html>

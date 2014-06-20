@@ -1,0 +1,75 @@
+/* @CHARSET "EUC-KR"; */
+
+#pro {
+	background-color: white;
+}
+#profile_img {
+
+	border-radius:10px;
+	margin-top:10%;
+		width: 45%;
+/* 		height: 35%; */
+height: 140px;
+}
+#title_pro {
+	 width: 70%;
+	text-align: center;
+	margin-bottom: 6%;
+}
+#location_log {
+	background-color: #358fbc;
+	color: white;
+	font-weight: normal;
+	width: 100%;
+/* 	height: 300px; */
+	font-size: 25px;
+}
+.iconF {
+	width: 8%;
+/* 	height: 8%; */
+	height: 26px;
+	margin: 3%;
+	margin-top: 1.6%;
+}
+
+
+h1 {
+	width: 50%;
+	font-size: 130%;
+	font-weight: bold;
+}
+#iconff {
+	margin-top: 4%;
+}
+
+
+
+/* ��踰�洹몄��
+* {
+	 border: 1px black solid;
+}
+#favoriteTag {
+  border: 1px red solid;
+}
+ */
+
+
+#favoriteTag {
+	width: 80%;
+	margin-bottom: 10px;
+}
+
+#favoriteTagLabel {
+	width: 100%;
+}
+
+#favoriteTagImage {
+	width: 18px;
+}
+
+#favoriteTagContent {
+	border: 0px;
+	text-align: left;
+	width: 80%;
+}
+
