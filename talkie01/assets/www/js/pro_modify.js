@@ -35,19 +35,19 @@ $(function () {
       var currPath = location.pathname;
       var end = currPath.indexOf('/', 1);
       var rootPath =  currPath.substring(0, end);
-      console.log('rPath:', rootPath); // /talkie
+      console.log('rPath:' + rootPath); // /talkie
 
       var curUrl = location.protocol + "//" + window.location.host;
-      console.log('window.location.host:', window.location.host);
-      console.log('curUrl:', curUrl);
+      console.log('window.location.host:' + window.location.host);
+      console.log('curUrl:' + curUrl);
 
-      console.log('done img', result.data, result.status, result.data);
+      console.log('done img' + result.data +","+ result.status +","+ result.data);
 
       if (result.status != "ok" || result.data == "failure") {
         alert('프로필 사진 업로드 실패했습니다.');
       } else { // success
-        console.log('result.phoPath:',result.data);
-        console.log('bit.serverUrl:',bit.serverUrl);
+        console.log('result.phoPath:' + result.data);
+        console.log('bit.serverUrl:' + bit.serverUrl);
         $('#profile_img').attr("src", result.data);
       }
       data.context.text('Upload finished.');

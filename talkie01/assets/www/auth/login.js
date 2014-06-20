@@ -1,4 +1,8 @@
+var serverUrl = 'http://14.32.7.49:9977/talkie';
+var chatServerUrl = 'http://14.32.7.49:9978';
 $(document).ready(function(){
+  init_common();
+
 	// 화면 로딩이 완료되면, 로그인 버튼의 리스너를 등록한다.
 	
 	
@@ -22,8 +26,15 @@ $(document).ready(function(){
 		$("#signup_Box").css("display","none");
 	});
   
-	
-	
+
+	  //serverUrl = "http://s24.java48.com:9977/talkie/"
+  //chatServerUrl = 'http://s24.java48.com:9998;
+  //console.log('bit is undefined!!!');
+  serverUrl = 'http://14.32.7.49:9977/talkie';
+  chatServerUrl = 'http://14.32.7.49:9978';
+  
+  console.log('serverUrl:' + serverUrl);
+  console.log('chatServerUrl:' + chatServerUrl);
 	
 	$('#btnLogin').on('click', function(event){
 		event.preventDefault();
@@ -33,7 +44,9 @@ $(document).ready(function(){
 			return;
 		}
 		
-		$.ajax(bit.serverUrl +'/auth/login.ajax', {
+		console.log("serverUrl in login.js:" + serverUrl);
+		
+		$.ajax(serverUrl +'/auth/login.ajax', {
 			type: 'POST',
 			dataType: 'json', /*서버에서 보내는 데이터의 형식 지정 */
 			data: { /* 서버쪽으로 보내는 데이터 */
@@ -41,15 +54,23 @@ $(document).ready(function(){
 				password: $('#password').val(),
 				saveEmail: ($('#saveEmail:checked').length > 0) ? 
 						'true':'false'
-							
 			},
 			success: function(jsonObj){
 				console.log(jsonObj);
 				var result = jsonObj.ajaxResult;
-				if (result.status == "ok" && result.data == "success") {
-					location.href="../map/main_Tap.html";
+				if (result.status != "ok" || result.data == "failure") {
+				  alert('이메일 또는 암호가 맞지 않습니다.');
 				} else {
-					alert('이메일 또는 암호가 맞지 않습니다.');
+				  //console.log('loginUser.no:' + jsonObj.loginUser.no);
+				  console.log('result.data(userNo):' + result.data);
+				  
+				  // 사용자 정보 저장
+				  window.localStorage.setItem("userNo",result.data);
+				  window.localStorage.setItem("email",$('#email').val());
+				  window.localStorage.setItem("serverUrl",serverUrl);
+				  window.localStorage.setItem("chatServerUrl",chatServerUrl);
+				  
+					location.href = "../map/main_Tap.html";
 				}
 			},
 			error: function(xhr, status, errorThrown){

@@ -1,16 +1,13 @@
 
 $(window).load(function(){
 	console.log("헤헤헿"+window.localStorage.getItem("email"));
-	  console.log("bit.userEmail:", bit.userEmail);
-	  console.log('cookie bit.userEmail in profile:', bit.userEmail);
+	console.log("serverUrl:" + serverUrl);
 	
-	$.ajax(bit.serverUrl + '/profileInfo.ajax', {
+	$.ajax( serverUrl + '/profileInfo.ajax', {
 		type: 'POST',
 		dataType: 'json',
 		data: {
-//			email: bit.userEmail
 			email: window.localStorage.getItem("email")
-			
 		},
 		success: function(jsonObj){
 			console.log(jsonObj);
@@ -18,7 +15,6 @@ $(window).load(function(){
 			if (result.status == "ok" && result.data == "failure") {
 				alert('프로필 정보를 읽어오지 못했습니다..');
 			} else {
-			  console.log('cookie bit.userNo in profile:', bit.userNo);
 				console.log('profileInfo success!');
 				//console.log(result.data);
 				
@@ -32,9 +28,9 @@ $(window).load(function(){
 				$('#title_pro').text(obj.profileDesc);
 				$('#favoriteTagText').text(obj.favTag);
 				
-        console.log('obj.phoPath:', obj.phoPath);
+        console.log('obj.phoPath:' + obj.phoPath);
         if (obj.phoPath) {
-          $('#profile_img').attr("src", obj.phoPath);
+          $('#profile_img').attr("src", serverUrl + "/" + obj.phoPath);
         } else {
           $('#profile_img').attr("src", "../img/profile/no-profile-image.jpg");
         }

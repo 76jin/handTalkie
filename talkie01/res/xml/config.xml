@@ -33,7 +33,7 @@
     <access origin="*"/>
 
     <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
-    <content src="auth/main_slider.html" />
+    <content src="auth/NewMainLogin.html" />
 
     <preference name="loglevel" value="DEBUG" />
     <!--

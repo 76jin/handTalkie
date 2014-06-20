@@ -17,7 +17,9 @@
 
 var map;                // html div id='map'
 var currentPosition;    // 사용자의 현재 위치 정보
-var isTest = true;		// 테스트용 코드인지.
+var isTest = true;		  // 테스트용 코드인지.
+var checkedImage = "../img/check_green.png";
+var checkedUsers = [];  // 채팅하기 위해 선택된 사용자 번호 저장 배열.
 //var otherPosition = [];		// 사용자 주변에 있는 다른 사용자의 현재 위치 정보
 
 /* 생성자 함수
@@ -52,7 +54,7 @@ var size_y = 45; // 마커로 사용할 이미지의 세로 크기
 
 //마커 이미지 만들기
 function makeMarkerImage(markerImage) {
-  console.log('markerImage:', markerImage);
+  
   
   return new google.maps.MarkerImage( markerImage,
             new google.maps.Size(size_x, size_y),
@@ -60,13 +62,6 @@ function makeMarkerImage(markerImage) {
             '',
             new google.maps.Size(size_x, size_y) );
 }
-/*
-var markerImage = new google.maps.MarkerImage( markerImage3,
-    new google.maps.Size(size_x, size_y),
-    '',
-    '',
-    new google.maps.Size(size_x, size_y));
-*/
 ////마커 정보 끝 ////////////////////////
 
 var displayCurrentLocation = function (position) {
@@ -78,14 +73,14 @@ var displayCurrentLocation = function (position) {
   
   // 사용자 정보를 전역변수에 저장
   UserPositionInfo.me = new UserPositionInfo.Create(1, [37.494631, 127.027583]);
-  console.log('UserPositionInfo.me:', UserPositionInfo.me);
+  console.log('UserPositionInfo.me:' + UserPositionInfo.me);
   
   var pos = new google.maps.LatLng(37.494631, 127.027583); //비트컴퓨터
   map.setCenter(pos); // 현재 위치를 지도 가운데로 하기.
 
   // 사용자의 현재 위치 저장.
   currentPosition = pos;
-  console.log('currentPos:', position.coords.latitude, position.coords.longitude);
+  console.log('currentPos:' + position.coords.latitude + "," + position.coords.longitude);
 
   // 현재 사용자 위치를 지도에 표시
   addUserMarker(currentPosition);
@@ -149,7 +144,7 @@ function initialize() {
         
         displayOtherLocation(UserPositionInfo.others[i][1], othersTempPhotoPath[i]);    // display other positon in map.
       }
-      console.log('UserPositionInfo.others:', UserPositionInfo.others);
+      console.log('UserPositionInfo.others:' + UserPositionInfo.others);
       //console.log('UserPositionInfo:', UserPositionInfo);
 
       //infowindow.open(map,marker);
@@ -162,7 +157,7 @@ function initialize() {
 
     // 지도 클릭 이벤트 등록
     google.maps.event.addListener(map, 'click', function(event) {
-      console.log('touched by user. location: ', event.latLng.toString());
+      console.log('touched by user. location: ' + event.latLng.toString());
       hideShortProfile();
     });
 
@@ -218,33 +213,57 @@ function addUserMarker(location) {
 
 var count = 0;
 function addMarker(location, userPhotoPath) {
-  console.log('called addMarker, location:', location);
-  console.log('called addMarker, userPhotoPath:', userPhotoPath);
   
-//  var tempContent = "I am newview" + ++count; 
-  var newMarkerImage = makeMarkerImage(userPhotoPath);
+  //console.log('called addMarker, userPhotoPath:' + userPhotoPath);
+  
+  // 체크되지 않은 다른 사용자 마커
+  var newMarkerImage = makeMarkerImage(serverUrl + "/" + userPhotoPath);
   var marker = new google.maps.Marker({
     position:location,
-    icon: newMarkerImage,
-/*    content: tempContent*/
+    icon: newMarkerImage
   });
+  
+  // 체크된 다른 사용자 마커
+  var newCheckedMarkerImage = makeMarkerImage(checkedImage);
+  var checkedMarker = new google.maps.Marker({
+    position:location,
+    icon: newCheckedMarkerImage
+  });
+  var checkedFlag = false;
 
   marker.setMap(map);
   //markersArray.push(marker);
 
   google.maps.event.addListener(marker, "click", function(event) {
+    console.log('click marker! event.latLng:' + event.latLng);
+    
+    var foundUserNo = 0;
+    for (var i=0; i<UserPositionInfo.others.length;i++) {
+      if (event.latLng == UserPositionInfo.others[i][1]) {
+        foundUserNo = UserPositionInfo.others[i][0];
+        break;
+      }
+    }
+    console.log("===== clicked other postion:" + foundUserNo);
+    
+    // check/uncheck image 제어 코드
+    checkedFlag = !checkedFlag;
+    
+    console.log('checkedFlag:' + checkedFlag);
+    if (checkedFlag) {
+      checkedMarker.setMap(map);
+      console.log('before checkedUsers:' + checkedUsers);
 
-    console.log('event.latLng:', event.latLng);
-	  var foundUserNo = 0;
-	  for (var i=0; i<UserPositionInfo.others.length;i++) {
-		  if (event.latLng == UserPositionInfo.others[i][1]) {
-		    foundUserNo = UserPositionInfo.others[i][0];
-			  break;
-		  }
-	  }
+      checkedUsers[foundUserNo] = foundUserNo;
+      console.log('pushed no:' + foundUserNo);
+      console.log('after checkedUsers:' + checkedUsers);
+    } else {
+      marker.setMap(map);
+    }
+    
 
-	  console.log("clicked other postion");
-		$.ajax(	bit.contextRoot + '/ShortProfile.ajax', {
+	  console.log('===== ranian ===== serverUrl:' + serverUrl);
+		$.ajax(	serverUrl + '/ShortProfile.ajax', {
 			type: 'POST',
 			dataType: 'json',
 			data: {
@@ -281,7 +300,7 @@ function addMarker(location, userPhotoPath) {
 					$('#friName').text(volist[0].name);
 					$('#friCountry').text(nation);
 					$('#friLanguage').text(languageNo);
-					$('#imgproFile').attr("src",photoPath);
+					$('#imgproFile').attr("src", serverUrl + "/" + photoPath);
 				}
 			},
 			error: function(xhr, status, errorThrown){
@@ -292,6 +311,85 @@ function addMarker(location, userPhotoPath) {
 		});
 		
 	  showShortProfile();
+  });
+  
+  google.maps.event.addListener(checkedMarker, "click", function (event) {
+    console.log('click checkedMarker event.latLng:' + event.latLng);
+    
+    var foundUserNo = 0; // 선택된 사용자의 번호를 찾아서 저장.
+    for (var i=0; i<UserPositionInfo.others.length;i++) {
+      if (event.latLng == UserPositionInfo.others[i][1]) {
+        foundUserNo = UserPositionInfo.others[i][0];
+        break;
+      }
+    }
+    console.log("===== clicked other postion:" + foundUserNo);
+    
+    // check/uncheck image 제어 코드
+    checkedFlag = !checkedFlag;
+    
+    console.log('checkedFlag:' + checkedFlag);
+    if (checkedFlag) {
+      checkedMarker.setMap(map);
+    } else {
+      checkedMarker.setMap(null);
+//      marker.setMap(map);
+//      checkedUsers.pop(foundUserNo);
+      delete(checkedUsers[foundUserNo]);
+      console.log('poped no:' + foundUserNo);
+      console.log('poped checkedUsers:' + checkedUsers);
+    }
+    
+
+    console.log('===== ranian ===== serverUrl:' + serverUrl);
+    $.ajax( serverUrl + '/ShortProfile.ajax', {
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        no: foundUserNo
+      },
+      success: function(jsonObj){
+        console.log(jsonObj);
+        var result = jsonObj.ajaxResult;
+        if (result.status != "ok" || result.data == "failure") {
+          alert('사용자 정보를 읽어오는 데 실패했습니다.');
+        } else {
+          console.log('friendInfo success!');
+          console.log(result.data);
+          
+          var volist = JSON.parse(result.data);
+          var nation = '';
+          var languageNo = '';
+          var photoPath = '';
+          $.each( volist, function( key, value ) {
+              switch (value.nation) {
+              case 1:  nation ="korea"; break;
+              case 2:  nation ="U.S.A"; break;
+              default: nation ="korea"; break;
+              break;
+              }
+              switch (value.languageNo) {
+              case  1 : languageNo += "Korean "; break;
+              case  2 : languageNo += "English "; break;
+              default:      languageNo += "Korean "; break;
+              }
+              photoPath = value.photoPath;
+            });
+          
+          $('#friName').text(volist[0].name);
+          $('#friCountry').text(nation);
+          $('#friLanguage').text(languageNo);
+          $('#imgproFile').attr("src", serverUrl + "/" + photoPath);
+        }
+      },
+      error: function(xhr, status, errorThrown){
+        alert('사용자 정보를 읽어오는 중 오류 발생!');
+        console.log(status);
+        console.log(errorThrown);
+      }
+    });
+    
+    showShortProfile();
   });
     
 }
