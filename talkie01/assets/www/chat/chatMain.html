@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ChatRoom</title>
+<link rel="stylesheet" type="text/css" href="../css/chat.css">
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<script src="../js/socket.io-1.0.4.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/jquery.cookie.js"></script>
+<!-- <script src="http://14.32.7.49:9978/socket.io/socket.io.js"></script> -->
+
+<script>
+$(document).ready(function(){
+  
+  console.log('called in chatMain.html!!!!');
+  
+  var serverUrl = "http://14.32.7.49:9977/talkie/";
+  var chatServerUrl = "http://14.32.7.49:9978";
+  var addUserParam = {};  // 사용자 정보
+
+//  var socket = io.connect(chatServerUrl); /* 서버에 접속 시도 */
+  var socket = io.connect('http://14.32.7.49:9978'); /* 서버에 접속 시도 */
+  
+  // 서버에 접속되면 실행된다.
+  socket.on('connect', function(){
+    console.log('##### connect called!');
+    
+    var currentChatRoomNumber = window.localStorage.getItem("chatRoomNumber");
+    console.log('currentChatRoomNumber:' + currentChatRoomNumber);
+
+    //getChatRoomInfo(currentChatRoomNumber);
+    
+    $.ajax(chatServerUrl + '/getChatRoomInfo.jsonp', {
+      crossDomain : true,
+      type : 'GET',
+      dataType : 'jsonp',
+      data : {
+        currentChatRoomNumber : currentChatRoomNumber,
+      },
+      success : function(jsonObj) {
+        console.log('jsonp reuslt: ' + jsonObj);
+        var result = jsonObj.ajaxResult;
+        if (result.status != "ok" || result.data == "failure") {
+          alert('채팅방 정보를 가져오는 데 실패했습니다.');
+        } else {
+          console.log('채팅방 정보 가져오기 성공!');
+
+          console.log('localStorage::userNo:' + window.localStorage
+              .getItem("userNo"));
+          console.log('localStorage::chatRoomNumber:' + window.localStorage
+              .getItem("chatRoomNumber"));
+          console.log('localStorage::chatList:' + window.localStorage
+              .getItem("chatList"));
+          console.log('jsonp::currentChatRoomNumber:' +
+              result.data.currentChatRoomNumber);
+          console.log('jsonp::memberList:' + result.data.memberList);
+          console.log('jsonp::membersData:' + result.data.membersData);
+
+          var membersData = result.data.membersData;
+          window.localStorage.setItem("currentChatRoomNumber",
+              result.data.currentChatRoomNumber);
+          window.localStorage.setItem("memberList", result.data.memberList);
+          window.localStorage.setItem("membersData", membersData);
+          
+       // fine my name
+          var myInfo;
+          console.log('##### membersData:' + membersData);
+          console.log('##### window.localStorage.getItem(userNo):' 
+              + window.localStorage.getItem('userNo'));
+          for (var i = 0; i < membersData.length; i++) {
+            if (membersData[i].UNO == window.localStorage.getItem('userNo')) {
+              myInfo = membersData[i];
+              break;
+            }
+          }
+
+          console.log('myInfo:' + myInfo);
+
+          addUserParam.userInfo = myInfo;
+          addUserParam.currentChatRoomNumber = window.localStorage
+              .getItem('currentChatRoomNumber');
+          console.log('addUserParam:' + addUserParam);
+
+          socket.emit('ADD_USER', addUserParam); // 서버에 사용자명 전달
+        }
+      },
+      error : function(xhr, status, errorThrown) {
+        alert('채팅방 정보 가져오는 중 오류 발생!');
+        console.log(status);
+        console.log(errorThrown);
+      }
+    });
+
+  });
+
+  // 서버에서 연결되었다 메시지를 받으면, 채팅 내용을 업데이트한다.
+  socket.on('UPDATE_CHAT', function(username, data) {
+    $('#conversation').append('<b>' + username + ':</b> ' + data + '<br>');
+  });
+  
+  socket.on('error', function (e) {
+    alert('System', e ? e : 'A unknown error occurred');
+  });
+
+  //var name = "hong";
+  //var email = "hong@test.com";
+  // 서버에서 UPDATE_CHAT 메시지를 받으면, 채팅 내용을 업데이트한다.
+  socket.on('UPDATE_CHATS', function(userInfo, data) {
+
+    if (addUserParam.userInfo.NAME == userInfo.NAME) {
+      $('#conversation').append(
+          '<div class="chatroom"><ul><li class="me"><div class="myimage"><img src="'
+              + (serverUrl + userInfo.PHOPATH) + '"><b>' + userInfo.NAME
+              + '</b></div><div id="mymsg"><p>' + data
+              + '</p></div></li></ul></div>');
+    } else {
+      $('#conversation').append(
+          '<div class="chatroom"><ul><li class="you"><div class="image"><img src="'
+              + (serverUrl + userInfo.PHOPATH) + '"><b>' + userInfo.NAME
+              + '</b></div><div id="msg"><p>' + data
+              + '</p></div></li></ul></div>');
+    }
+
+    scrollToBottom();
+  });
+
+  /* 
+  // 서버에서 UPDATE_ROOMS 메시지를 받으면, 화면에 채팅방 목록을 업데이트한다.
+  socket.on('UPDATE_ROOMS', function(rooms, current_room) {
+    $('#rooms').empty();
+    $.each(rooms, function(key, value) {
+      if (value == current_room) {
+        $('#rooms').append('<div>' + value + '</div>');
+      } else {
+        $('#rooms').append(
+            '<div><a href="#" onclick="switchRoom(\'' + value + '\')">' + value
+                + '</a></div>');
+      }
+    });
+  });
+   */
+
+  /* 
+  function switchRoom(room) {
+    socket.emit('SWITCH_ROOM', room);
+  }
+   */
+
+  // DOM 트리가 완성되고, 화면에 HTML 태그 랜더링이 완료되면 아래 코드 실행됨.
+  $(function() {
+    // 웹브라우저에서 SEND 버튼을 클릭할 때
+    $('#datasend').click(function() {
+      var message = $('#data').val().replace(/\n/gi, '<br//>');
+      $('#data').val('');
+      socket.emit('SEND_CHAT', message); // 서버를 통해 다른 사용자에게 메시지를 전달한다.
+      $('#data').focus();
+
+    });
+
+  });
+
+  // 마지막 채팅글로 자동 이동
+  function scrollToBottom() {
+    $("html, body").animate({
+      scrollTop : $(document).height() - $(window).height()
+    }, 1000);
+  }
+
+  // 서버로부터 채팅방 정보를 가져온다.
+  function getChatRoomInfo(currentChatRoomNumber) {
+    $.ajax(chatServerUrl + '/getChatRoomInfo.jsonp', {
+      crossDomain : true,
+      type : 'GET',
+      dataType : 'jsonp',
+      data : {
+        currentChatRoomNumber : currentChatRoomNumber,
+      },
+      success : function(jsonObj) {
+        console.log('jsonp reuslt: ' + jsonObj);
+        var result = jsonObj.ajaxResult;
+        if (result.status != "ok" || result.data == "failure") {
+          alert('채팅방 정보를 가져오는 데 실패했습니다.');
+        } else {
+          console.log('채팅방 정보 가져오기 성공!');
+
+          console.log('localStorage::userNo:' + window.localStorage
+              .getItem("userNo"));
+          console.log('localStorage::chatRoomNumber:' + window.localStorage
+              .getItem("chatRoomNumber"));
+          console.log('localStorage::chatList:' + window.localStorage
+              .getItem("chatList"));
+          console.log('jsonp::currentChatRoomNumber:' +
+              result.data.currentChatRoomNumber);
+          console.log('jsonp::memberList:' + result.data.memberList);
+          console.log('jsonp::membersData:' + result.data.membersData);
+
+          window.localStorage.setItem("currentChatRoomNumber",
+              result.data.currentChatRoomNumber);
+          window.localStorage.setItem("memberList", memberList);
+          window.localStorage.setItem("membersData", membersData);
+        }
+      },
+      error : function(xhr, status, errorThrown) {
+        alert('채팅방 정보 가져오는 중 오류 발생!');
+        console.log(status);
+        console.log(errorThrown);
+      }
+    });
+  }
+});
+</script>
+</head>
+
+<body>
+
+  <header class="banner">
+    <h1 class="bannertext">
+      <a href="#"
+        id="logo">chatting<span>(korea)</span>: korea tour
+      </a>
+    </h1>
+  </header>
+  
+  <!-- 
+<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+  <b>ROOMS</b>
+  <div id="rooms"></div>
+</div>
+ -->
+ 
+  <section class="section">
+    <div id="conversation">
+    </div>
+    
+
+  </section>
+
+  <footer>
+    <form id="chatform">
+      <textarea id="data" style="overflow:hidden"
+        placeholder="Write something.."></textarea>
+      <input type="button" id="datasend" value="SEND" />
+    </form>
+  </footer>
+</body>
+</html>
