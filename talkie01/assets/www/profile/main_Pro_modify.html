@@ -21,10 +21,11 @@
 
 
 
-
+<!-- 
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"/>
+    <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8">
 <script>
-	console.log('cookie bit.userNo in profile sdfsd:', bit.userNo);
-</script>
 
 </head>
 <body>
@@ -71,8 +72,7 @@
 	<!-- 메인메뉴바 시작 -->
 	<div id="content">
 		<div id="header">
-			<a href="#"><img id="menuIcon"
-				src="../img/menuIcon.png"></a>
+			<a href="#"><img id="menuIcon" src="../img/menuIcon.png"></a>
 			<div id="navigation_tap">
 				<div id="navigation">
 					<div id="map2" class="mainIcon">
@@ -104,19 +104,19 @@
 					<img id="profile_img" src="../img/profile/no-profile-image.jpg">
 				</div>
         <!-- 수정완료버튼 -->
-				<div id="iconff">
+				
+				
+				
+				
+				
+				<div id="iconff" id="updateBtn">
 					<span><img class="iconF" src="../img/save.png"></span> 
-    <!--       <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default_com"></button>
-            </div>
-          </div> -->
 				</div>
 
 
 
-				<form id="profile_modify" class="form-horizontal" role="form">
 					<!-- 타이틀수정 -->
+				<form id="profile_modify" class="form-horizontal" role="form" >
 					<div id="profileTitleDiv">
 						<div class="form-group">
 							<div class="col-sm-10">
@@ -152,15 +152,13 @@
 
 
 				<!-- 위치로그 편집(삭제만 가능) -->
-				<div>
+			 <div style="background-color: #358fbc">
 					<div id="location_log">
 						<div class="log_div">
-							<div class="log_text">
-								<p>경기도 용인시 처인구 에버랜드</p>
 							</div>
+	
 							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<div id="location_delete"><img id="delete_img" src="../img/delete.png"></div> 
+							<div id='btnDelete'  class="col-sm-offset-2 col-sm-10">
 								</div>
 							</div>
 						</div>
@@ -178,21 +176,22 @@
 		<!-- footer 끝  -->
 
 		<!-- 위치로그 나타내기 -->
-		<div class='locationTag' style='display: none'>
+	<div id="latlng" class='locationTag' style='display: none'>
 			<div class="locationTag_close">
 				<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
 			</div>
 			<div class="locationTag_image">
 				<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
 			</div>
-			<p>
-				경기도 용인시 처인구<br> 용인 에버랜드
-			</p>
+		<p id="locationTagText"></p>
 		</div>
 		<!-- 위치로그 끝  -->
 
 
+
 		<!-- 자바스크립트 -->
+	 <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../js/jquery.ui.widget.js"></script>
@@ -202,12 +201,11 @@
 		<script type="text/javascript" src="../js/snap.js"></script>
 		<script type="text/javascript" src="../js/common.js"></script>
 		<script type="text/javascript" src="../js/main_Tap.js"></script>
-    
+  <script type="text/javascript" src="../js/main_map.js"></script>
 <!--  profile  -->
 		    <script type="text/javascript" src="./main_Pro_modify.js"></script>
-		<script type="text/javascript" src="./pro_modify.js"></script>
-<script type="text/javascript" src="./profile.js"></script>
-
+<!-- 	<script type="text/javascript" src="./pro_modify.js"></script>
+	<script type="text/javascript" src="./profile.js"></script> -->
 
 </body>
 </html>

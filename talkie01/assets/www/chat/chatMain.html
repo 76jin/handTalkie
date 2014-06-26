@@ -3,17 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>ChatRoom</title>
-<link rel="stylesheet" type="text/css" href="../public/css/chat.css">
-<script src="http://14.32.7.49:9978/socket.io/socket.io.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/chat.css">
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<script src="../js/socket.io-1.0.4.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
 <script src="../js/jquery.cookie.js"></script>
+<!-- <script src="http://14.32.7.49:9978/socket.io/socket.io.js"></script> -->
 
 <script>
+$(document).ready(function(){
+  
+  console.log('called in chatMain.html!!!!');
+  
   var serverUrl = "http://14.32.7.49:9977/talkie/";
   var chatServerUrl = "http://14.32.7.49:9978";
   var addUserParam = {};  // 사용자 정보
 
-  var socket = io.connect(chatServerUrl); /* 서버에 접속 시도 */
+//  var socket = io.connect(chatServerUrl); /* 서버에 접속 시도 */
+  var socket = io.connect('http://14.32.7.49:9978'); /* 서버에 접속 시도 */
   
   // 서버에 접속되면 실행된다.
   socket.on('connect', function(){
@@ -22,32 +29,78 @@
     var currentChatRoomNumber = window.localStorage.getItem("chatRoomNumber");
     console.log('currentChatRoomNumber:' + currentChatRoomNumber);
 
-    getChatRoomInfo(currentChatRoomNumber);
+    //getChatRoomInfo(currentChatRoomNumber);
+    
+    $.ajax(chatServerUrl + '/getChatRoomInfo.jsonp', {
+      crossDomain : true,
+      type : 'GET',
+      dataType : 'jsonp',
+      data : {
+        currentChatRoomNumber : currentChatRoomNumber,
+      },
+      success : function(jsonObj) {
+        console.log('jsonp reuslt: ' + jsonObj);
+        var result = jsonObj.ajaxResult;
+        if (result.status != "ok" || result.data == "failure") {
+          alert('채팅방 정보를 가져오는 데 실패했습니다.');
+        } else {
+          console.log('채팅방 정보 가져오기 성공!');
 
-    // fine my name
-    var myInfo;
-    var memberData = window.localStorage.getItem('membersData');
-    console.log('##### membersData:' + membersData);
-    for (var i = 0; i < memberData.length; i++) {
-      if (memberData[i].UNO == window.localStorage.getItem('userNo')) {
-        myInfo = memberData[i];
-        break;
+          console.log('localStorage::userNo:' + window.localStorage
+              .getItem("userNo"));
+          console.log('localStorage::chatRoomNumber:' + window.localStorage
+              .getItem("chatRoomNumber"));
+          console.log('localStorage::chatList:' + window.localStorage
+              .getItem("chatList"));
+          console.log('jsonp::currentChatRoomNumber:' +
+              result.data.currentChatRoomNumber);
+          console.log('jsonp::memberList:' + result.data.memberList);
+          console.log('jsonp::membersData:' + result.data.membersData);
+
+          var membersData = result.data.membersData;
+          window.localStorage.setItem("currentChatRoomNumber",
+              result.data.currentChatRoomNumber);
+          window.localStorage.setItem("memberList", result.data.memberList);
+          window.localStorage.setItem("membersData", membersData);
+          
+       // fine my name
+          var myInfo;
+          console.log('##### membersData:' + membersData);
+          console.log('##### window.localStorage.getItem(userNo):' 
+              + window.localStorage.getItem('userNo'));
+          for (var i = 0; i < membersData.length; i++) {
+            if (membersData[i].UNO == window.localStorage.getItem('userNo')) {
+              myInfo = membersData[i];
+              break;
+            }
+          }
+
+          console.log('myInfo:' + myInfo);
+
+          addUserParam.userInfo = myInfo;
+          addUserParam.currentChatRoomNumber = window.localStorage
+              .getItem('currentChatRoomNumber');
+          console.log('addUserParam:' + addUserParam);
+
+          socket.emit('ADD_USER', addUserParam); // 서버에 사용자명 전달
+        }
+      },
+      error : function(xhr, status, errorThrown) {
+        alert('채팅방 정보 가져오는 중 오류 발생!');
+        console.log(status);
+        console.log(errorThrown);
       }
-    }
+    });
 
-    console.log('myInfo:' + myInfo);
-
-    addUserParam.userInfo = myInfo;
-    addUserParam.currentChatRoomNumber = window.localStorage
-        .getItem('currentChatRoomNumber');
-    console.log('addUserParam:' + addUserParam);
-
-    socket.emit('ADD_USER', addUserParam); // 서버에 사용자명 전달
   });
 
   // 서버에서 연결되었다 메시지를 받으면, 채팅 내용을 업데이트한다.
   socket.on('UPDATE_CHAT', function(username, data) {
     $('#conversation').append('<b>' + username + ':</b> ' + data + '<br>');
+  });
+  
+  socket.on('error', function (e) {
+    alert('System', e ? e : 'A unknown error occurred');
   });
 
   //var name = "hong";
@@ -155,6 +208,7 @@
       }
     });
   }
+});
 </script>
 </head>
 

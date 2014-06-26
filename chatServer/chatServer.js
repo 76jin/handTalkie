@@ -68,14 +68,14 @@ app.get('/:id', function (req, res, next) {
  *  - req.session.chatList : 현재 채팅방의 채팅 참여자들의 번호
  *  - req.session.currentChatRoomNumber : 현재 채팅방 번호
  */
-var serverUrl = "http://home.java48.com:9977/talkie/";
-var chatServerUrl = "http://home.java48.com:9978";
+var serverUrl = "http://14.32.7.49:9977/talkie/";
+var chatServerUrl = "http://14.32.7.49:9978";
 var TOTALNUM = 30;  // 채팅방 접속 가능한 최대 인원 수
 //sessionSockets = new SessionSockets(io, sessionStore, cookieParser,'talkie');
 ////// 전역 변수 끝 /////
 
 
-app.get('/users/:id?', function(req, res, next){
+app.get('/users/:id?', function(req, res){
   var id = req.params.id;
   console.log('users:id - ', id);
   
@@ -114,8 +114,8 @@ app.get('/users/:id?', function(req, res, next){
         
         dbPool.getConnection(function(err, connection){
           
-          console.log('memberList:', memberList);
-          console.log('typoef memberList:', typeof(memberList));
+          //console.log('memberList:', memberList);
+          //console.log('typoef memberList:', typeof(memberList));
           
           var queryString =
             "SELECT UNO,NAME,PHOPATH from SE_USERS where UNO in " +
@@ -141,7 +141,15 @@ app.get('/users/:id?', function(req, res, next){
             
             // 채팅방으로 이동.
             console.log('===== __dirname:', __dirname);
-            res.sendfile(__dirname + '/index.html');
+            //res.sendfile(__dirname + '/index.html');
+            
+            //res.redirect(serverUrl + 'chat/chatMain.html');
+            //<meta http-equiv="refresh" content="0; url=http://itlab.tistory.com/"></meta>
+            /*res.writeHead(302, {
+              'Location': '../chat/chatMain.html'
+            });
+            res.end();*/
+            
           }); // end inner query.
         }); // end inner connection.
         
@@ -151,9 +159,9 @@ app.get('/users/:id?', function(req, res, next){
   } else {
       console.log('Error: No id!!');
   }
-  
-
 });
+
+
 app.get('/getUsers', function(req, res){
   dbPool.getConnection(function(err, connection){
     var query = connection.query('SELECT * from SE_USERS', function(err, rows){
@@ -189,26 +197,28 @@ app.get('/newSetupChat.jsonp*', function(req, res, next){
   
   // 파라미터 세션에 저장
   var userNo = req.query.userNo;
-  var chatList = req.query.chatList;
-  console.log('parameter: ', userNo, chatList);
+  var checkedUsers = req.query.checkedUsers;
+  console.log('parameter: ', userNo, checkedUsers);
+  
+  var insertId = 0;
+  var chatList = [userNo];
+  var resultValue = true;
+  for (var i=0; i < checkedUsers.length; i++) {
+    chatList.push(checkedUsers[i]);
+  }
+  console.log('chatList:', chatList);
   
   req.session.userNo = userNo;
   req.session.chatList = chatList;
   console.log('req session userNo: ', req.session.userNo);
   console.log('req session chatList: ', req.session.chatList);
   
-  // response에 쿠키 생성하여 전달.
-  res.cookie('chatUserNo', userNo);
-  res.cookie('chatList', chatList);
+  // response에 쿠키 생성하여 전달. (Android에서는 localStorage 사용함)
+  //res.cookie('chatUserNo', userNo);
+  //res.cookie('chatList', chatList);
   
   // 웹브라우저에서 채팅방 설정하기
   // To do ...
-  var insertId = 0;
-  var chatMembers = [];
-  for (var i=0; i < chatList.length; i++) {
-    chatMembers.push(chatList[i]);
-  }
-  console.log('chatMembers:', chatMembers);
   
   
   dbPool.getConnection(function(err, connection){
@@ -217,10 +227,10 @@ app.get('/newSetupChat.jsonp*', function(req, res, next){
       " (TOTALNUM,CURRENTNUM,LOCNAME,ISAUTO,MEMBER)" +
       " VALUES (" +
       TOTALNUM +
-      "," + userNo +
+      "," + chatList.length +
       ",''" +
       ",'N'" +
-      ", '" + chatMembers + "'" +
+      ", '" + chatList + "'" +
       ")";// + dbPool.escape();
     console.log('queryString:', queryString);
     var query = connection.query(queryString, function(err, rows){
@@ -228,51 +238,180 @@ app.get('/newSetupChat.jsonp*', function(req, res, next){
         connection.release(); // to prevent connectino leak.
         throw err;
       }
+      //connection.release();   // to prevent connection leak.
 
       console.log('insert return:', rows);
       console.log('insertId:', rows.insertId);
       insertId = rows.insertId;
-      //req.session.currentChatRoomNumber = insertId;
       
-      // 웹브라우저에게 채팅방 번호를 보내준다.
-      console.log('=====insertId:', insertId);
-      var resultData;
-      if ( insertId === 0 ) {
-        resultData =
-        {
-          ajaxResult:
-          {
-            status: 'ok',
-            data: 'failure'
+      // merge start
+      var id = rows.insertId;
+      req.session.currentChatRoomNumber = id;
+      
+      var memberList = [];
+      var membersData = [];
+      
+      //dbPool.getConnection(function(err, connection){
+        var query = connection.query(
+            'SELECT MEMBER from SE_CHATTINGROOM where CHATROOMNO=?', id, function(err, rows){
+          if (err) {
+            connection.release(); // to prevent connectino leak.
+            throw err;
           }
-        };
-      } else {
-        resultData =
-        {
-          ajaxResult:
-          {
-            status: 'ok',
-            data:
-            {
-              chatRoomNumber: insertId,
-              chatList: chatList,
+          //connection.release();   // to prevent connection leak.
+          
+          // 현재 채팅방 번호 저장.
+          //res.cookie('currentChatRoomNumber', id);
+          
+          // 현재 채팅방에 있는 사용자들의 번호,이름,사진경로를 쿠키와 세션에 저장.
+          console.log('rows:', rows);
+          console.log('rows[0].MEMBER:', rows[0].MEMBER);
+
+          memberList = []; // 기존값 초기화
+          var tempArray = rows[0].MEMBER.split(",");
+          for (var i=0; i < tempArray.length; i++) {
+            memberList.push(Number(tempArray[i]));
+          }
+          
+          //res.cookie('memberList', memberList);
+          req.session.memberList = memberList;
+          console.log('memberList:', memberList);
+          //connection.release();   // to prevent connection leak.
+          
+          //dbPool.getConnection(function(err, connection){
+ /*           if (err) {
+              connection.release(); // to prevent connectino leak.
+              throw err;
             }
-          }
-        };
-      }
-      
-      res.send(callback +
-          '(' +
-          JSON.stringify(resultData) +
-          ')'
-      );
-      
-      connection.release();   // to prevent connectino leak.
+            connection.release();   // to prevent connection leak.
+*/            //console.log('memberList:', memberList);
+            //console.log('typoef memberList:', typeof(memberList));
+            
+            var queryString =
+              "SELECT UNO,NAME,PHOPATH from SE_USERS where UNO in " +
+              " (" + dbPool.escape(memberList) + ")";// + dbPool.escape();
+            
+            var query = connection.query(queryString, function(err, rows){
+              if (err) {
+                connection.release(); // to prevent connection leak.
+                throw err;
+              }
+              connection.release();   // to prevent connectino leak.
+              
+              // 현재 채팅방에 있는 사용자들의 번호,이름,사진경로를 쿠키와 세션에 저장.
+              membersData = []; // 기존값 초기화
+              console.log('members rows:', rows);
+              for (var i=0; i<rows.length; i++) {
+                membersData.push(rows[i]);
+              }
+              
+              //res.cookie('membersData', membersData);
+              req.session.membersData = membersData;
+              console.log('membersData:', membersData);
+              
+              // 채팅방으로 이동.
+           // 웹브라우저에게 채팅방 번호를 보내준다.
+              console.log('=====insertId:', insertId);
+              var resultData;
+              if ( insertId === 0 ) {
+                resultData =
+                {
+                  ajaxResult:
+                  {
+                    status: 'ok',
+                    data: 'failure'
+                  }
+                };
+              } else {
+                resultData =
+                {
+                  ajaxResult:
+                  {
+                    status: 'ok',
+                    data:
+                    {
+                      chatRoomNumber: insertId,
+                      chatList: chatList,
+                    }
+                  }
+                };
+              }
+              
+              res.send(callback +
+                  '(' +
+                  JSON.stringify(resultData) +
+                  ')'
+              );
+              
+            }); // end inner query.
+          //}); // end inner connection.
+          
+        }); // end outer query.
+        //connection.release();   // to prevent connection leak.
+      //});
+      // merge end
+      //connection.release();   // to prevent connection leak.
     });
     //console.log(query);
   });
 });
+
+app.get('/getChatRoomInfo.jsonp*', function(req, res){
+  console.log('query: ', req.query);
+  var callback = req.param('callback');
   
+  var currentChatRoomNumber = req.query.currentChatRoomNumber;
+  console.log('currentChatRoomNumber: ', currentChatRoomNumber);
+  
+  var memberList = req.session.memberList;
+  console.log('session memberList: ', memberList);
+  
+  var membersData = req.session.membersData;
+  console.log('session membersData: ', membersData);
+  
+  /*
+  var chatList = [userNo];
+  for (var i=0; i < checkedUsers.length; i++) {
+    chatList.push(checkedUsers[i]);
+  }
+  console.log('chatList:', chatList);
+  */
+  
+  // 웹브라우저에게 채팅방 정보를 보내준다.
+  console.log('=====membersData.length:', membersData.length);
+  var resultData;
+  if ( membersData.length < 0 ) {
+    resultData =
+    {
+        ajaxResult:
+        {
+          status: 'ok',
+          data: 'failure'
+        }
+    };
+  } else {
+    resultData =
+    {
+        ajaxResult:
+        {
+          status: 'ok',
+          data:
+          {
+            currentChatRoomNumber: currentChatRoomNumber,
+            memberList: memberList,
+            membersData: membersData
+          }
+        }
+    };
+  }
+
+  res.send(callback +
+      '(' +
+      JSON.stringify(resultData) +
+      ')'
+  );
+});
+
 
 app.get('/', function (req, res) {
   console.log('__dirname:', __dirname);
@@ -293,7 +432,7 @@ var usernames = '홍길동';       // 현재 접속한 사용자명
 var rooms = [];  // 사용가능한 채팅방 목록
 
 io.sockets.on('connection', function (socket) {
-
+  console.log('00000 connection !!!!!!');
 
   // 웹브라우저가 ADD_USER 이벤트를 보내면 실행된다.
   socket.on('ADD_USER', function(addUserParam){

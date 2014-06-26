@@ -15,14 +15,12 @@ window.onload = function() {
 */
 
 $(window).load(function(){
-  console.log("bit.userEmail:" + bit.userEmail);
-  console.log('cookie bit.userEmail in profile:' + bit.userEmail);
-  
-  $.ajax( bit.contextRoot + '/profileInfo.ajax', {
+	console.log("실행이 안되나요?");
+  $.ajax( serverUrl + '/profileInfo.ajax', {
     type: 'POST',
     dataType: 'json',
     data: {
-      email: bit.userEmail
+    	email: window.localStorage.getItem("email")
     },
     success: function(jsonObj){
       console.log(jsonObj);
@@ -62,88 +60,44 @@ $(window).load(function(){
     }
   });
 
-  // 등록 성공 후에 해야할 작업을 여기에 기술한다면,당신은 바보!
-  //location.href="../subject/list.bit";
-});
 
-/*var snapper;
-window.onload = mainTap;
-    $(function() {
-      snapper = new Snap({
-        element: document.getElementById('content')
-        });
-      });
-function mainTap() {
-    
-    $('#menuIcon').on('click', function(){
+  $.ajax( serverUrl + '/loglist.ajax', {
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			no: window.localStorage.getItem("userNo")
+		},
+		success: function(jsonObj){
+			console.log(jsonObj);
+			var result = jsonObj.ajaxResult;
+			if (result.status != "ok" || result.data == "failure") {
+				alert('위치태그 정보를 읽어오는 데 실패했습니다.');
 
-          if( snapper.state().state=="left" ){
-              snapper.close();
           } else {
-              snapper.open('left');
-          }
-      });
-
-    
-    $( "#map" ).click(function( event ) {
-    	$("#map").css("background-color","white")
-    	$("#maps").css("color","#4682B4");
-    	$("#chat").css("background-color","#4682B4")
-      $("#chats").css("color","white");
-      });
-    $( "#chat" ).click(function( event ) {
-        $("#map").css("background-color","#4682B4")
-        $("#maps").css("color","white");
-        $("#chat").css("background-color","white")
-        $("#chats").css("color","#4682B4");
-        });
-    
-    
-    $('#tagTap').on('click', function(){
+				console.log('locationTag success!');
+				console.log(result.data);
         
-        getCurrentLocation();
-        
-        $('.locationTag').fadeIn(400).delay(1500).fadeOut(400); 
-    });
+				if (result.status == 'ok') {
+		            $.each(result.data, function(index, obj) {
+		               $.each(obj, function(index, test) {
+		            	   var location = ("no:" + test.no +",locationTag:"+ test.loctionTag +",logTime:"+test.logTime);
+		            	   $("#log").append("<div class='log_text'>"+test.loctionTag+"</div>")
+		            	   				.append("<div class='log_time'>"+test.logTime+"</div>");
+		               console.log(">>>"+location);
     
-	$("#selectBtn").on('click', function(){
-		$("#selectBtn").css("display","none");
-		$("#f_Btn").css("display","none");
 	 });
-	
-	$("#hh").on('click', function(){
-		alert("aaa");
 	 });
-	
-	
 }
 
-function getCurrentLocation() {
-  //위치 탐색을 시작합니다.
-  navigator.geolocation.watchPosition(function (position) {
-    // 위치를 가져오는데 성공할 경우
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    
-    console.log("getCurrentLocation: " + latitude + "," + longitude);
-
-    new google.maps.Marker({
-      position: new google.maps.LatLng(latitude, longitude),
-      icon: markerImage2,
-      map: map
-    });
-  }, function (error) {
-    // 위치를 가져오는데 실패할 경우
-    console.log("error:" + error.code);
-    
-    if(error.code == 1) {
-      alert("Error: Access is denied!");
-    }else if( error.code == 2) {
-      alert("Error: Position is unavailable!");
     }
+		},
+		error: function(xhr, status, errorThrown){
+			alert('위치태그 정보를 읽어오는 중 오류 발생!');
+			console.log(status);
+			console.log(errorThrown);
+		}
+	});
     
-    alert("error:" + error);
     
-  }, { timeout: 30000 });
-}*/
 
+});

@@ -39,7 +39,7 @@
         <activity
             android:name="com.example.talkie01.MainActivity"
             android:label="@string/app_name" 
-            android:configChanges="orientation|keyboardHidden">
+            android:configChanges="orientation|screenSize|keyboardHidden">
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +47,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name="com.phonegap.DroidGap"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name" >
+            <intent-filter>
+            </intent-filter>
+        </activity>
         
     </application>
 

@@ -107,12 +107,12 @@ function mainTap() {
         });
     
     
-    $('#tagTap').on('click', function(){
-        
-  //      getCurrentLocation();
-        
-        $('.locationTag').fadeIn(400).delay(1500).fadeOut(400); 
-    });
+//    $('#tagTap').on('click', function(){
+//        
+//    		//getCurrentLocation();
+//        $('.locationTag').fadeIn(400).delay(1500).fadeOut(400); 
+//        
+//    });
     
   $("#selectBtn").on('click', function(){
     $("#selectBtn").css("display","none");
@@ -136,11 +136,10 @@ function mainTap() {
     // 쿠키에 사용자 정보와 채팅하려는 사람 정보 저장하기.
     // Todo
     
-    getUserInfo();
+    //getUserInfo();
     
     // 현재 채팅 리스트저장. 
     
-    console.log("이거안되나???????????????");
     // 채팅 서버로 채팅할 사용자들 정보 전달
     $.ajax( chatServerUrl +'/newSetupChat.jsonp', {
       crossDomain:true,
@@ -148,10 +147,9 @@ function mainTap() {
       dataType: 'jsonp',
       data: {
         userNo: userNo,
-        chatList: checkedUsers
+        checkedUsers: checkedUsers
       },
       success: function(jsonObj){
-        console.log("이거는???????????????");
         console.log('jsonp reuslt: ' + jsonObj);
         var result = jsonObj.ajaxResult;
         if (result.status != "ok" || result.data == "failure") {
@@ -167,7 +165,10 @@ function mainTap() {
           window.localStorage.setItem("chatList", result.data.chatList);
           
           //location.href = chatServerUrl;
-          location.href = chatServerUrl + "/users/" + chatRoomNumber;
+          //location.href = chatServerUrl + "/users/" + chatRoomNumber;
+          alert('변경된 채팅방으로 이동!!');
+          location.href = '../chat/chatMain.html';
+          //location.href = chatServerUrl + "/users/" + chatRoomNumber;
         }
       },
         error: function(xhr, status, errorThrown){
