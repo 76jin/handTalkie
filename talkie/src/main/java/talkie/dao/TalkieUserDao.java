@@ -8,7 +8,7 @@ public interface TalkieUserDao {
 	TalkieUserVo getLoginUser(Map<String,String> params);
 	TalkieUserVo getProfileInfo(String email);
 	int updateProfilePhoto(Map<String,Object> params);
-	
+	void update(TalkieUserVo talkieUser) throws Throwable;
 	/*
 	void insert(TalkieUserVo user) throws Throwable;
 	List<TalkieUserVo> list(Map<String,Integer> params) throws Throwable;

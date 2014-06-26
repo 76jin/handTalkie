@@ -33,6 +33,16 @@ public class TalkieUserServiceImpl implements TalkieUserService {
 		return result;
 	}
 
+	@Override
+    public TalkieUserVo change(TalkieUserVo talkieUser) {
+				try {
+					talkieUserDao.update(talkieUser);
+				} catch (Throwable ex) {
+					throw new RuntimeException(ex);
+				}
+				return talkieUser;
+    }
+
 
 }
 

@@ -73,6 +73,20 @@ public class profileControl {
 	}
 
 
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public AjaxResult update(
+			TalkieUserVo talkieUser, 
+			Model model) {
+		
+		TalkieUserVo res = talkieUserService.change(talkieUser);
+	
+		return new AjaxResult()
+		.setStatus("ok")
+		.setData((new Gson().toJson(res)));
+	}
+	
+	
+	
 	// file upload
 	//@RequestMapping("/profilePhoto")
 	@RequestMapping(value="/profilePhoto", method=RequestMethod.POST, produces="text/html")

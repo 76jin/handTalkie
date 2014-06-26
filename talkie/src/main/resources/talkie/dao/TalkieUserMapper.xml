@@ -56,6 +56,16 @@
     update SE_USERS set PHOPATH=#{filename} where UNO=#{userNo}
   </update>
   
+  
+    <update id="update" parameterType="TalkieUserVo" >
+      update SE_USERS set
+      PROFILETITLE=#{profileTitle},
+      PROFILEDESC=#{profileDesc},
+      FAVTAG=#{favTag}
+    where UNO=#{no}
+  </update>
+
+    
 </mapper>
 
 
