@@ -129,22 +129,26 @@
 	<!-- footer 끝  -->
 
 
+<!-- <div id="panel">
+      <input   type="text"  value= />
+     
+    </div>
+    <div id="map-canvas"></div> -->
 
 	<!-- 위치로그 나타내기 -->
-	<div class='locationTag' style='display: none'>
+	<div  id="latlng" class='locationTag' style='display: none' >
 		<div class="locationTag_close">
 			<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
 		</div>
 		<div class="locationTag_image">
 			<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
 		</div>
-		<p>
-			경기도 용인시 처인구<br> 용인 에버랜드
-		</p>
+		 <p  id="locationTagText"></p>
 	</div>
 	<!-- 위치로그 끝  -->
 
 	<!-- 자바스크립트 -->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	<script type="text/javascript" src="../cordova.js"></script>
 	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.cookie.js"></script>
@@ -154,7 +158,6 @@
   <script type="text/javascript" src="../js/custom.js"></script>
 	<script type="text/javascript" src="../js/common.js"></script>
 	<script type="text/javascript" src="../js/main_Tap.js"></script>
-
 	<script type="text/javascript" src="../js/main_map.js"></script>
 
 </body>

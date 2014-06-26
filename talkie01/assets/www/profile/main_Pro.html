@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="../css/search-bar.css">
 <!--  profile  -->
 <link rel="stylesheet" type="text/css" href="./profile.css">
-<link rel="stylesheet" type="text/css" href="./main_Pro_modify.css">
+<!-- <link rel="stylesheet" type="text/css" href="./main_Pro_modify.css"> -->
 
 
 
@@ -26,6 +26,7 @@
 	<!-- 사이드메뉴바  시작-->
 	<div class="drawers">
 		<div class="left-drawer">
+		<p id="no" style="display: none"></p>
 			<a href="../profile/main_Pro.html"> 
 				<div id="profile">
 					<h4 id="name"></h4>
@@ -101,9 +102,8 @@
     </div>
 				<div id="iconff">
 					<span><img class="iconF" src="../img/chat.png"></span> <span></span>
-					<span> <a href='./main_Pro_modify.html'> <img
-							class="iconF" src="../img/addF.png">
-					</a>
+					<span> <img
+							id="btnChange" class="iconF" src="../img/addF.png">
 					</span>
 				</div>
 
@@ -119,12 +119,9 @@
 				</div>
 
 
-    <div>
+    <div style="background-color: #358fbc">
           <div id="location_log">
-            <div class="log_div">
-              <div class="log_text">
-                <p>경기도 용인시 처인구 에버랜드</p>
-              </div>
+            <div id="log" class="log_div">
               </div>
             </div>
               <br>
@@ -141,16 +138,14 @@
 	<!-- footer 끝  -->
 
 	<!-- 위치로그 나타내기 -->
-	<div class='locationTag' style='display: none'>
+  <div  id="latlng" class='locationTag' style='display: none' >
 		<div class="locationTag_close">
 			<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
 		</div>
 		<div class="locationTag_image">
 			<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
 		</div>
-		<p>
-			경기도 용인시 처인구<br> 용인 에버랜드
-		</p>
+     <p  id="locationTagText"></p>
 	</div>
 	<!-- 위치로그 끝  -->
 
@@ -163,17 +158,12 @@
 	<script type="text/javascript" src="../js/snap.js"></script>
 	<script type="text/javascript" src="../js/common.js"></script>
 	<script type="text/javascript" src="../js/main_Tap.js"></script>
+  <script type="text/javascript" src="../js/main_map.js"></script>
+
 	<!--  profile  -->
 	 <script type="text/javascript" src="./profile.js"></script>
 
-  <script>
 
-
-  console.log("User Email :"+window.localStorage.getItem("email"));
-  
-  
-  
-  </script>
 
 </body>
 </html>

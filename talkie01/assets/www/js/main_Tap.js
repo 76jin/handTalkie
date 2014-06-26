@@ -107,12 +107,12 @@ function mainTap() {
         });
     
     
-    $('#tagTap').on('click', function(){
-        
-  //      getCurrentLocation();
-        
-        $('.locationTag').fadeIn(400).delay(1500).fadeOut(400); 
-    });
+//    $('#tagTap').on('click', function(){
+//        
+//    		//getCurrentLocation();
+//        $('.locationTag').fadeIn(400).delay(1500).fadeOut(400); 
+//        
+//    });
     
   $("#selectBtn").on('click', function(){
     $("#selectBtn").css("display","none");

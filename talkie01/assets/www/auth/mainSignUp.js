@@ -52,7 +52,7 @@ $(document).ready(function(){
 				var result = jsonObj.ajaxResult;
 				if (result.status == "ok" && result.data == "success") {
 					console.log('singup success!');
-					location.href="./main_slider.html";
+					location.href="./NewMainLogin.html";
 				} else {
 					alert('등록에 실패했습니다.');
 				}

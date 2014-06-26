@@ -52,6 +52,14 @@ var markerImage3 = 'http://www.larva.re.kr/home/img/boximage3.png';
 var size_x = 45; // 마커로 사용할 이미지의 가로 크기
 var size_y = 45; // 마커로 사용할 이미지의 세로 크기
 
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
+function initialize() {
+
+}
+
 //마커 이미지 만들기
 function makeMarkerImage(markerImage) {
   
@@ -66,16 +74,15 @@ function makeMarkerImage(markerImage) {
 
 var displayCurrentLocation = function (position) {
 
-  /* 사용자의 현재 위치 정보 가져오기 (모바일에서만 되는거 같음. 확인필요.)
+	// 사용자의 현재 위치 정보 가져오기 (모바일에서만 되는거 같음. 확인필요.)
   var pos = new google.maps.LatLng(position.coords.latitude,
       position.coords.longitude);
-   */
   
   // 사용자 정보를 전역변수에 저장
-  UserPositionInfo.me = new UserPositionInfo.Create(1, [37.494631, 127.027583]);
-  console.log('UserPositionInfo.me:' + UserPositionInfo.me);
+	//UserPositionInfo.me = new UserPositionInfo.Create(1, [37.494631, 127.027583]);
+	//console.log('UserPositionInfo.me:' + UserPositionInfo.me);
   
-  var pos = new google.maps.LatLng(37.494631, 127.027583); //비트컴퓨터
+	//var pos = new google.maps.LatLng(37.494631, 127.027583); //비트컴퓨터
   map.setCenter(pos); // 현재 위치를 지도 가운데로 하기.
 
   // 사용자의 현재 위치 저장.
@@ -84,7 +91,83 @@ var displayCurrentLocation = function (position) {
 
   // 현재 사용자 위치를 지도에 표시
   addUserMarker(currentPosition);
+
+	var currentPos = position.coords.latitude + "," + position.coords.longitude;
+	window.localStorage.setItem("currentPos",currentPos);
+	console.log("User Email :"+window.localStorage.getItem("currentPos"));
+
 }
+
+$('#tagTap').on('click', function(){
+
+//	역지오코딩 함수
+	//var input = "37.4938344,127.0283759";
+	var input = window.localStorage.getItem("currentPos");
+	var latlngStr = input.split(',', 2);
+	var lat = parseFloat(latlngStr[0]);
+	var lng = parseFloat(latlngStr[1]);
+	var latlng = new google.maps.LatLng(lat, lng);
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			if (results[1]) {
+//				map.setZoom(15);
+				marker = new google.maps.Marker({
+					position: latlng,
+					map: map
+				});
+
+				var location_t = results[1].formatted_address;
+				infowindow.setContent(results[1].formatted_address);
+				console.log("location_t:"+location_t); 
+				
+				window.localStorage.setItem("location_t",location_t);
+				console.log("User location_t :"+window.localStorage.getItem("location_t"));
+				// infowindow.open(map, marker);
+				$('.locationTag').fadeIn(400).delay(1500).fadeOut(400); 
+				$("#locationTagText").text(location_t);
+
+			} else {
+				alert('No results found');
+			}
+		} else {
+			alert('Geocoder failed due to: ' + status);
+		}
+	});
+
+	
+	
+	$.ajax(	serverUrl + '/insert.ajax', {
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			no: window.localStorage.getItem("userNo"),
+			loctionTag: window.localStorage.getItem("location_t")
+		},
+		success: function(jsonObj){
+			console.log(jsonObj);
+			var result = jsonObj.ajaxResult;
+			if (result.status != "ok" || result.data == "failure") {
+				alert('위치정보태그를 읽어오는 데 실패했습니다.');
+			} else {
+				console.log('locationTag22 success!');
+				console.log(result.data);
+			}
+		},
+		error: function(xhr, status, errorThrown){
+			alert('사용자 위치정보태그를 읽어오는 중 오류 발생!');
+			console.log(status);
+			console.log(errorThrown);
+		}
+	});
+
+
+	
+	
+});
+
+
+
+
 
 var displayOtherLocation = function (position, userPhotoPath) {
 
@@ -93,8 +176,9 @@ var displayOtherLocation = function (position, userPhotoPath) {
 }
 
 function initialize() {
+	geocoder = new google.maps.Geocoder();
   var mapOptions = {
-      zoom: 15
+			zoom: 15,
   };
 
   // Map을 그리는 작업
@@ -204,7 +288,7 @@ function addUserMarker(location) {
   userMaker = new google.maps.Marker({
     position:location,
     title: 'I am here.', // mount point show. 
-    icon: "http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe%7C996600",
+		icon: marker,
     content:"It's me!"
   });
 
