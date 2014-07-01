@@ -18,7 +18,12 @@ bit.getCookie = function(name) {
   }
 }
 bit.contextRoot = bit.getContextRootPath();
-bit.chatServerUrl = "http://192.168.200.10:9998";
 bit.userNo = bit.getCookie('userNo');
 bit.userEmail = bit.getCookie('loginEmail');
-bit.serverUrl = "http://java48.com:9999/talkie/";
+//console.log("bit!!!!!!:"+bit.userEmail);
+bit.serverUrl = 'http://14.32.7.49:9989/talkie';
+bit.chatServerUrl = "http://14.32.7.49:9978";
+console.log("bit.serverUrl in common.js:" + bit.serverUrl);
+
+bit.checkedUsers = {};  // 채팅하기 위해 선택된 사용자 번호 저장 배열.
+bit.checkedUsers[Number(bit.userNo)] = Number(bit.userNo);

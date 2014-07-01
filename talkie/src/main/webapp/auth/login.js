@@ -1,3 +1,5 @@
+var serverUrl = 'http://14.32.7.49:9977/talkie';
+var chatServerUrl = 'http://14.32.7.49:9978';
 $(document).ready(function(){
 	// 화면 로딩이 완료되면, 로그인 버튼의 리스너를 등록한다.
 	$('#btnLogin').on('click', function(event){
@@ -8,7 +10,7 @@ $(document).ready(function(){
 			return;
 		}
 		
-		$.ajax('login.ajax', {
+		$.ajax(serverUrl +'/auth/login.ajax', {
 			type: 'POST',
 			dataType: 'json', /*서버에서 보내는 데이터의 형식 지정 */
 			data: { /* 서버쪽으로 보내는 데이터 */
@@ -18,13 +20,22 @@ $(document).ready(function(){
 						'true':'false'
 			},
 			success: function(jsonObj){
-				console.log(jsonObj);
-				var result = jsonObj.ajaxResult;
-				if (result.status == "ok" && result.data == "success") {
-					location.href="../main_Tap.html";
-				} else {
-					alert('이메일 또는 암호가 맞지 않습니다.');
-				}
+			  console.log(jsonObj);
+        var result = jsonObj.ajaxResult;
+        if (result.status != "ok" || result.data == "failure") {
+          alert('이메일 또는 암호가 맞지 않습니다.');
+        } else {
+          //console.log('loginUser.no:' + jsonObj.loginUser.no);
+          console.log('result.data(userNo):' + result.data);
+          
+          // 사용자 정보 저장
+          window.localStorage.setItem("userNo",result.data);
+          window.localStorage.setItem("email",$('#email').val());
+          window.localStorage.setItem("serverUrl",serverUrl);
+          window.localStorage.setItem("chatServerUrl",chatServerUrl);
+          
+          location.href = "../main_Tap.html";
+        }
 			},
 			error: function(xhr, status, errorThrown){
 				alert('로그인 실행 중 오류 발생!');
