@@ -89,7 +89,7 @@ public class profileControl {
 	
 	// file upload
 	//@RequestMapping("/profilePhoto")
-	@RequestMapping(value="/profilePhoto", method=RequestMethod.POST, produces="text/html")
+	@RequestMapping(value="/profilePhoto", method=RequestMethod.POST)
 	public AjaxResult profilePhoto(
 			@RequestParam("photoData") MultipartFile photoData,
 			HttpSession session,
