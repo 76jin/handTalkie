@@ -22,7 +22,7 @@ bit.getCookie = function(name) {
 bit.contextRoot = bit.getContextRootPath();
 bit.userNo = bit.getCookie('userNo');
 bit.userEmail = bit.getCookie('loginEmail');
-console.log("bit!!!!!!:"+bit.userEmail);
+//console.log("bit!!!!!!:"+bit.userEmail);
 bit.serverUrl = 'http://14.32.7.49:9989/talkie';
 bit.chatServerUrl = "http://14.32.7.49:9988";
 console.log("bit.serverUrl in common.js:" + bit.serverUrl);
