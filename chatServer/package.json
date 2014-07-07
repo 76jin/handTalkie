@@ -15,6 +15,7 @@
     "socket.io": "*",
     "cors": "*",
     "jquery": "1.11.1",
-    "mysql": "*"
+    "mysql": "*",
+    "node-gcm": "*"
   }
 }
