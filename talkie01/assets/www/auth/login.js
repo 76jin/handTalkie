@@ -1,5 +1,5 @@
-var serverUrl = 'http://14.32.7.49:9989/talkie';
-var chatServerUrl = 'http://14.32.7.49:9988';
+var serverUrl = 'http://14.32.66.98:9989/talkie';
+var chatServerUrl = 'http://14.32.66.98:9988';
 $(document).ready(function(){
   init_common();
 
@@ -30,8 +30,8 @@ $(document).ready(function(){
 	  //serverUrl = "http://s24.java48.com:9977/talkie/"
   //chatServerUrl = 'http://s24.java48.com:9998;
   //console.log('bit is undefined!!!');
-  serverUrl = 'http://14.32.7.49:9989/talkie';
-  chatServerUrl = 'http://14.32.7.49:9988';
+  serverUrl = 'http://14.32.66.98:9989/talkie';
+  chatServerUrl = 'http://14.32.66.98:9988';
   
   console.log('serverUrl:' + serverUrl);
   console.log('chatServerUrl:' + chatServerUrl);

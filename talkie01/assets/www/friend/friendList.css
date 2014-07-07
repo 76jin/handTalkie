@@ -3,6 +3,9 @@
 #center{
 	background-color: white;
 }
+section {
+background-color: white;
+}
 .main-bar {
 	text-align: center;
 	font-size:25px;
@@ -38,4 +41,103 @@
     }
     #chats2 {
       color: white;
-    }
+    }    
+    
+    
+    
+    
+    /**/
+/* #employeePic {
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 16px;
+}
+
+#employeeDetails p {
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+#actionList {
+  clear: both;
+ */
+form#search-form {
+margin-left: 0px;
+margin-right: 0px;
+border-bottom: 1px solid gainsboro;
+}
+
+.fr_li{
+   list-style:none;	
+padding-top: 5px;
+   border-bottom: 1px solid gainsboro;
+   height: 60px;
+   background-color: white;
+}
+
+.fr_img {
+height: 4em;
+width: 3.5em;
+position: relative;
+float: left;
+margin-right: 30px;
+margin-left: 15px;
+}
+
+h4 {
+width: 100%;
+text-align: left;
+color: black;
+margin: -1px;
+font-size: medium;
+margin-top: 8px;
+}
+.fr_p{
+	width: 100%;
+text-align: left;
+color:black;
+margin: 0px;
+margin-top: 3px;
+}
+.fr_t{
+	 width: 100%;
+text-align: left;
+margin: 0px;
+color: cadetblue;
+line-height: 1em;
+}
+div.fr_box {
+position: relative;
+float: left;
+width: 50%;
+height: 52px;
+}
+div.fr_ui {
+position: relative;
+height: 52px;
+padding-top: 16px;
+}
+span.ui-li-count {
+color: black;
+font-size: small;
+/* padding-top: 24px; */
+}
+div.fr_bor {
+width: 100%;
+height: 60px;
+
+}
+div#recommend {
+/* height: 30%; */
+background-color: cadetblue;
+width: 30px;
+height: 30px;
+margin: 0px;
+padding: 0px;
+position: absolute;
+/* float: right; */
+margin-left: 80%;
+border-radius: 50%;
+margin-top: -4px;
+padding: 5px;
+}

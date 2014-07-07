@@ -28,7 +28,7 @@ height: 564px;
 /* footer {
   height: 50px;
 } */
-#grChat {
+/* #grChat {
 padding: 10px 0px;
 border: 0px;
 width: 50%;
@@ -44,10 +44,10 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 border-radius: 0px;
 background-color: gainsboro;
 
-}
+} */
 #prChat{
 padding: 10px 0px;
-width: 50%;
+width: 100%;
 display: inherit;
 margin: 0px;
 text-align: center;
@@ -60,7 +60,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 border-radius: 0px;
 background-color: gainsboro;
 border: 0px;
-float: left;
+
 border-right: 1px solid rgb(24, 115, 138);
 }
 
@@ -86,7 +86,7 @@ right: 50%;
 height: 52px;
 left: 0px;
 padding: 6px;
-width: 85%;
+width: 80%;
 
 }
 
