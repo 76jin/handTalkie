@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="talkie.dao.ChattingRoomDao">
+  <resultMap type="talkie.vo.ChattingRoomVo" id="chattingRoomMap">
+    <id column="CHATROOMNO" property="chatRoomNo"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="TOTALNUM" property="totalNum"/>
+    <result column="CURRENTNUM" property="currentNum"/>
+        <result column="LOCNAME" property="locName"/>
+    <result column="ISAUTO" property="isAuto"/>
+    <result column="MEMBER" property="member"/>
+  </resultMap> 
+  <!-- 
+  <insert id="insert" parameterType="studentVo">
+    insert into SE_STUDS (UNO,COMP,POS,STAT,LAST_SCH,ACCT)
+    values (#{no}, 
+            #{company}, 
+            #{position}, 
+            #{workingState}, 
+            #{lastSchool}, 
+            #{bankingAccount})
+  </insert>
+   -->
+ 
+ 
+  <select id="SenderName" 
+      parameterType="int" resultMap="chattingRoomMap">
+
+		 select  SE_CHATTINGROOM.MEMBER
+    from SE_CHATTINGROOM 
+    where CHATROOMNO=#{chatRoomNo};
+    
+  </select>
+  
+
+
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

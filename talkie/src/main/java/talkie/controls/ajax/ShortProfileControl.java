@@ -62,6 +62,45 @@ public class ShortProfileControl {
 			.setData(ex.getMessage());
 		}
 	}
+    
+    
+
+    @RequestMapping("/ShortProfileArr")
+	public AjaxResult shortProfileArr(
+			String 		memberNo,
+			HttpServletResponse response,
+			Model model){
+		
+    			log.debug("여긴가?"+memberNo);
+
+		try{
+			List<UserInfoVo> res = shortProfileService.getMemberArrLIst(memberNo); 
+			
+			AjaxResult result = null;
+			if (res == null) {
+				result =  new AjaxResult().setStatus("ok").setData("failure");
+				log.debug("친구프로필정보없음");
+
+			} else {
+				log.debug("=====친구프로필 정보있음=====");
+				log.debug((new Gson().toJson(res)));
+				result = new AjaxResult().setStatus("ok")	.setData((new Gson().toJson(res)));
+
+
+			}
+
+			response.setContentType("text/html;charset=UTF-8");
+
+			return result;
+
+		} catch (Throwable ex) {
+			return new AjaxResult()
+			.setStatus("error")
+			.setData(ex.getMessage());
+		}
+	}
+    
+    
 
 }
 

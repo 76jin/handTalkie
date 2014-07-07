@@ -38,7 +38,15 @@
     on T1.UNO = T2.UNO
     where T1.UNO=#{no}
   </select>
+    <select id="getMemberInfo" 
+      parameterType="map" resultMap="userInfoMap">
+    select T1.UNO, T1.NAME, T1.NATINO, T1.PHOPATH
+    from SE_USERS T1 
+    where find_in_set(T1.UNO,(#{memberNo}));
+        
+  </select>
   
+    
 </mapper>
 
 

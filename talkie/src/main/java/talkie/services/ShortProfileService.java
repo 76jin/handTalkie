@@ -6,4 +6,5 @@ import talkie.vo.UserInfoVo;
 
 public interface ShortProfileService {
 	List<UserInfoVo> getShortProfile(int no);
+	List<UserInfoVo> getMemberArrLIst(String memberNo);
 }

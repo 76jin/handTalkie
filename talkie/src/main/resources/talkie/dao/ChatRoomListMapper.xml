@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="talkie.dao.ChatRoomListDao">
+  <resultMap type="talkie.vo.ChatRoomListVo" id="chatRoomListMap">
+    <id column="LOGNO" property="textNo"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="CHATROOMNO" property="chatRoomNo"/>
+    <result column="SENDER" property="sender"/>
+    <result column="CHATTEXT" property="chatText"/>
+    <result column="SENDTIME" property="sendTime"/>
+
+  </resultMap> 
+
+  <!-- 
+  <insert id="insert" parameterType="studentVo">
+    insert into SE_STUDS (UNO,COMP,POS,STAT,LAST_SCH,ACCT)
+    values (#{no}, 
+            #{company}, 
+            #{position}, 
+            #{workingState}, 
+            #{lastSchool}, 
+            #{bankingAccount})
+  </insert>
+   -->
+ 
+ <insert id="chatListinsert" parameterType="ChatRoomListVo">
+    insert into SE_CHATLOG(CHATROOMNO,SENDER,CHATTEXT,SENDTIME)
+    values (
+    #{chatRoomNo}, 
+    #{sender}, 
+    #{chatText}, 
+    NOW()
+    )
+  </insert>
+ 
+ 
+  <select id="getChatRoomList" 
+      parameterType="int" resultMap="chatRoomListMap">
+
+		select  LOGNO, CHATROOMNO,SENDER,CHATTEXT,SENDTIME
+		    from SE_CHATLOG
+		    where CHATROOMNO IN (
+		    select CHATROOMNO
+		    from SE_CHATTINGROOM
+		    where find_in_set(#{userNo},MEMBER)) group by CHATROOMNO;
+    
+  </select>
+  
+  <!-- 
+  <delete id="logNodelete" parameterType="int">
+    delete from SE_LOCLOG
+    where LOCLOGNO=#{logNo}
+  </delete>
+   -->
+
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="talkie.dao.LocationDao">
+  <resultMap type="talkie.vo.LocationVo" id="locationMap">
+    <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="LOCLOGNO" property="logNo"/>
+    <result column="LOCTAG" property="loctionTag"/>
+    <result column="LOGTIME" property="logTime"/>
+
+  </resultMap> 
+
+  <!-- 
+  <insert id="insert" parameterType="studentVo">
+    insert into SE_STUDS (UNO,COMP,POS,STAT,LAST_SCH,ACCT)
+    values (#{no}, 
+            #{company}, 
+            #{position}, 
+            #{workingState}, 
+            #{lastSchool}, 
+            #{bankingAccount})
+  </insert>
+   -->
+ 
+ <insert id="insert" parameterType="LocationVo">
+    insert into SE_LOCLOG(UNO,LOCTAG,LOGTIME)
+    values (#{no}, #{loctionTag}, NOW())
+  </insert>
+ 
+ 
+  <select id="getUserLogllist" 
+      parameterType="int" resultMap="locationMap">
+    select LOCLOGNO,UNO,LOCTAG,LOGTIME
+    from SE_LOCLOG 
+    where UNO=#{no}
+  </select>
+  
+  <delete id="logNodelete" parameterType="int">
+    delete from SE_LOCLOG
+    where LOCLOGNO=#{logNo}
+  </delete>
+  
+
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
