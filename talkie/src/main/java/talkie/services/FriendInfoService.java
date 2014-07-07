@@ -6,5 +6,6 @@ import talkie.vo.FriendInfoVo;
 
 public interface FriendInfoService {
 	List<FriendInfoVo> getFriendList(String email);
+	void addMyFriend(FriendInfoVo vo);
 	
 }

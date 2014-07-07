@@ -1,5 +1,6 @@
-var serverUrl = 'http://14.32.7.49:9977/talkie';
-var chatServerUrl = 'http://14.32.7.49:9978';
+var serverUrl = 'http://14.32.7.49:9989/talkie';
+var chatServerUrl = 'http://14.32.7.49:9988';
+
 $(document).ready(function(){
 	// 화면 로딩이 완료되면, 로그인 버튼의 리스너를 등록한다.
 	$('#btnLogin').on('click', function(event){

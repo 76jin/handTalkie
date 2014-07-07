@@ -20,13 +20,15 @@ public class ShortProfileServiceImpl implements ShortProfileService {
     public List<UserInfoVo> getShortProfile(int no) {
 		return userInfoDao.getShortProfile(no);
     }
+
 	@Override
     public List<UserInfoVo> getMemberArrLIst(String memberNo) {
 		return userInfoDao.getMemberInfo(memberNo);
+	}
+
 	
 	
 	}
-}
 
 
 

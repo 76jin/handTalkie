@@ -20,6 +20,7 @@
     <result column="PHOPATH" property="phoPath"/>
     <result column="PROFILETITLE" property="profileTitle"/>
     <result column="PROFILEDESC" property="profileDesc"/>
+    <result column="RECOMMEND" property="recommend"/>
   </resultMap> 
 
   <!-- 
@@ -43,7 +44,15 @@
   
   <select id="getProfileInfo" 
       parameterType="String" resultMap="talkieUserMap">
-    select FAVTAG, PHOPATH, PROFILETITLE, PROFILEDESC
+    select NAME, FAVTAG, PHOPATH, PROFILETITLE, PROFILEDESC, RECOMMEND
+    from SE_USERS
+    where EMAIL=#{email}
+  </select>
+  
+    
+  <select id="getfriendProfileInfo" 
+      parameterType="String" resultMap="talkieUserMap">
+    select NAME, FAVTAG, PHOPATH, PROFILETITLE, PROFILEDESC, RECOMMEND
     from SE_USERS
     where EMAIL=#{email}
   </select>
@@ -64,8 +73,49 @@
       FAVTAG=#{favTag}
     where UNO=#{no}
   </update>
-
+  
+      <select id="getFriendFind" 
+      parameterType="TalkieUserVo" resultMap="talkieUserMap">
     
+    select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,FAVTAG,PHOPATH,PROFILETITLE,PROFILEDESC,RECOMMEND
+    from SE_USERS 
+    where NAME like CONCAT('%', #{search}, '%') or EMAIL like CONCAT('%', #{search}, '%') or NATINO like CONCAT('%', #{search}, '%')
+
+  </select>
+  
+        
+
+  <update id="updateloveFr" parameterType="TalkieUserVo">
+     update SE_USERS set
+      RECOMMEND=#{recommend}
+      where UNO=#{no}
+  </update>
+  
+     <select id="getfriendNo" 
+      parameterType="TalkieUserVo" resultMap="talkieUserMap">
+      select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,PHOPATH,RECOMMEND
+      from SE_USERS 
+      where UNO=#{no}
+  
+    </select>
+    
+      <select id="getfriendinfo" 
+      parameterType="TalkieUserVo" resultMap="talkieUserMap">
+      select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,FAVTAG,PHOPATH,PROFILETITLE,PROFILEDESC,RECOMMEND
+      from SE_USERS 
+      where UNO=#{no}
+  
+    </select>
+    
+  <select id="getAlarmListFriend" 
+      parameterType="hashmap" resultMap="talkieUserMap">
+    select T1.UNO2,T1.DATETIME,T1.ALARMNO,T2.UNO,T2.NAME,T2.UNO,T2.PHOPATH
+    from SE_ALARM T1 left outer join SE_USERS T2
+    on T1.UNO2 =T2.UNO
+    where T1.UNO2=#{frNo} and T1.ALARMNO=#{alarmNo}
+  </select>
+
+  
 </mapper>
 
 

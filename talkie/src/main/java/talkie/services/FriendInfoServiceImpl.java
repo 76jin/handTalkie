@@ -23,4 +23,13 @@ public class FriendInfoServiceImpl implements FriendInfoService {
 		}
 	}
 
+	@Override
+	  public void addMyFriend(FriendInfoVo vo) {
+			try {
+				friendInfoDao.insertFriend(vo);
+			} catch (Throwable ex) {
+				throw new RuntimeException(ex);
+			}
+	  }
+
 }

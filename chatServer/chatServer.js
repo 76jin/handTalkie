@@ -68,8 +68,8 @@ app.get('/:id', function (req, res, next) {
  *  - req.session.chatList : 현재 채팅방의 채팅 참여자들의 번호
  *  - req.session.currentChatRoomNumber : 현재 채팅방 번호
  */
-var serverUrl = "http://14.32.7.49:9977/talkie/";
-var chatServerUrl = "http://14.32.7.49:9978";
+var serverUrl = "http://14.32.66.98:9989/talkie/";
+var chatServerUrl = "http://14.32.66.98:9988";
 var TOTALNUM = 30;  // 채팅방 접속 가능한 최대 인원 수
 //sessionSockets = new SessionSockets(io, sessionStore, cookieParser,'talkie');
 ////// 전역 변수 끝 /////
@@ -413,18 +413,19 @@ app.get('/isFirstEntrance.jsonp*', function(req, res){
 
       console.log('select return:', rows);
       console.log('rows[0]:', rows[0]);
+      console.log('count(CHATROOMNO):' + rows[0]["count(CHATROOMNO)"]);
       
-      /*
+      
       // 채팅방으로 이동.
       // 웹브라우저에게 채팅방 번호를 보내준다.
       var resultData;
-      if ( insertId === 0 ) {
+      if ( rows[0]["count(CHATROOMNO)"] === 0 ) {
         resultData =
         {
             ajaxResult:
             {
               status: 'ok',
-              data: 'failure'
+              data: 'true'
             }
         };
       } else {
@@ -433,11 +434,7 @@ app.get('/isFirstEntrance.jsonp*', function(req, res){
             ajaxResult:
             {
               status: 'ok',
-              data:
-              {
-                chatRoomNumber: insertId,
-                chatList: chatList,
-              }
+              data: 'false'
             }
         };
       }
@@ -447,7 +444,7 @@ app.get('/isFirstEntrance.jsonp*', function(req, res){
           JSON.stringify(resultData) +
           ')'
       );
-      */
+      
     });
     //console.log(query);
   });

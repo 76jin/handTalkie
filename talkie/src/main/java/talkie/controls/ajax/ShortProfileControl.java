@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import talkie.services.ShortProfileService;
+import talkie.services.TalkieUserService;
 import talkie.vo.AjaxResult;
 import talkie.vo.UserInfoVo;
 
@@ -24,6 +25,7 @@ public class ShortProfileControl {
 
 	@Autowired
 	ShortProfileService shortProfileService;
+	TalkieUserService talkieUserService;
 
 	public ShortProfileControl() {
 		log.debug("shortProfileService 생성됨");
@@ -100,8 +102,9 @@ public class ShortProfileControl {
 		}
 	}
     
-    
 
+
+    
 }
 
 

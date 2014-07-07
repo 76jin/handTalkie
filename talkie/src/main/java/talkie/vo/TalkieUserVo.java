@@ -19,6 +19,7 @@ public class TalkieUserVo implements Serializable {
 	String		phoPath;
 	String 	profileTitle;
 	String 	profileDesc;
+	int   recommend;
 	
 	@Override
     public String toString() {
@@ -27,9 +28,9 @@ public class TalkieUserVo implements Serializable {
 	            + nation + ", gender=" + gender + ", isDeclare=" + isDeclare
 	            + ", grade=" + grade + ", isEmail=" + isEmail + ", favTag="
 	            + favTag + ", phoPath=" + phoPath + ", profileTitle="
-	            + profileTitle + ", profileDesc=" + profileDesc + "]";
+	            + profileTitle + ", profileDesc=" + profileDesc
+	            + ", recommend=" + recommend + "]";
     }
-	
 	public int getNo() {
 		return no;
 	}
@@ -137,6 +138,13 @@ public class TalkieUserVo implements Serializable {
 		return this;
 	}
 	
-	
+	public int getRecommend() {
+		return recommend;
+	}
+
+	public TalkieUserVo setRecommend(int recommend) {
+		this.recommend = recommend;
+		return this;
+	}
 	
 }

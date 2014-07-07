@@ -1,6 +1,8 @@
 package talkie.controls.ajax;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +46,7 @@ public class profileControl {
 			String email,
 			HttpServletResponse response,
 			Model model){
+		log.debug(email);
 		email = email.replace("\"","");	// "hong@test.com" 버그수정
 		try{
 			TalkieUserVo res = talkieUserService.getProfileInfo(email);
@@ -72,6 +75,61 @@ public class profileControl {
 		}
 	}
 
+	@RequestMapping("/friendProfileInfo")
+	public AjaxResult friendProfileInfo(
+			String email,
+			HttpServletResponse response,
+			Model model){
+		log.debug(email);
+
+		try{
+			TalkieUserVo res = talkieUserService.getfriendProfileInfo(email);
+			AjaxResult result = null;
+			if (res == null) {
+				result =  new AjaxResult()
+							.setStatus("ok")
+							.setData("failure");
+				log.debug("프로필정보없음");
+
+			} else {
+				log.debug("=====프로필 정보있음=====");
+				log.debug((new Gson().toJson(res)));
+				result = new AjaxResult()
+							.setStatus("ok")
+							.setData((new Gson().toJson(res)));
+			}
+
+			response.setContentType("text/html;charset=UTF-8");
+			return result;
+
+		} catch (Throwable ex) {
+			return new AjaxResult()
+			.setStatus("error")
+			.setData(ex.getMessage());
+		}
+	}
+
+	
+	@RequestMapping("/getfriendProfileInfoNo")
+	public AjaxResult getfriendProfileInfoNo(
+			 int no,
+			 HttpServletResponse response){
+		try{
+			log.debug("no:" + no);
+			List<TalkieUserVo> friendList= talkieUserService.getfriendNo(no);
+			log.debug(friendList.toString());
+			
+		      return new AjaxResult().setStatus("ok").setData(friendList);
+			
+			
+	}	catch (Throwable ex) {
+			return new AjaxResult()
+					.setStatus("error")
+					.setData(ex.getMessage());
+		}
+	}
+	
+	
 
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public AjaxResult update(
@@ -89,7 +147,7 @@ public class profileControl {
 	
 	// file upload
 	//@RequestMapping("/profilePhoto")
-	@RequestMapping(value="/profilePhoto", method=RequestMethod.POST)
+	@RequestMapping(value="/profilePhoto", method=RequestMethod.POST, produces="text/html")
 	public AjaxResult profilePhoto(
 			@RequestParam("photoData") MultipartFile photoData,
 			HttpSession session,
@@ -191,6 +249,40 @@ public class profileControl {
 		}
 	}
 
+	
+	@RequestMapping("/addFr_profileList")
+	public AjaxResult addFr_profileList(
+			 int no,
+			 HttpServletResponse response){
+		try{
+			log.debug("no:" + no);
+			List<TalkieUserVo> friendList= talkieUserService.getfriendinfo(no);
+			log.debug(friendList.toString());
+			
+		      return new AjaxResult().setStatus("ok").setData(friendList);
+			
+			
+	}	catch (Throwable ex) {
+			return new AjaxResult()
+					.setStatus("error")
+					.setData(ex.getMessage());
+		}
+	}
+	
+	
+	@RequestMapping("/getAlarmListFriend")
+	   public AjaxResult getAlarmListFriend(
+	         @RequestParam(value="frNo") int frNo,
+	         @RequestParam(value="alarmNo") int alarmNo) {
+	      log.debug("getAlarmListFriend::::::"+frNo);
+	      log.debug("getAlarmListFriend>>>>"+alarmNo);
+	      
+	    HashMap<String,Object> params = new HashMap<String,Object>();
+	      params.put("friend",talkieUserService.alarmListFriend(frNo, alarmNo));
+	      log.debug("getAlarmListFriend>>"+params);
+	      
+	      return new AjaxResult().setStatus("ok").setData(params);
+	   }
 }
 
 

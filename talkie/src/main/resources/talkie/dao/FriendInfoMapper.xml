@@ -12,11 +12,19 @@
 	</resultMap>
 
 	<select id="getFriendList" resultMap="friendInfoMap" parameterType="String">
-		SELECT `UNO2`,`ISBLOCK`
+		SELECT `UNO`,`UNO2`,`ISBLOCK`
 		FROM `SE_FRIENDINFO`
 		where UNO IN (
 		select UNO
 		from SE_USERS
 		where EMAIL=#{email})
 	</select>
+	
+	<insert id="insertFriend" parameterType="FriendInfoVo">
+    
+    insert into SE_FRIENDINFO(UNO,UNO2,ISBLOCK)
+    values (#{userNo},#{friendNo},'n');
+  </insert>
+  
+	
 </mapper>
