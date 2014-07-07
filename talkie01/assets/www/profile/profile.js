@@ -1,6 +1,5 @@
 $(window).load(function(){
-	console.log("헤헤헿.. "+window.localStorage.getItem("email"));
-	var serverUrl = window.localStorage.getItem("serverUrl");
+	console.log("헤헤헿"+window.localStorage.getItem("email"));
 	console.log("serverUrl:" + serverUrl);
 	loadprofileList();
 function loadprofileList() {

@@ -1,5 +1,5 @@
-var serverUrl = 'http://14.32.7.49:9977/talkie';
-var chatServerUrl = 'http://14.32.7.49:9978';
+var serverUrl = 'http://14.32.7.49:9989/talkie';
+var chatServerUrl = 'http://14.32.7.49:9988';
 $(document).ready(function(){
   init_common();
 

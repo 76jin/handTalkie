@@ -94,10 +94,11 @@
 		<div id="center">
 			<div id="pro" align="center">
 				<div>
-					<input type="file" id="fileupload" name="photoData"
-						 style="display: none">
-					
-					<div id="progress"></div>
+					<input type="file" id="fileupload" name=photoData
+						data-url="profilePhoto.ajax" style="display: none">
+					<div id="progress">
+						<div class="bar" style="width: 0%; height: 5px;"></div>
+					</div>
 
 					<div id="sendFrom"></div>
 					<img id="profile_img" src="../img/profile/no-profile-image.jpg">
@@ -191,7 +192,6 @@
 		<!-- 자바스크립트 -->
 	 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
-		<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
 		<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../js/jquery.ui.widget.js"></script>
@@ -204,8 +204,8 @@
   <script type="text/javascript" src="../js/main_map.js"></script>
 <!--  profile  -->
 		    <script type="text/javascript" src="./main_Pro_modify.js"></script>
-		<script type="text/javascript" src="./pro_modify.js"></script>
-<script type="text/javascript" src="./profile.js"></script>
+<!-- 	<script type="text/javascript" src="./pro_modify.js"></script>
+	<script type="text/javascript" src="./profile.js"></script> -->
 
 </body>
 </html>

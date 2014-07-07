@@ -126,22 +126,11 @@ function mainTap() {
   
   // 채팅하기 버튼 클릭 이벤트 처리
   $("#chattingBtn").on('click', function(){
+    console.log('===== userNo: ' + userNo);
     console.log('===== checkedUsers: ' + checkedUsers);
     
     // 선택한 사람들의 UNO를 배열로 조합하여 넘긴다.
-    // 1. 먼저 현재 사용자 UNO 넘기기.
-    //var userNo = 1; // 홍길동.
-    //var othersNo = [3, 4]; // 임꺽정, 장보고?
-    
-    // 쿠키에 사용자 정보와 채팅하려는 사람 정보 저장하기.
-    // Todo
-    
-    //getUserInfo();
-    
-    // 현재 채팅 리스트저장. 
-    
-    // 채팅 서버로 채팅할 사용자들 정보 전달
-    $.ajax( chatServerUrl +'/newSetupChat.jsonp', {
+    $.ajax( chatServerUrl +'/isFirstEntrance.jsonp', {
       crossDomain:true,
       type: 'GET',
       dataType: 'jsonp',
@@ -153,9 +142,63 @@ function mainTap() {
         console.log('jsonp reuslt: ' + jsonObj);
         var result = jsonObj.ajaxResult;
         if (result.status != "ok" || result.data == "failure") {
-           alert('채팅방으로 이동에 실패했습니다.');
+           alert('채팅방 정보를 가져오는 데 실패했습니다.');
         } else {
+          console.log('##### isFirstEntrance.jsonp 성공!');
+          console.log('##### result.data:' + result.data);
+          var isFirst;
+          if (result.data == 0) {
+            isFirst = true;
+          } else {
+            isFirst = false;
+          }
+          
+          // 
+          if (!isFirst) { // call current chat room
+            window.localStorage.setItem("isFirstChat", false);
+            location.href = '../chat/chatMain.html';
+          } else {        // newSetup  chat room
+           // 채팅 서버로 채팅할 사용자들 정보 전달
+            $.ajax( chatServerUrl +'/newSetupChat.jsonp', {
+              crossDomain:true,
+              type: 'GET',
+              dataType: 'jsonp',
+              data: {
+                userNo: userNo,
+                checkedUsers: checkedUsers
+              },
+              success: function(jsonObj){
+                console.log('jsonp reuslt: ' + jsonObj);
+                var result = jsonObj.ajaxResult;
+                if (result.status != "ok" || result.data == "failure") {
+                   alert('채팅방으로 이동에 실패했습니다.');
+                } else {
 
+                  console.log('새 채팅방 만들고, 채팅방 기본 설정 성공!');
+                  console.log('result.data.chatRoomNumber:' + result.data.chatRoomNumber);
+                  console.log('result.data.chatList:' + result.data.chatList);
+                  
+                  var chatRoomNumber = result.data.chatRoomNumber;
+                  window.localStorage.setItem("chatRoomNumber", chatRoomNumber);
+                  window.localStorage.setItem("chatList", result.data.chatList);
+                  window.localStorage.setItem("isFirstChat", true);
+                  
+                  //location.href = chatServerUrl;
+                  //location.href = chatServerUrl + "/users/" + chatRoomNumber;
+                  alert('변경된 채팅방으로 이동!!');
+                  location.href = '../chat/chatMain.html';
+                  //location.href = chatServerUrl + "/users/" + chatRoomNumber;
+                }
+              },
+                error: function(xhr, status, errorThrown){
+                  alert('채팅방으로 이동 중 오류 발생!');
+                  console.log(status);
+                  console.log(errorThrown);
+                }
+              }); // newSetupChat.jsonp end
+          } // isFirst end
+          
+          /*
           console.log('새 채팅방 만들고, 채팅방 기본 설정 성공!');
           console.log('result.data.chatRoomNumber:' + result.data.chatRoomNumber);
           console.log('result.data.chatList:' + result.data.chatList);
@@ -163,25 +206,63 @@ function mainTap() {
           var chatRoomNumber = result.data.chatRoomNumber;
           window.localStorage.setItem("chatRoomNumber", chatRoomNumber);
           window.localStorage.setItem("chatList", result.data.chatList);
+          */
           
           //location.href = chatServerUrl;
           //location.href = chatServerUrl + "/users/" + chatRoomNumber;
-          alert('변경된 채팅방으로 이동!!');
-          location.href = '../chat/chatMain.html';
           //location.href = chatServerUrl + "/users/" + chatRoomNumber;
-        }
+        } // result.data end
       },
         error: function(xhr, status, errorThrown){
-          alert('채팅방으로 이동 중 오류 발생!');
+          alert('채팅방 정보 가져 오는 중 오류 발생!');
           console.log(status);
           console.log(errorThrown);
         }
-      });
-    });
+      }); // isFirstEntrance.jsonp end
+    }); // #chattingBtn click end
     
   
   // 사용자 정보를 가져와서 메인 화면 초기화를 한다.(프로그램의 시작 코드)
-  
+}
+
+// 이 채팅방에 처음 들어가는 건지 검사한다.
+function checkIsFirst(userNo, checkedUsers) {
+  $.ajax( chatServerUrl +'/isFirstEntrance.jsonp', {
+    crossDomain:true,
+    type: 'GET',
+    dataType: 'jsonp',
+    data: {
+      userNo: userNo,
+      checkedUsers: checkedUsers
+    },
+    success: function(jsonObj){
+      console.log('jsonp reuslt: ' + jsonObj);
+      var result = jsonObj.ajaxResult;
+      if (result.status != "ok" || result.data == "failure") {
+        alert('채팅방 정보를 가져오는 데 실패했습니다.');
+      } else {
+        console.log('##### isFirstEntrance.jsonp 성공!');
+        /*
+        console.log('새 채팅방 만들고, 채팅방 기본 설정 성공!');
+        console.log('result.data.chatRoomNumber:' + result.data.chatRoomNumber);
+        console.log('result.data.chatList:' + result.data.chatList);
+
+        var chatRoomNumber = result.data.chatRoomNumber;
+        window.localStorage.setItem("chatRoomNumber", chatRoomNumber);
+        window.localStorage.setItem("chatList", result.data.chatList);
+         */
+
+        //alert('변경된 채팅방으로 이동!!');
+        //location.href = '../chat/chatMain.html';
+        //location.href = chatServerUrl + "/users/" + chatRoomNumber;
+      }
+    },
+    error: function(xhr, status, errorThrown){
+      alert('채팅방 정보 가져 오는 중 오류 발생!');
+      console.log(status);
+      console.log(errorThrown);
+    }
+  });
 }
 
 function getCurrentLocation() {
