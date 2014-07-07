@@ -22,7 +22,7 @@ $(window).load(function(){
 	//프로필수정
   
 function locationTagList(){
-	$.ajax( serverUrl + '/loglist.ajax', {
+	$.ajax( 'http://14.32.7.49:9989/talkie/loglist.ajax', {
     type: 'POST',
     dataType: 'json',
     data: {

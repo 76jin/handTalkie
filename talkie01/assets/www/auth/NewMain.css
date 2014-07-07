@@ -1,5 +1,4 @@
 @CHARSET "UTF-8";
-
 body {
 	padding: 0px;
 	margin: 0px;
@@ -8,6 +7,7 @@ width: 100%;
 
 background: url(../img/MainMapImg.png) no-repeat left top fixed;
 background-size: cover;
+
 }
 .container {
 width: 300px;
