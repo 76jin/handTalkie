@@ -425,7 +425,7 @@ app.get('/isFirstEntrance.jsonp*', function(req, res){
             ajaxResult:
             {
               status: 'ok',
-              data: 'true'
+              data: true
             }
         };
       } else {
@@ -434,7 +434,7 @@ app.get('/isFirstEntrance.jsonp*', function(req, res){
             ajaxResult:
             {
               status: 'ok',
-              data: 'false'
+              data: false
             }
         };
       }
