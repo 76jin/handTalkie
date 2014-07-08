@@ -146,16 +146,10 @@ function mainTap() {
         } else {
           console.log('##### isFirstEntrance.jsonp 성공!');
           console.log('##### result.data:' + result.data);
-          var isFirst;
-          if (result.data == 0) {
-            isFirst = true;
-          } else {
-            isFirst = false;
-          }
           
-          // 
-          if (!isFirst) { // call current chat room
-            window.localStorage.setItem("isFirstChat", false);
+          window.localStorage.setItem("isFirstChat", result.data);
+          
+          if (!result.data) { // call current chat room
             location.href = '../chat/chatMain.html';
           } else {        // newSetup  chat room
            // 채팅 서버로 채팅할 사용자들 정보 전달
@@ -181,7 +175,6 @@ function mainTap() {
                   var chatRoomNumber = result.data.chatRoomNumber;
                   window.localStorage.setItem("chatRoomNumber", chatRoomNumber);
                   window.localStorage.setItem("chatList", result.data.chatList);
-                  window.localStorage.setItem("isFirstChat", true);
                   
                   //location.href = chatServerUrl;
                   //location.href = chatServerUrl + "/users/" + chatRoomNumber;
