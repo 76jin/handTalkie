@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="talkie.dao.AlarmDao">
+  <resultMap type="talkie.vo.AlarmVo" id="alarmMap">
+    <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="ALARMNO" property="alarmNo"/>
+    <result column="ALARMMSG" property="alarmMsg"/>
+    <result column="UNO2" property="frNo"/>
+    <result column="DATETIME" property="dateTime"/>
+    
+
+  </resultMap> 
+
+ <insert id="addAlarm" parameterType="AlarmVo">
+    insert into SE_ALARM(UNO,ALARMMSG,UNO2,DATETIME)
+    values (#{no}, #{alarmMsg}, #{frNo}, NOW(),'%b %d %Y %h:%i %p')
+  </insert>
+ 
+ 
+  <select id="getAlarmList" 
+      parameterType="int" resultMap="alarmMap">
+    select T1.UNO,T1.ALARMNO,T1.ALARMMSG,T1.UNO2,T1.DATETIME,T2.PHOPATH
+    from SE_ALARM T1 left outer join SE_USERS T2
+    on T1.UNO = T2.UNO
+    where T1.UNO=#{no}
+  </select>
+  
+<!--     <select id="getAlarmListFriend" 
+      parameterType="int" resultMap="alarmMap">
+    select T1.UNO2,T1.DATETIME,T2.UNO,T2.NAME,T2.UNO,T2.PHOPATH
+    from SE_ALARM T1 left outer join SE_USERS T2
+    on T1.UNO2 =T2.UNO
+    where T1.UNO2=#{frNo}
+  </select> -->
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
