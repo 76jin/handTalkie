@@ -47,6 +47,7 @@ $(function(){
 	    	$('#grChat_content').css("display", "block");
 	    	$('#prChat_content').css("display", "none");
     });
+    
     var serverUrl = window.localStorage.getItem('serverUrl');
     console.log(window.localStorage.getItem('currentChatRoomNumber'));
     console.log(window.localStorage.getItem('userNo'));
@@ -83,7 +84,7 @@ $(function(){
     
 //	$('#chatListIcon').on('click', function() {
 		
-		 console.log("serverUrlserverUrl>>"+serverUrl);
+		 
 		  $.ajax(serverUrl + '/chatList.ajax', {
 		    type: 'POST',
 		    dataType: 'json', 
