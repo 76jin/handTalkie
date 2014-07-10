@@ -91,19 +91,18 @@
 
 		<!-- 내용부분 시작 -->
 		<div id="center">
-        <form class="navbar-form" role="search" method="get"
-          id="search-form" name="search-form">
-          <div id="searchBox" class="input-group">
-            <input type="text" class="form-control" placeholder="Search..."
-              id="query" name="query" value="">
-            <div class="input-group-btn">
-              <button id="search-2" type="submit" class="btn btn-success">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </div>
-          </div>
-        </form>
-        
+      <!-- 지도 검색 버튼 -->
+			<div id="searchBox" class="input-group">
+				<input type="text" id="map-address" class="form-control"
+					placeholder="Search..." id="query" name="query" value="">
+				<div class="input-group-btn">
+					<button id="search-2" type="button" value="search"
+						class="btn btn-success">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</div>
+			</div>
+			
 			<!-- 위에 사람 간단프로필  -->
 			<div id="hh">
 				<div id="f_Btn" style="display: none;">
@@ -127,7 +126,19 @@
 
 
 			<!-- Google Map 이 삽입될 division -->
-			<div id="mainMap"></div>
+	    <!-- 국가, 언어, 성별, 나이대 필터링  -->
+      <!-- 국가: 한국,중국,일본,미국 -->
+      <!-- 언어: 한국어,중국어,일본어,영어 -->
+      <!-- 나이대: 10, 20, 30, 40, 50, 60 -->
+      <!-- 성별 필터링 : 남,녀,모두  -->
+      <span id="sex-on">
+        <img id="sex-on-img" src="../img/filter/sex-two.png"></img>
+      </span>
+      <span id="language-filter">
+        <img id="language-filter-img" src="../img/filter/earth.png"></img>
+      </span>
+	   <div id="mainMap">
+	   </div>
 			<!-- Google Map 끝 -->
 
 		</div>

@@ -121,6 +121,102 @@ function mainTap() {
     $("#f_Btn").css("display","none");
    });
   
+  // 지도 검색 이벤트 처리
+  $("#search-2").on('click', function(){
+    findAddress();
+  });
+  $('#map-address').change(function() {
+    $('#map-address').blur(); // 안드로이드 키보드 숨기기 위해 사용
+    findAddress();
+  });
+  
+  // 국가, 언어, 성별, 나이 필터링 관련
+  $("#sex-on").on('click', function(){
+    var sexSrc = $('#sex-on-img').attr("src");
+    var currentSex ='a';
+    
+    switch (sexSrc) {
+    case '../img/filter/sex-two.png':
+      $('#sex-on-img').attr("src", '../img/filter/sex-man.png')
+      console.log('sex-man');
+      currentSex = 'm';
+      break;
+    case '../img/filter/sex-man.png':
+      $('#sex-on-img').attr("src", '../img/filter/sex-woman.png')
+      console.log('sex-woman');
+      currentSex = 'w';
+      break;
+    case '../img/filter/sex-woman.png':
+      $('#sex-on-img').attr("src", '../img/filter/sex-two.png')
+      console.log('sex-All');
+      currentSex = 'a';
+      break;
+    }
+    
+    window.localStorage.setItem("userSex", currentSex);
+    var currentLang = window.localStorage.getItem("userLang");
+    
+    console.log('@#@#@#@# currentLang:' + currentLang);
+    if (currentLang == null || currentLang == '') {
+      currentLang = 0;
+      window.localStorage.setItem("userLang", currentLang);
+    }
+    
+    
+    // 다른 사용자들 성별로 필터링해서 가져온다.
+    // currentSex로 구분
+    deleteOverlays();
+    getUserGPSInfo(currentSex, currentLang);
+    console.log("getUserGPSInfo() OKOKOK");
+    
+  });
+  
+  $("#language-filter").on('click', function(){
+    var langSrc = $('#language-filter-img').attr("src");
+    var currentLang = 0;
+    
+    switch (langSrc) {
+    case '../img/filter/jp.png':
+      $('#language-filter-img').attr("src", '../img/filter/earth.png')
+      currentLang = 0;
+      break;
+    case '../img/filter/earth.png':
+      $('#language-filter-img').attr("src", '../img/filter/kr.png')
+      currentLang = 1;
+      break;
+    case '../img/filter/kr.png':
+      $('#language-filter-img').attr("src", '../img/filter/us.png')
+      currentLang = 2;
+      break;
+    case '../img/filter/us.png':
+      $('#language-filter-img').attr("src", '../img/filter/cn.png')
+      currentLang = 3;
+      break;
+    case '../img/filter/cn.png':
+      $('#language-filter-img').attr("src", '../img/filter/jp.png')
+      currentLang = 4;
+      break;
+    }
+    
+    window.localStorage.setItem("userLang", currentLang);
+    var currentSex = window.localStorage.getItem("userSex");
+    
+    console.log('@#@#@#@# currentSex:' + currentSex);
+    if (currentSex == null || currentSex == '') {
+      currentSex = "a";
+      window.localStorage.setItem("userSex", currentSex);
+    }
+    
+    // 다른 사용자들 성별로 필터링해서 가져온다.
+    // currentSex로 구분
+    deleteOverlays();
+    getUserGPSInfo(currentSex, currentLang);
+    console.log("getUserGPSInfo() OOOKKK");
+    
+  });
+  
+  setFilteringUI();
+  
   $("#hh").on('click', function(){
     //alert("aaa");
     window.openURL("./main_Pro_modify.html");
@@ -149,16 +245,10 @@ function mainTap() {
         } else {
           console.log('##### isFirstEntrance.jsonp 성공!');
           console.log('##### result.data:' + result.data);
-          var isFirst;
-          if (result.data == 0) {
-            isFirst = true;
-          } else {
-            isFirst = false;
-          }
           
+          window.localStorage.setItem("isFirstChat", result.data);
           // 
-          if (!isFirst) { // call current chat room
-            window.localStorage.setItem("isFirstChat", false);
+          if (!result.data) { // call current chat room
             location.href = '../chat/chatMain.html';
           } else {        // newSetup  chat room
            // 채팅 서버로 채팅할 사용자들 정보 전달
@@ -184,7 +274,6 @@ function mainTap() {
                   var chatRoomNumber = result.data.chatRoomNumber;
                   window.localStorage.setItem("chatRoomNumber", chatRoomNumber);
                   window.localStorage.setItem("chatList", result.data.chatList);
-                  window.localStorage.setItem("isFirstChat", true);
                   
                   //location.href = chatServerUrl;
                   //location.href = chatServerUrl + "/users/" + chatRoomNumber;
@@ -353,4 +442,69 @@ function getUserInfo() {
     });
 }
 
+function findAddress() {
+  var address = $("#map-address").val();
+  geocoder.geocode({
+    'address' : address
+  }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map : map,
+        position : results[0].geometry.location
+      });
+      var lat = results[0].geometry.location.lat();
+      var lng = results[0].geometry.location.lng();
+      
+      console.log('%$%$%$%$%$%%$ goood');
+      loadGPSInfo();
+      console.log('%$%$%$%$%$%%$ goood gooodddd');
+
+      //$("#latitude").val(lat);
+      //$("#longitude").val(lng);
+      /*
+      var populationOptions = {
+        strokeColor : '#000000',
+        strokeOpacity : 0.8,
+        strokeWeight : 2,
+        fillColor : '#808080',
+        fillOpacity : 0.5,
+        map : map,
+        center : new google.maps.LatLng(lat, lng),
+        //radius : $("#radius").val() * 1000
+        radius : 1 * 1000  //1 km
+      };
+      if (cityCircle) {
+        cityCircle.setMap(null);
+      }
+      cityCircle = new google.maps.Circle(populationOptions);
+      */
+    } else {
+      console.log('Geocode was not successful for the following reason: ' + status);
+      alert('검색한 지명을 찾을 수 없습니다.\n 다른 이름으로 검색해 주세요.');
+    }
+  });
+}
+
+function setFilteringUI() {
+  console.log('call setFilteringUI');
+  
+  var curWidth = $(document).width(); // 현재 width
+  var curHeight = $(document).height(); // 현재 height
+  console.log('page full curWidth:' + curWidth);
+  console.log('page full curHeight:' + curHeight);
+
+  var width = curWidth - 50;
+  var height = curHeight/4;   //상단부터 띄워야 하는 높이
+
+  // 성별 필터링
+  $("#sex-on").css({top:height, left:width, display:"inline-block"});
+  
+  console.log("$(#language-filte).width()" + $("#language-filter").width());
+  
+  height = curHeight/4 + $("#language-filter").height() + 10;   //상단부터 띄워야 하는 높이
+  
+  // 나라 필터링
+  $("#language-filter").css({top:height, left:width, display:"inline-block"});
+}
 

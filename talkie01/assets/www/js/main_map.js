@@ -56,9 +56,6 @@ var geocoder;
 var map;
 var infowindow = new google.maps.InfoWindow();
 var marker;
-function initialize() {
-
-}
 
 //마커 이미지 만들기
 function makeMarkerImage(markerImage) {
@@ -69,9 +66,6 @@ function makeMarkerImage(markerImage) {
             '',
             '',
             new google.maps.Size(size_x, size_y) );
-  
-
-  
 }
 ////마커 정보 끝 ////////////////////////
 
@@ -82,8 +76,13 @@ var displayCurrentLocation = function (position) {
       position.coords.longitude);
   
   // 사용자 정보를 전역변수에 저장
-	//UserPositionInfo.me = new UserPositionInfo.Create(1, [37.494631, 127.027583]);
-	//console.log('UserPositionInfo.me:' + UserPositionInfo.me);
+  var tempPos = [];
+  tempPos.push(position.coords.latitude);
+  tempPos.push(position.coords.longitude);
+  
+	UserPositionInfo.me = new UserPositionInfo.Create(window.localStorage.getItem("userNo"), tempPos);
+	console.log('UserPositionInfo.me:' + UserPositionInfo.me.userNo);
+	console.log('UserPositionInfo.me:' + UserPositionInfo.me.userPosition);
   
 	//var pos = new google.maps.LatLng(37.494631, 127.027583); //비트컴퓨터
   map.setCenter(pos); // 현재 위치를 지도 가운데로 하기.
@@ -181,6 +180,7 @@ var displayOtherLocation = function (position, userPhotoPath) {
 function initialize() {
 	geocoder = new google.maps.Geocoder();
   var mapOptions = {
+      disableDefaultUI: true,
 			zoom: 15,
   };
 
@@ -203,6 +203,7 @@ function initialize() {
      * 5.강감찬. 	37.492838805363476, 127.03263759613037
      * 6.tom. 	37.498593083824986, 127.03276634216309
      */
+      /*
       // 사용자 정보를 전역변수에 저장
       var othersTempNo = [2, 3, 4, 5, 6];
       var othersTempPos = [   // 내 주변에 있는 다른 사람들 위치 정보.(LatLng type)
@@ -238,10 +239,25 @@ function initialize() {
       console.log('UserPositionInfo.others:' + UserPositionInfo.others);
       //console.log('UserPositionInfo:', UserPositionInfo);
 
+      */
       //infowindow.open(map,marker);
+      var currentLang = window.localStorage.getItem("userLang");
+      console.log('@#@#@#@# currentLang:' + currentLang);
+      if (currentLang == null || currentLang == '') {
+        currentLang = 0;
+        window.localStorage.setItem("userLang", currentLang);
+      }
       //
-    	  
-    	
+      var currentSex = window.localStorage.getItem("userSex");
+      console.log('@#@#@#@# currentSex:' + currentSex);
+      if (currentSex == null || currentSex == '') {
+        currentSex = "a";
+        window.localStorage.setItem("userSex", currentSex);
+      }
+      
+      // 다른 사용자 정보를 읽어온다.
+      deleteOverlays();
+      getUserGPSInfo(currentSex, currentLang);
     	
     } // end isTest
     
@@ -257,6 +273,106 @@ function initialize() {
     handleNoGeolocation(false);
   }
 
+}
+
+function loadGPSInfo() {
+
+  var currentLang = window.localStorage.getItem("userLang");
+  console.log('@#@#@#@# currentLang:' + currentLang);
+  if (currentLang == null || currentLang == '') {
+    currentLang = 0;
+    window.localStorage.setItem("userLang", currentLang);
+  }
+
+  var currentSex = window.localStorage.getItem("userSex");
+  console.log('@#@#@#@# currentSex:' + currentSex);
+  if (currentSex == null || currentSex == '') {
+    currentSex = "a";
+    window.localStorage.setItem("userSex", currentSex);
+  }
+
+  // 다른 사용자 정보를 읽어온다.
+  deleteOverlays();
+  getUserGPSInfo(currentSex, currentLang);
+
+  // 지도 클릭 이벤트 등록
+  google.maps.event.addListener(map, 'click', function(event) {
+    console.log('touched by user. location: ' + event.latLng.toString());
+    hideShortProfile();
+  });
+}
+
+function getUserGPSInfo(sex, lang) {
+  $.ajax( serverUrl + '/getUserGPSInfo.ajax', {
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      "sex" : sex,
+      "language": lang
+    },
+    success: function(jsonObj){
+      console.log(jsonObj);
+      var result = jsonObj.ajaxResult;
+      if (result.status != "ok" || result.data == "failure") {
+        alert('사용자 정보를 읽어오는 데 실패했습니다.');
+      } else {
+        console.log('getUserGPSInfo success!');
+        //console.log(result.data);
+        showObj(result.data);
+        
+        var jsonData = result.data;
+        for(var i=0; i<jsonData.length;i++) {
+          showObj(jsonData[i]);
+        }
+        
+        var userGPSInfoList = jsonData;
+        var currentNo = window.localStorage.getItem("userNo");
+        console.log('currentNo:' + currentNo);
+        
+        delete UserPositionInfo.others;
+        UserPositionInfo.others = [];
+        
+        for (var i=0; i < userGPSInfoList.length; i++) {
+          
+          if (currentNo == userGPSInfoList[i].userNo) {
+            continue;
+          }
+          
+          var otherLength = UserPositionInfo.others.length;
+          console.log('otherLength:' + otherLength);
+          UserPositionInfo.others[otherLength] = [];
+          
+          console.log('userGPSInfoList[i].userNo:' + userGPSInfoList[i].userNo);
+          UserPositionInfo.others[otherLength].push(userGPSInfoList[i].userNo); // othersNo
+          
+          var tempLatLng = new google.maps.LatLng(userGPSInfoList[i].latitude, userGPSInfoList[i].longitude);
+          UserPositionInfo.others[otherLength].push(tempLatLng);  // othersPosition
+          console.log('UserPositionInfo.others[otherLength]:' + UserPositionInfo.others[otherLength]);
+          
+          displayOtherLocation(tempLatLng, userGPSInfoList[i].imgSrc);    // display other positon in map.
+        }
+        
+        console.log("getUserGPSInfo end");
+        
+        
+      }
+    },
+    error: function(xhr, status, errorThrown){
+      alert('사용자 정보를 읽어오는 중 오류 발생!');
+      console.log(status);
+      console.log(errorThrown);
+    }
+  }); // 다른 사용자 정보 읽어오기 끝
+}
+
+function showObj(obj) {
+  var str = "";
+  for(key in obj) {
+    str += key+"="+obj[key]+"\n";
+  }
+
+  console.log(str);
+  return;
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -323,7 +439,7 @@ function addMarker(location, userPhotoPath) {
   var checkedFlag = false;
 
   marker.setMap(map);
-  //markersArray.push(marker);
+  markersArray.push(marker);
 
   google.maps.event.addListener(marker, "click", function(event) {
     console.log('click marker! event.latLng:' + event.latLng);
@@ -488,16 +604,16 @@ function addMarker(location, userPhotoPath) {
 //Removes the overlays from the map, but keeps them in the array
 function clearOverlays() {
   if (markersArray) {
-    for (i in markersArray) {
+    for (var i in markersArray) {
       markersArray[i].setMap(null);
     }
   }
 }
-/*
+
 //Shows any overlays currently in the array
 function showOverlays() {
   if (markersArray) {
-    for (i in markersArray) {
+    for (var i in markersArray) {
       markersArray[i].setMap(map);
     }
   }
@@ -506,21 +622,21 @@ function showOverlays() {
 //Deletes all markers in the array by removing references to them
 function deleteOverlays() {
   if (markersArray) {
-    for (i in markersArray) {
+    for (var i in markersArray) {
       markersArray[i].setMap(null);
     }
     markersArray.length = 0;
   }
 }
 
+/*
 function openInfoWindow(msg, marker) {
   var infowindow = new google.maps.InfoWindow({
     content:msg
   });
 
   infowindow.open(map,marker);
-}
-*/
+}*/
 /// test ///
 function initialize_Polygon(){
 
@@ -529,6 +645,7 @@ function initialize_Polygon(){
   var myOptions = {
       zoom: 17,
       center:latlng,
+      disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 

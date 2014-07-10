@@ -18,6 +18,7 @@ var delNo;
 $(window).load(function(){
 	console.log("실행이 안되나요?");
 	console.log("헤헤헿"+window.localStorage.getItem("email"));
+	var serverUrl = window.localStorage.getItem("serverUrl");
 	console.log("serverUrl:" + serverUrl);
 	locationTagList();
 	//프로필수정
