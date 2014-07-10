@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- 공통 css -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<!--  검색 -->
+<meta name="robots" content="NOODP" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/css/bootstrap.css" rel="stylesheet">
+
+<!-- talkie css -->
+<link rel="stylesheet" type="text/css" href="../css/main_side.css">
+<link rel="stylesheet" type="text/css" href="../css/main_Tap.css">
+<link rel="stylesheet" type="text/css" href="../css/main_map.css">
+<link rel="stylesheet" type="text/css" href="../css/toast.css">
+<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
+<link rel="stylesheet" type="text/css" href="./myRecommend.css">
+
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+<script type="text/javascript" src="../js/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="../js/custom.js"></script>
+
+</head>
+<body>
+	<!-- 사이드메뉴바  시작-->
+  <div class="drawers">
+    <div class="left-drawer">
+      <div id="imgBox">
+        <img id="myPic" alt="myInfo">
+      </div>
+      <a href="../profile/main_Pro.html"><!--  <img class="mainIcon_f"> -->
+        <div id="profile">
+          <h4 id="name"></h4>
+          <p>
+            <span id="profileCountry"></span> / <span id="profileLanguage"></span>
+          </p>
+        </div>
+      </a>
+    </div>
+    
+		<div class="snap-drawer snap-drawer-left">
+			<div>
+				<ul>
+					<div>
+						<li id="tagTap"><a href="#" id="tagappend"> <img id="tag"
+								class="mainIcon_s" src="../img/tag.png"> location Tag
+						</a></li>
+					</div>
+
+          <li><a href="../friend/friendList.html"> <img id="friend"
+              class="mainIcon_s" src="../img/friend.png"> search Friend
+          </a></li>
+          <li><a href="../help/myRecommend.html"> <img id="help"
+              class="mainIcon_s" src="../img/help.png"> myFriend List
+          </a></li>
+					<li><a href="../setting/setting.html"> <img id="setting"
+							class="mainIcon_s" src="../img/setting.png"> setting
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 사이드메뉴바 끝 -->
+
+	<!-- 메인메뉴바 시작 -->
+	<div id="content">
+		<div id="header" >
+			<a href="#"><img id="menuIcon"
+				src="../img/menuIcon.png"></a>
+			<div id="navigation_tap">
+				<div id="navigation">
+					<div id="map" class="mainIcon">
+						<a href="../map/main_Tap.html" title="map"> <span id="maps"
+							class="text">map</span></a>
+					</div>
+					<div id="chat" class="mainIcon">
+						<a href="../chat/chat.html" title="chat"> <span id="chats"
+							class="text">chat</span></a>
+					</div>
+				</div>
+			</div>
+			<a href="../alarm/alarm.html"><img id="menuAlarm"
+				src="../img/alarm.png"></a>
+		</div>
+		<!-- 메인메뉴바 끝 -->
+
+		<!-- 내용부분 시작 -->
+		<div id="center">
+<div id="bac-mr">
+
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+		<!-- 내용부분 끝 -->
+
+
+		<!-- footer 시작 -->
+		<div id="footer"></div>
+	</div>
+	<!-- footer 끝  -->
+
+
+<!-- <div id="panel">
+      <input   type="text"  value= />
+     
+    </div>
+    <div id="map-canvas"></div> -->
+
+	<!-- 위치로그 나타내기 -->
+	<div  id="latlng" class='locationTag' style='display: none' >
+		<div class="locationTag_close">
+			<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
+		</div>
+		<div class="locationTag_image">
+			<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
+		</div>
+		 <p  id="locationTagText"></p>
+	</div>
+	<!-- 위치로그 끝  -->
+
+
+  <!-- 자바스크립트 -->
+  <script src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../js/common.js"></script>
+  <script type="text/javascript" src="../js/snap.js"></script>
+  <script type="text/javascript" src="../js/main_Tap.js"></script>
+  <script type="text/javascript" src="../js/icheck.min.js"></script>
+  <script type="text/javascript" src="./myRecommend.js"></script>
+<!--  <script type="text/javascript" src="./friendProfile/fr_profile.js"></script> -->
+
+
+</body>
+</html>

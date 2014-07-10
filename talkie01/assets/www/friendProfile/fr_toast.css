@@ -1,0 +1,240 @@
+@CHARSET "UTF-8";
+
+  .loveFri{
+    
+position: relative;
+z-index: 10;
+left: 50%;
+width: 200px;
+margin-left: -140px;
+border: 1.5px solid #4682B4;
+background-color: #333;
+opacity: 0.9;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+padding: 5px 0;
+text-align: center;
+color: #eee;
+top: 280px;
+font-family: lucida Grande;
+font-size: larger;
+-webkit-transition: opacity 0.5s ease-out;
+-moz-transition: opacity 0.5s ease-out;
+-ms-transition: opacity 0.5s ease-out;
+-o-transition: opacity 0.5s ease-out;
+transition: opacity 0.5s ease-out;
+ 
+    }  
+
+.loveFri p {
+    text-align: left;
+    border: 10px;
+    font-size: larger;
+    margin: 20px;
+}
+
+.loveFri_close {
+    width:18px;
+    height:18px;
+    float:right;
+    top:7px;
+    right:7px;
+}
+
+.loveFri_image {
+    width:32px;
+    height: 32px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    float:left;
+}
+
+.mainIcon_t {
+	    background-size:100% 2em;
+      width: 2em;
+      height: 2em;
+      padding: 0px;
+}
+.mainIcon_c {
+	   background-size:100% 2em;
+      width: 1em;
+      height: 1em;
+      padding: 0px;
+      margin: 0px 0px 8px -5px;
+}
+
+
+#loveFri_latlng {
+width: 275px;
+height: 100px;
+}
+
+/*
+.toast-type-notice {
+    color: white;
+}
+
+.toast-position-top-left {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+}
+
+.toast-position-top-center {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    margin-left: -140px;
+}
+
+.toast-position-top-right {
+    position: fixed;
+    top: 200px;
+    left: 200px;
+}
+
+.toast-position-middle-left {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    margin-top: -40px;
+}
+
+.toast-position-middle-center {
+    position: fixed;
+    left: 50%;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}
+
+.toast-position-middle-right {
+    position: fixed;
+    right: 20px;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}
+*/
+
+
+
+  .errorFri{
+    
+position: relative;
+z-index: 10;
+bottom: 45%;
+left: 50%;
+width: 200px;
+margin-left: -140px;
+border: 1.5px solid #4682B4;
+background-color: #333;
+opacity: 0.9;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+padding: 5px 0;
+text-align: center;
+color: #eee;
+font-family: lucida Grande;
+font-size: larger;
+top: 280px;
+-webkit-transition: opacity 0.5s ease-out;
+-moz-transition: opacity 0.5s ease-out;
+-ms-transition: opacity 0.5s ease-out;
+-o-transition: opacity 0.5s ease-out;
+transition: opacity 0.5s ease-out;
+ 
+    }  
+
+.errorFri p {
+    text-align: left;
+    border: 10px;
+    font-size: larger;
+    margin: 20px;
+}
+
+.loveFri_close {
+    width:18px;
+    height:18px;
+    float:right;
+    top:7px;
+    right:7px;
+}
+
+.loveFri_image {
+    width:32px;
+    height: 32px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    float:left;
+}
+
+.mainIcon_t {
+      background-size:100% 2em;
+      width: 2em;
+      height: 2em;
+      padding: 0px;
+}
+.mainIcon_c {
+     background-size:100% 2em;
+      width: 1em;
+      height: 1em;
+      padding: 0px;
+      margin: 0px 0px 8px -5px;
+}
+
+
+#loveFri_latlng {
+width: 275px;
+height: 100px;
+}
+
+/*
+.toast-type-notice {
+    color: white;
+}
+
+.toast-position-top-left {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+}
+
+.toast-position-top-center {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    margin-left: -140px;
+}
+
+.toast-position-top-right {
+    position: fixed;
+    top: 200px;
+    left: 200px;
+}
+
+.toast-position-middle-left {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    margin-top: -40px;
+}
+
+.toast-position-middle-center {
+    position: fixed;
+    left: 50%;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}
+
+.toast-position-middle-right {
+    position: fixed;
+    right: 20px;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}
+*/

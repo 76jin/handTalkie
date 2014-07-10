@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 공통 css -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../css/jquery.mobile-1.4.2.min.css">
+<!-- talkie css -->
+<link rel="stylesheet" type="text/css" href="../css/main_side.css">
+<link rel="stylesheet" type="text/css" href="../css/main_Tap.css">
+<link rel="stylesheet" type="text/css" href="../css/toast.css">
+<link rel="stylesheet" type="text/css" href="./fr_toast.css">
+<link rel="stylesheet" type="text/css" href="../css/search-bar.css">
+<!--  profile  -->
+<link rel="stylesheet" type="text/css" href="./fr_profile.css">
+   <script type="text/javascript" src="./alarm.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="./main_Pro_modify.css"> -->
+
+
+
+
+</head>
+<body>
+	<!-- 사이드메뉴바  시작-->
+  <div class="drawers">
+    <div class="left-drawer">
+      <div id="imgBox">
+        <img id="myPic" alt="myInfo">
+      </div>
+      <a href="../profile/main_Pro.html"><!--  <img class="mainIcon_f"> -->
+        <div id="profile">
+          <h4 id="name"></h4>
+          <p>
+            <span id="profileCountry"></span> / <span id="profileLanguage"></span>
+          </p>
+        </div>
+      </a>
+    </div>
+
+		<div class="snap-drawer snap-drawer-left">
+			<div>
+				<ul>
+					<div>
+						<li id="tagTap"><a href="#" id="tagappend"> <img id="tag"
+								class="mainIcon_s" src="../img/tag.png"> location Tag
+						</a></li>
+					</div>
+
+          <li><a href="../friend/friendList.html"> <img id="friend"
+              class="mainIcon_s" src="../img/friend.png"> search Friend
+          </a></li>
+          <li><a href="../help/myRecommend.html"> <img id="help"
+              class="mainIcon_s" src="../img/help.png"> myFriend List
+          </a></li>
+					<li><a href="../setting/setting.html"> <img id="setting"
+							class="mainIcon_s" src="../img/setting.png"> setting
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 사이드메뉴바 끝 -->
+
+	<!-- 메인메뉴바 시작 -->
+	<div id="content">
+		<div id="header">
+			<a href="#" ><img id="menuIcon"
+				src="../img/menuIcon.png"></a>
+			<div id="navigation_tap">
+				<div id="navigation">
+					<div id="map2" class="mainIcon">
+						<a href="../map/main_Tap.html" title="map"> <span id="maps2"
+							class="text">map</span></a>
+					</div>
+					<div id="chat2" class="mainIcon">
+						<a href="../chat/chat.html" title="chat"> <span id="chats2"
+							class="text">chat</span></a>
+					</div>
+				</div>
+			</div>
+			<a href="../alarm/alarm.html"><img id="menuAlarm"
+				src="../img/alarm.png"></a>
+		</div>
+		<!-- 메인메뉴바 끝 -->
+
+		<!-- 내용부분 시작 -->
+    <div id="center">
+
+      <div id="pro" align="center">
+        <div>
+      <input type="file" id="fileupload" name=photoData
+        data-url="profilePhoto.ajax" style="display: none">
+      <div id="progress">
+        <div class="bar" style="width: 0%; height: 5px;"></div>
+      </div>
+
+      <div id="sendFrom"></div>
+      <img id="profile_img" src="../img/profile/no-profile-image.jpg">
+        <div id="pofile_h1">
+<!--             <h1 id="profileName">OH SONGLEE</h1> -->
+            <h1 id="profileTitle"></h1>
+            <div id="title_pro"></div>
+    
+            <div id="favoriteTag">
+              <label id="favoriteTagLabel"> 
+              <img id="favoriteTagImage"  src="../img/profile/profile_tag.png"> 
+              <span id="favoriteTagText"><input type="text" id="favoriteTagContent" readonly></span>
+              </label>
+            </div>
+        </div>
+    </div>
+    
+        <div id="iconff">
+          <div id="chat_iconff"><p id="chat_iconP">Chatting Start</p><img class="iconF" src="../img/chat.png"></div>
+          <div id="loveFr_Btn"><p id="add_iconP">recommend</p><img id="btnChange" class="iconF" src="../img/addF.png"></div>
+        </div>
+
+     <div>
+          <div id="location_log">
+            <div id="log" >
+              </div>
+            </div>
+              <br>
+          </div>
+        </div>
+  
+		</div>
+
+		<!-- 내용부분 끝 -->
+
+		<!-- footer 시작 -->
+		<div id="footer"></div>
+	</div>
+	<!-- footer 끝  -->
+
+	<!-- 위치로그 나타내기 -->
+  <div  id="latlng" class='locationTag' style='display: none' >
+		<div class="locationTag_close">
+			<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
+		</div>
+		<div class="locationTag_image">
+			<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
+		</div>
+     <p  id="locationTagText"></p>
+	</div>
+	<!-- 위치로그 끝  -->
+
+  <!-- 추친친구 나타내기 -->
+  <div  id="loveFri_latlng" class='loveFri' style='display: none' >
+    <div class="loveFri_close">
+      <img id="closeIcon" class="mainIcon_c" src="../img/close.png">
+    </div>
+    <div class="loveFri_image">
+      <img id="locationIcon" class="mainIcon_t" src="../img/location.png">
+    </div>
+     <p  id="loveFriText">관심친구로 등록되었습니다.</p>
+  </div>
+  <!-- 추천친구 끝  -->
+  
+              <div  id="loveFri_latlng" class='errorFri' style='display: none' >
+              <div class="loveFri_close">
+                <img id="closeIcon" class="mainIcon_c" src="../img/close.png">
+              </div>
+              <div class="loveFri_image">
+                <img id="locationIcon" class="mainIcon_t" src="../img/location.png">
+              </div>
+               <p  id="errorText">이미 관심리스트에 추가된 친구입니다.</p>
+            </div>
+  
+  
+  
+  
+	<!-- 자바스크립트 -->
+	<script type="text/javascript"
+		src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+ <script type="text/javascript" src="../js/custom.js"></script>
+	<script type="text/javascript" src="../js/snap.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/main_Tap.js"></script>
+  <script type="text/javascript" src="../js/main_map.js"></script>
+
+	<!--  profile  -->
+	 <script type="text/javascript" src="./fr_profile.js"></script>
+	 <script type="text/javascript" src="../friend/friendList.js"></script>
+   <script type="text/javascript" src="../help/myRecommend.js"></script>
+
+
+</body>
+</html>

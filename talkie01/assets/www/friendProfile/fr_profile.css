@@ -1,0 +1,290 @@
+/* @CHARSET "EUC-KR"; */
+
+#pro {
+background-color: white;
+height: 336px;
+}
+#profile_img {
+/* border-radius: 10px; */
+/* margin-top: 10%; */
+width: 100%;
+/* height: 35%; */
+height: 350px;
+position: absolute;
+z-index: 1;
+}
+#title_pro {
+/* width: 70%; */
+text-align: center;
+margin-bottom: 2%;
+}
+/* #location_log {
+  background-color: #358fbc;
+  color: white;
+  font-weight: normal;
+  width: 100%;
+  height: 300px;
+  font-size: 25px;
+} */
+div#location_log {
+position: relative;
+z-index: 7;
+top: 295px;
+margin-top: 50px;
+
+}
+.iconF {
+/* width: 8%; */
+/* height: 8%; */
+height: 26px;
+margin: 3%;
+margin-top: 10px;
+position: relative;
+float: right;
+margin-right: 20px;
+}
+
+#favoriteTagLabel {
+  width: 100%;
+}
+
+#favoriteTagImage {
+  width: 18px;
+}
+
+#favoriteTagContent {
+  border: 0px;
+  text-align: left;
+  width: 80%;
+}
+
+
+#profile_modify{
+    width: 70%;
+    margin-bottom: 6%;
+}
+#profileTitleDiv{
+      text-align: left;
+      width: 80%;
+}
+#favoriteTagText_modify{
+      text-align: left;
+}
+#title_proDiv{
+      text-align: left;
+      width: 80%;
+}
+#favoriteTagLabel_modify{
+  width: 80%;
+}
+button#location_delete {
+float: right;
+width: 10%;
+}
+  
+.btn btn-default_com{
+margin-top: 5%;
+}
+div.log_div {
+font-size: small;
+width: 100%;
+padding-left: 15%;
+padding-right: 15%;
+height: 12%;
+}
+
+.log_text{
+text-align: left;
+width: 100%;
+float: left;
+
+padding-top: 8%;
+}
+.log_time{
+text-align: left;
+width: 100%;
+float: left;
+color : highlight;
+position: relative;
+float: left;
+top: -14px;
+  
+}
+img#delete_img {
+width: 1em;
+height: 1em;
+float: right;
+padding-top: 3%;
+margin: 0 0 16px;
+
+}
+div#location_delete {
+float: right;
+/* margin-top: 10px; */
+padding-top: 10%;
+
+}
+
+
+
+    #map2 {
+      display:inline-block;
+      float: left;
+      width: 80px;
+      height: 26px;
+/*       border-radius: 5px 0px 0px 5px; */
+      background-color: #358fbc;
+    }
+       #maps2 {
+      color: white;
+    }
+    #chat2 {
+      display:inline-block;
+      float: right;
+      width: 80px;
+      height: 26px;
+/*       border-radius: 0px 5px 5px 0px; */
+      background-color: #358fbc;
+    }
+    #chats2 {
+      color: white;
+    }
+              #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        width: 350px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      #latlng {
+        width: 225px;
+      }
+      .iconF {
+/* width: 8%; */
+/* height: 8%; */
+height: 26px;
+margin: 3%;
+margin-top: 10px;
+}
+div#progress {
+height: 0px;
+}
+
+div#chat_iconff {
+width: 50%;
+height: 50px;
+position: relative;
+float: left;
+background-color: #5E6062;
+} 
+div#loveFr_Btn{
+width: 50%;
+height: 50px;
+position: relative;
+float: left;
+background-color: #303030;
+}
+p#chat_iconP {
+/* width: 50%; */
+margin: 0px;
+position: relative;
+float: left;
+margin-left: 20px;
+margin-top: 13px;
+font-size: larger;
+color: white;
+
+}
+p#add_iconP {
+/* width: 50%; */
+margin: 0px;
+position: relative;
+float: left;
+margin-left: 20px;
+margin-top: 13px;
+font-size: larger;
+color: white;
+  }
+  
+
+div#pofile_h1 {
+
+background-color: lightslategray;
+opacity: 0.5;
+position: relative;
+z-index: 5;
+width: 100%;
+color: white;
+top: 255px;
+font-size:  medium;
+
+}
+h1 {
+/* width: 50%; */
+font-size: 130%;
+/* font-weight: bold; */
+margin: 5px;
+}
+
+div#iconff {
+position: relative;
+z-index: 6;
+top: 250px;
+}
+
+div.log_div {
+font-size: small;
+width: 100%;
+padding-left: 15%;
+padding-right: 15%;
+height: 12%;
+/* position: relative; */
+/* float: left; */
+/* border: 1px solid; */
+padding: 10px;
+background-color: #358fbc;
+
+}
+
+#log {
+
+width: 100%;
+background-color: transparent;
+}
+div.logImg {
+position: relative;
+float: left;
+}
+.mainIcon_t {
+background-size: 100% 2em;
+width: 2em;
+height: 2em;
+padding: 0px;
+position: relative;
+float: left;
+top: 10px;
+margin-left: 10px;
+}
+div.logText {
+margin-left: 40px;
+height: 50px;
+}
+
+.log_text {
+text-align: left;
+width: 100%;
+float: left;
+/* padding-top: 8%; */
+position: relative;
+color: white;
+top: -15px;
+font-size: medium;
+}
+
+li.log_li {
+list-style: none;
+}
