@@ -67,7 +67,7 @@ public class SignupControl {
 				log.info("nationNo:" + nationNo);
 				
 				int languageNo;
-				switch (country) {
+				switch (language) {
 					case "Korean":	languageNo = 1;
 					case "English":	languageNo = 2;
 					default:			languageNo = 1;

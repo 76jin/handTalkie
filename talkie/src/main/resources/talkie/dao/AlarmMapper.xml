@@ -17,7 +17,7 @@
 
  <insert id="addAlarm" parameterType="AlarmVo">
     insert into SE_ALARM(UNO,ALARMMSG,UNO2,DATETIME)
-    values (#{no}, #{alarmMsg}, #{frNo}, NOW(),'%b %d %Y %h:%i %p')
+    values (#{no}, #{alarmMsg}, #{frNo}, NOW())
   </insert>
  
  

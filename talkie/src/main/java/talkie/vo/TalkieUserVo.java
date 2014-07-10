@@ -11,6 +11,7 @@ public class TalkieUserVo implements Serializable {
 	String 	password;
 	int			age;
 	int			nation;
+	int		languageNo;
 	char		gender;
 	char		isDeclare;
 	String		grade;
@@ -21,15 +22,16 @@ public class TalkieUserVo implements Serializable {
 	String 	profileDesc;
 	int   recommend;
 	
+
 	@Override
     public String toString() {
 	    return "TalkieUserVo [no=" + no + ", name=" + name + ", email=" + email
 	            + ", password=" + password + ", age=" + age + ", nation="
-	            + nation + ", gender=" + gender + ", isDeclare=" + isDeclare
-	            + ", grade=" + grade + ", isEmail=" + isEmail + ", favTag="
-	            + favTag + ", phoPath=" + phoPath + ", profileTitle="
-	            + profileTitle + ", profileDesc=" + profileDesc
-	            + ", recommend=" + recommend + "]";
+	            + nation + ", languageNo=" + languageNo + ", gender=" + gender
+	            + ", isDeclare=" + isDeclare + ", grade=" + grade
+	            + ", isEmail=" + isEmail + ", favTag=" + favTag + ", phoPath="
+	            + phoPath + ", profileTitle=" + profileTitle + ", profileDesc="
+	            + profileDesc + ", recommend=" + recommend + "]";
     }
 	public int getNo() {
 		return no;
@@ -66,6 +68,13 @@ public class TalkieUserVo implements Serializable {
 		this.age = age;
 		return this;
 	}
+	public int getLanguageNo() {
+		return languageNo;
+	}
+	public TalkieUserVo setLanguageNo(int languageNo) {
+		this.languageNo = languageNo;
+		return this;
+	}
 	public int getNation() {
 		return nation;
 	}
@@ -73,6 +82,7 @@ public class TalkieUserVo implements Serializable {
 		this.nation = nation;
 		return this;
 	}
+	
 	public char getGender() {
 		return gender;
 	}

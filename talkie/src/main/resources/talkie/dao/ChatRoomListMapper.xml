@@ -40,13 +40,14 @@
   <select id="getChatRoomList" 
       parameterType="int" resultMap="chatRoomListMap">
 
-		select  LOGNO, CHATROOMNO,SENDER,CHATTEXT,SENDTIME
-		    from SE_CHATLOG
+SELECT CHATROOMNO, MIN(CHATTEXT) AS CHATTEXT,SENDER,SENDTIME
+FROM   SE_CHATLOG
 		    where CHATROOMNO IN (
 		    select CHATROOMNO
 		    from SE_CHATTINGROOM
-		    where find_in_set(#{userNo},MEMBER)) group by CHATROOMNO;
-    
+        where find_in_set(#{userNo},MEMBER)
+      ) 
+GROUP BY CHATROOMNO;
   </select>
   
   <!-- 

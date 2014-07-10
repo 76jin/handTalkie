@@ -12,6 +12,7 @@
     <result column="NAME" property="name"/>
     <result column="AGENO" property="age"/>
     <result column="NATINO" property="nation"/>
+    <result column="LANNO" property="languageNo"/>
     <result column="GENDER" property="gender"/>
     <result column="ISDECLARE" property="isDeclare"/>
     <result column="GRADE" property="grade"/>
@@ -21,6 +22,16 @@
     <result column="PROFILETITLE" property="profileTitle"/>
     <result column="PROFILEDESC" property="profileDesc"/>
     <result column="RECOMMEND" property="recommend"/>
+  <!--     <association property="SE_ADDLANG" column="UNO" javaType="UserInfoVo">
+       <id column="UNO" property="no"/>PK 컬럼에 대해서만 설정한다.
+    <result column="EMAIL" property="email"/>
+    <result column="NAME" property="name"/>
+    <result column="NATINO" property="nation"/>
+    <result column="LANNO" property="languageNo"/>
+    <result column="PHOPATH" property="photoPath"/>
+      </association> -->
+      
+      
   </resultMap> 
 
   <!-- 
@@ -37,7 +48,7 @@
  
   <select id="getLoginUser" 
       parameterType="map" resultMap="talkieUserMap">
-    select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,FAVTAG,PHOPATH
+    select UNO,NAME,EMAIL,AGENO,NATINO,LANNO,GENDER,FAVTAG,PHOPATH
     from SE_USERS
     where EMAIL=#{email} and PASSWORD=#{password}
   </select>
@@ -77,7 +88,7 @@
       <select id="getFriendFind" 
       parameterType="TalkieUserVo" resultMap="talkieUserMap">
     
-    select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,FAVTAG,PHOPATH,PROFILETITLE,PROFILEDESC,RECOMMEND
+    select UNO,NAME,EMAIL,AGENO,NATINO,LANNO,GENDER,FAVTAG,PHOPATH,PROFILETITLE,PROFILEDESC,RECOMMEND
     from SE_USERS 
     where NAME like CONCAT('%', #{search}, '%') or EMAIL like CONCAT('%', #{search}, '%') or NATINO like CONCAT('%', #{search}, '%')
 
@@ -93,7 +104,7 @@
   
      <select id="getfriendNo" 
       parameterType="TalkieUserVo" resultMap="talkieUserMap">
-      select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,PHOPATH,RECOMMEND
+      select UNO,NAME,EMAIL,AGENO,NATINO,LANNO,GENDER,PHOPATH,RECOMMEND
       from SE_USERS 
       where UNO=#{no}
   
@@ -101,7 +112,7 @@
     
       <select id="getfriendinfo" 
       parameterType="TalkieUserVo" resultMap="talkieUserMap">
-      select UNO,NAME,EMAIL,AGENO,NATINO,GENDER,FAVTAG,PHOPATH,PROFILETITLE,PROFILEDESC,RECOMMEND
+      select UNO,NAME,EMAIL,AGENO,NATINO,LANNO,GENDER,FAVTAG,PHOPATH,PROFILETITLE,PROFILEDESC,RECOMMEND
       from SE_USERS 
       where UNO=#{no}
   
