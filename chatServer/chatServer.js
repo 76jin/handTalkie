@@ -220,8 +220,10 @@ app.get('/newSetupChat.jsonp*', function(req, res, next){
   var insertId = 0;
   var chatList = [userNo];
   var resultValue = true;
-  for (var i=0; i < checkedUsers.length; i++) {
-    chatList.push(checkedUsers[i]);
+  var tempSplit = checkedUsers.split(',');
+  console.log('tempSplit: ', tempSplit);
+  for (var i=0; i < tempSplit.length; i++) {
+    chatList.push(tempSplit[i]);
   }
   console.log('chatList:', chatList);
   
