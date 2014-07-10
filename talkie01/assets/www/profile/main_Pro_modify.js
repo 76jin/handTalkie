@@ -13,6 +13,7 @@ window.onload = function() {
   }
 }
 */
+var delNo;
 
 $(window).load(function(){
 	console.log("실행이 안되나요?");
@@ -22,7 +23,7 @@ $(window).load(function(){
 	//프로필수정
   
 function locationTagList(){
-	$.ajax( 'http://14.32.7.49:9989/talkie/loglist.ajax', {
+	$.ajax( 'http://14.32.66.98:9989/talkie/loglist.ajax', {
     type: 'POST',
     dataType: 'json',
     data: {
@@ -43,14 +44,35 @@ function locationTagList(){
 					$.each(result.data, function(index, obj) {
 						$.each(obj, function(index, test) {
 							var location = ("logNo:"+test.logNo+"no:" + test.no +",locationTag:"+ test.loctionTag +",logTime:"+test.logTime);
-							$(".log_div")
-						    .append($("<div class='log_text'></div>").text(test.loctionTag))
-						    .append($("<div class='log_time'></div>").text(test.logTime))
-						    .append($("<img class='location_delete' src='../img/delete.png'>").text(test.logNo));
-        
-							console.log(">>>"+location);
+//							$(".log_div")
+//						    .append($("<div class='log_text'></div>").text(test.loctionTag))
+//						    .append($("<div class='log_time'></div>").text(test.logTime))
+//						    .append($("<img class='location_delete' src='../img/delete.png'>").text(test.logNo));
+//        
+//							console.log(">>>"+location);
+							
+							  $("#log").append(
+				            			'<div class="log_div">'+
+				            			'<li class="log_li"><div class="logImg">'+
+									'<img id="locationIcon" class="mainIcon_t" src="../img/location.png"></div>' +
+		       	   				    ' <div class="logText"><div class="log_text">'+test.loctionTag+'</div>'+
+		       	   				    '<div class="log_time">'+test.logTime+'</div>'+
+		       	   				    '<img  data-delno= "'+ test.logNo +'" class="location_delete" src="../img/delete.png"></div></li></div>');
+				            	   
+		          console.log(">>>"+location);
+		          window.localStorage.setItem("locationTagText",location);
+		          
+		          
 						});
-        
+						$(".location_delete").on("click",function(){
+		        			delNo = $(this).attr("data-delno");
+		        			console.log(delNo);
+		        			window.localStorage.setItem("delNo",delNo);
+		        			console.log(window.localStorage.getItem("delNo"));
+		        			deleteLocationLog(window.localStorage.getItem("delNo"));
+		        		});
+		        		
+						
 					});
         }
         
@@ -64,6 +86,9 @@ function locationTagList(){
   });
 
 }
+
+
+	
 	$('#iconff').click(function(){
 		console.log("호출!");
 		$.ajax( serverUrl + '/update.ajax', {
@@ -107,15 +132,7 @@ function locationTagList(){
     
     
 	});
-        
-	$('.log_div').click(function(event){
-		console.log("삭제준비중:"+$(event.target).text());
-        
-//		console.log("삭제준비중:"+showObj(event.target));
-		deleteLocationLog($(event.target).text());
-    
-	 });
-	
+
 	function showObj(obj) {
 		var str = "";
 		for(key in obj) {
@@ -127,10 +144,10 @@ function locationTagList(){
 		return;
 }
 	function deleteLocationLog(no) {
-		console.log("삭제준비중:"+no);
+		console.log("삭제준비중:"+window.localStorage.getItem("delNo"));
 		$.getJSON(
-				serverUrl + 
-				'/delete.ajax?no=' + no,
+				'http://14.32.66.98:9989/talkie' + 
+				'/delete.ajax?no=' + window.localStorage.getItem("delNo"),
 				function(jsonObj) {
 					var result = jsonObj.ajaxResult;
 					if (result.status == "ok") {
@@ -138,7 +155,7 @@ function locationTagList(){
 						$('.log_text').remove();
 						$('.log_time').remove();
 						$('.location_delete').remove();
-
+						$('.log_div').remove();
 						locationTagList();
 
 					} else {

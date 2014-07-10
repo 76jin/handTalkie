@@ -69,6 +69,9 @@ function makeMarkerImage(markerImage) {
             '',
             '',
             new google.maps.Size(size_x, size_y) );
+  
+
+  
 }
 ////마커 정보 끝 ////////////////////////
 
@@ -218,6 +221,9 @@ function initialize() {
                                  "img/profile/profile_6.jpg",
                                  ];
       
+
+      
+      
       for (var i=0; i < othersTempNo.length; i++) {
         var otherLength = UserPositionInfo.others.length;
         UserPositionInfo.others[otherLength] = [];
@@ -227,6 +233,7 @@ function initialize() {
         UserPositionInfo.others[otherLength].push(tempLatLng);  // othersPosition
         
         displayOtherLocation(UserPositionInfo.others[i][1], othersTempPhotoPath[i]);    // display other positon in map.
+      
       }
       console.log('UserPositionInfo.others:' + UserPositionInfo.others);
       //console.log('UserPositionInfo:', UserPositionInfo);

@@ -15,7 +15,7 @@ var UserPositionInfo.Create = function(userNo, userPosition) {
 var snapper;
 var serverUrl;
 var chatServerUrl;
-
+var name;
 window.onload = mainTap;
 
 $(function() {
@@ -56,11 +56,13 @@ function mainTap() {
   console.log("called main_tap.js, onload!!!");
   var userNo = window.localStorage.getItem("userNo");
   var email = window.localStorage.getItem("email");
+  var name = window.localStorage.getItem("name");
   serverUrl = window.localStorage.getItem("serverUrl");
   chatServerUrl = window.localStorage.getItem("chatServerUrl");
   
   console.log("===== location.pathname;" + location.pathname);
   console.log("===== email:" + email);
+  console.log("===== name:" + name);
   console.log('serverUrl:' + serverUrl);
   console.log('chatServerUrl:' + chatServerUrl);
 
@@ -129,6 +131,7 @@ function mainTap() {
     console.log('===== userNo: ' + userNo);
     console.log('===== checkedUsers: ' + checkedUsers);
     
+    
     // 선택한 사람들의 UNO를 배열로 조합하여 넘긴다.
     $.ajax( chatServerUrl +'/isFirstEntrance.jsonp', {
       crossDomain:true,
@@ -146,10 +149,16 @@ function mainTap() {
         } else {
           console.log('##### isFirstEntrance.jsonp 성공!');
           console.log('##### result.data:' + result.data);
+          var isFirst;
+          if (result.data == 0) {
+            isFirst = true;
+          } else {
+            isFirst = false;
+          }
           
-          window.localStorage.setItem("isFirstChat", result.data);
-          
-          if (!result.data) { // call current chat room
+          // 
+          if (!isFirst) { // call current chat room
+            window.localStorage.setItem("isFirstChat", false);
             location.href = '../chat/chatMain.html';
           } else {        // newSetup  chat room
            // 채팅 서버로 채팅할 사용자들 정보 전달
@@ -175,6 +184,7 @@ function mainTap() {
                   var chatRoomNumber = result.data.chatRoomNumber;
                   window.localStorage.setItem("chatRoomNumber", chatRoomNumber);
                   window.localStorage.setItem("chatList", result.data.chatList);
+                  window.localStorage.setItem("isFirstChat", true);
                   
                   //location.href = chatServerUrl;
                   //location.href = chatServerUrl + "/users/" + chatRoomNumber;
@@ -306,21 +316,24 @@ function getUserInfo() {
         switch (user.nation) {
           case 1: nation = 'Korea';
           case 2: nation = 'U.S.A';
+          case 3: nation = 'China';
           default: nation = 'Korea';
         }
         
         //console.log('nation:' + nation);
         
+     
         var language;
-        switch (user.nation) { //언어!!
-          case 1: language = 'Korean';
-          case 2: language = 'English';
-          default: language = 'Korean';
+        switch (user.languageNo) {
+          case 1: languageNo = 'Korean';break;
+          case 2: languageNo = 'English';break;
+          case 3: languageNo = 'Chinese';break;
+          default: languageNo = 'Korean';break;
         }
         //console.log('language:' + language);
         
         $('#profileCountry').text(nation);
-        $('#profileLanguage').text(language);
+        $('#profileLanguage').text(languageNo);
         
         console.log('user.phoPath:' + user.phoPath);
         if (user.phoPath) {
@@ -329,6 +342,10 @@ function getUserInfo() {
           $('#myPic').attr("src", "../img/profile/no-profile-image.jpg");
         }
 
+        
+        console.log('user.name:' + user.name);
+        window.localStorage.setItem("name",user.name);
+        
       } else {
         alert("로그인 하지 않았습니다.");
         location.href = "../auth/main_slider.html";

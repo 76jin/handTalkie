@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="../css/toast.css">
 <link rel="stylesheet" type="text/css" href="../css/search-bar.css">
 <!--  profile  -->
-<link rel="stylesheet" type="text/css" href="./profile.css">
+<!-- <link rel="stylesheet" type="text/css" href="./profile.css"> -->
 <link rel="stylesheet" type="text/css" href="./main_Pro_modify.css">
 
 
@@ -30,20 +30,20 @@
 </head>
 <body>
 	<!-- 사이드메뉴바  시작-->
-	<div class="drawers">
-		<div class="left-drawer">
-			<a href="../profile/main_Pro.html"> 
-			  <div id="profile">
-					<h4 id="name"></h4>
-					<p>
-						<span id="profileCountry"></span> / <span id="profileLanguage"></span>
-					</p>
-				</div>
-			</a>
-			<div id="imgBox">
-				<img id="myPic" src="../img/profile/no-profile-image.jpg" alt="myInfo">
-			</div>
-		</div>
+  <div class="drawers">
+    <div class="left-drawer">
+      <div id="imgBox">
+        <img id="myPic" alt="myInfo">
+      </div>
+      <a href="../profile/main_Pro.html"><!--  <img class="mainIcon_f"> -->
+        <div id="profile">
+          <h4 id="name"></h4>
+          <p>
+            <span id="profileCountry"></span> / <span id="profileLanguage"></span>
+          </p>
+        </div>
+      </a>
+    </div>
 
 		<div class="snap-drawer snap-drawer-left">
 			<div>
@@ -54,12 +54,12 @@
 						</a></li>
 					</div>
 
-					<li><a href="../friend/friendList.html"> <img id="friend"
-							class="mainIcon_s" src="../img/friend.png"> friend List
-					</a></li>
-					<li><a href="../help/help.html"> <img id="help"
-							class="mainIcon_s" src="../img/help.png"> help
-					</a></li>
+          <li><a href="../friend/friendList.html"> <img id="friend"
+              class="mainIcon_s" src="../img/friend.png"> search Friend
+          </a></li>
+          <li><a href="../help/myRecommend.html"> <img id="help"
+              class="mainIcon_s" src="../img/help.png"> myFriend List
+          </a></li>
 					<li><a href="../setting/setting.html"> <img id="setting"
 							class="mainIcon_s" src="../img/setting.png"> setting
 					</a></li>
@@ -104,14 +104,6 @@
 					<img id="profile_img" src="../img/profile/no-profile-image.jpg">
 				</div>
         <!-- 수정완료버튼 -->
-				
-				
-				
-				
-				
-				<div id="iconff" id="updateBtn">
-					<span><img class="iconF" src="../img/save.png"></span> 
-				</div>
 
 
 
@@ -121,7 +113,7 @@
 						<div class="form-group">
 							<div class="col-sm-10">
 								<input id="profileTitle_modity" type="text" class="form-control"
-									placeholder="Text input">
+									value="Text input">
 							</div>
 						</div>
 					</div>
@@ -131,7 +123,7 @@
 						<div class="form-group">
 							<div class="col-sm-10">
 								<textarea id="title_pro_modity" class="form-control" rows="3"
-									placeholder="Text input 100 limit"></textarea>
+									value="Text input 100 limit">Text input 100 limit</textarea>
 							</div>
 						</div>
 					</div>
@@ -140,23 +132,37 @@
 					<div id="favoriteTagDiv">
 						<label id="favoriteTagLabel_modify"> <!--  <img id="favoriteTagImage" src="./img/profile/profile_tag.png">  -->
 							<input id="favoriteTagText_modify" type="text"
-							class="form-control" placeholder="Text input">
+							class="form-control" value="Text input">
 						</label>
 					</div>
-
-	
-
-
 				</form>
 
 
+  <div id="iconff">
+          <div  id="updateBtn" id="add_iconff"><p id="add_iconP">Save</p><img id="btnChange" class="iconF" src="../img/save.png"></div>
+        </div>
 
 				<!-- 위치로그 편집(삭제만 가능) -->
-			 <div style="background-color: #358fbc">
+			 <div>
 					<div id="location_log">
-						<div class="log_div">
-							</div>
-	
+	 <div id="log" >
+	 
+<!-- 	 <div class="log_div">
+                          <li class="log_li"><div class="logImg">
+                  <img id="locationIcon" class="mainIcon_t" src="../img/location.png"></div>
+                          <div class="logText"><div class="log_text">'+test.loctionTag+'</div>
+                          <div class="log_time">'+test.logTime+'</div>
+                          <img  class="location_delete" src="../img/delete.png"></div></li></div>
+	 <div class="log_div">
+                          <li class="log_li"><div class="logImg">
+                  <img id="locationIcon" class="mainIcon_t" src="../img/location.png"></div>
+                          <div class="logText"><div class="log_text">'+test.loctionTag+'</div>
+                          <div class="log_time">'+test.logTime+'</div>
+                          <img  class="location_delete" src="../img/delete.png"></div></li></div>
+   
+	  -->
+	 
+              </div>
 							<div class="form-group">
 							<div id='btnDelete'  class="col-sm-offset-2 col-sm-10">
 								</div>
@@ -194,6 +200,7 @@
     src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
+		<script src="../cordova.js"></script>
 		<script src="../js/jquery.ui.widget.js"></script>
 		<script src="../js/jquery.iframe-transport.js"></script>
 		<script src="../js/jquery.fileupload.js"></script>
@@ -204,8 +211,8 @@
   <script type="text/javascript" src="../js/main_map.js"></script>
 <!--  profile  -->
 		    <script type="text/javascript" src="./main_Pro_modify.js"></script>
-<!-- 	<script type="text/javascript" src="./pro_modify.js"></script>
-	<script type="text/javascript" src="./profile.js"></script> -->
+ 	<script type="text/javascript" src="./pro_modify.js"></script>
+<!-- 	<script type="text/javascript" src="./profile.js"></script> -->
 
 </body>
 </html>

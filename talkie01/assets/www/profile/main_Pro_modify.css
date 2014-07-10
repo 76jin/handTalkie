@@ -1,4 +1,36 @@
 @CHARSET "UTF-8";
+#pro {
+background-color: white;
+height: 283px;
+}
+.iconF {
+/* width: 8%; */
+/* height: 8%; */
+height: 26px;
+margin: 3%;
+margin-top: 10px;
+position: relative;
+float: right;
+margin-right: 20px;
+}
+div#add_iconff {
+width: 100%;
+height: 50px;
+position: relative;
+float: left;
+background-color: #303030;
+}
+p#add_iconP {
+/* width: 50%; */
+margin: 0px;
+position: relative;
+float: left;
+margin-left: 20px;
+margin-top: 13px;
+font-size: larger;
+color: white;
+  }
+
 #profile_modify{
 	  width: 70%;
 	  margin-bottom: 6%;
@@ -17,11 +49,11 @@
 #favoriteTagLabel_modify{
 	width: 80%;
 }
-button#location_delete {
+/* button#location_delete {
 float: right;
 width: 10%;
 }
-  
+   */
 .btn btn-default_com{
 margin-top: 5%;
 }
@@ -48,18 +80,10 @@ color : highlight;
 
 }
 
-.location_delete {
-position: relative;
-	float: right;
-width: 1.6em;
-height: 1.6em;
-top: -15px;
-/* 
-border:1px solid red; */
-}
+
 #iconff {
 margin-top: 4%;
-margin-bottom: 4%;
+
 }
 
 
@@ -68,7 +92,7 @@ margin-bottom: 4%;
       float: left;
       width: 80px;
       height: 26px;
-      border-radius: 5px 0px 0px 5px;
+/*       border-radius: 5px 0px 0px 5px; */
       background-color: #358fbc;
     }
        #maps2 {
@@ -79,12 +103,13 @@ margin-bottom: 4%;
       float: right;
       width: 80px;
       height: 26px;
-      border-radius: 0px 5px 5px 0px;
+/*       border-radius: 0px 5px 5px 0px; */
       background-color: #358fbc;
     }
     #chats2 {
       color: white;
-    }              #panel {
+    }         
+         #panel {
         position: absolute;
         top: 5px;
         left: 50%;
@@ -98,3 +123,107 @@ margin-bottom: 4%;
       #latlng {
         width: 225px;
       }
+      div#updateBtn {
+background-color: #303030;
+height: 50px;
+}
+#profile_modify {
+width: 90%;
+margin-bottom: 6%;
+margin-top: 34px;
+}
+
+/*로그관련css*/
+
+/* div#location_log {
+position: relative;
+z-index: 7;
+top: 295px;
+margin-top: 50px;
+
+} */
+
+div.log_div {
+font-size: small;
+width: 100%;
+padding-left: 15%;
+padding-right: 15%;
+height: 75px;
+}
+
+.log_text{
+text-align: left;
+width: 80%;
+float: left;
+padding-top: 8%;
+top: -15px;
+}
+.log_time{
+text-align: left;
+width: 80%;
+float: left;
+color : highlight;
+position: relative;
+float: left;
+top: -15px;
+  
+}
+
+.location_delete {
+height: 2.5em;
+width: 2em;
+margin: 7px 0px;
+}
+
+div.log_div {
+font-size: small;
+width: 100%;
+padding-left: 15%;
+padding-right: 15%;
+height: 12%;
+/* position: relative; */
+/* float: left; */
+/* border: 1px solid; */
+padding: 15px 10px;
+background-color: #358fbc;
+
+}
+
+#log {
+
+width: 100%;
+background-color: transparent;
+}
+div.logImg {
+position: relative;
+float: left;
+/* width: 10%; */
+padding: 10px;
+}
+div.logText {
+/* margin-left: 32px; */
+height: 50px;
+width: 80%;
+margin-right: 9px;
+position: relative;
+float: left;
+}
+.log_text {
+text-align: left;
+width: 80%;
+float: left;
+/* padding-top: 8%; */
+position: relative;
+color: white;
+top: -15px;
+font-size: medium;
+}
+li.log_li {
+list-style: none;
+height: 50px;
+}
+
+img#profile_img {
+width: 270px;
+height: 271px;
+}

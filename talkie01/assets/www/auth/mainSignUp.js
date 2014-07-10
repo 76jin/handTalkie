@@ -2,6 +2,7 @@ $(document).ready(function(){
 	// 화면 로딩이 완료되면, 로그인 버튼의 리스너를 등록한다.
 	$('#signupBtn').on('click', function(event){
 		event.preventDefault();
+		console.log("시작!");
 
 		/* 입력 체크 */
 		if ($('#name').val().length == 0) {
@@ -37,7 +38,7 @@ $(document).ready(function(){
 		
 		
 		
-		$.ajax(bit.serverUrl+'/auth/insertSignUp.ajax', {
+		$.ajax("http://14.32.66.98:9989/auth/insertSignUp.ajax", {
 			type: 'POST',
 			dataType: 'json', /*서버에서 보내는 데이터의 형식 지정 */
 			data: { /* 서버쪽으로 보내는 데이터 */
@@ -67,10 +68,9 @@ $(document).ready(function(){
 		// 등록 성공 후에 해야할 작업을 여기에 기술한다면,당신은 바보!
 		//location.href="../subject/list.bit";
 	});
+
+
 });
-
-
-
 
 
 

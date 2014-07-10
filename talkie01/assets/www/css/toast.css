@@ -1,37 +1,34 @@
 @CHARSET "UTF-8";
 
-  .locationTag{
-    
-    position: fixed;
-    bottom: 50%;
-    left: 50%;
-    width: 200px;
-    margin-left: -100px;
-    border: 1.5px solid #4682B4;
-    background-color: #333;
-    opacity: 0.9;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    padding: 5px 0 ;
-    text-align:center;
-    color: #eee;
-    font-family: lucida Grande;
-    font-size: smaller;
-   
-    /*The good stuff */
-    -webkit-transition: opacity 0.5s ease-out;  /* Saf3.2+, Chrome */
-    -moz-transition: opacity 0.5s ease-out;  /* FF4+ */
-    -ms-transition: opacity 0.5s ease-out;  /* IE10? */
-    -o-transition: opacity 0.5s ease-out;  /* Opera 10.5+ */
-    transition: opacity 0.5s ease-out;  
- 
-    }  
+  .locationTag {
+position: relative;
+z-index: 10;
+left: 50%;
+width: 200px;
+margin-left: -140px;
+border: 1.5px solid #4682B4;
+background-color: #333;
+opacity: 0.9;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+padding: 5px 0;
+text-align: center;
+color: #eee;
+top: 280px;
+font-family: lucida Grande;
+font-size: larger;
+-webkit-transition: opacity 0.5s ease-out;
+-moz-transition: opacity 0.5s ease-out;
+-ms-transition: opacity 0.5s ease-out;
+-o-transition: opacity 0.5s ease-out;
+transition: opacity 0.5s ease-out;
+}
 
 .locationTag p {
     text-align: left;
     border: 10px;
-    font-size: x-small;
-    margin: 10px;
+    font-size: larger;
+    margin: 20px;
 }
 
 .locationTag_close {
@@ -65,7 +62,10 @@
       margin: 0px 0px 8px -5px;
 }
 
-
+#latlng {
+width: 275px;
+height: 100px;
+}
 
 /*
 .toast-type-notice {

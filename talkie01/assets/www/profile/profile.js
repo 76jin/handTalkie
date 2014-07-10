@@ -84,10 +84,35 @@ function loadprofileList() {
 		            $.each(result.data, function(index, obj) {
 		               $.each(obj, function(index, test) {
 		            	   var location = ("no:" + test.no +",locationTag:"+ test.loctionTag +",logTime:"+test.logTime);
-		            	   $("#log").append("<div class='log_text'>"+test.loctionTag+"</div>")
-		            	   				.append("<div class='log_time'>"+test.logTime+"</div>");
-		               console.log(">>>"+location);
-		               window.localStorage.setItem("locationTagText",location);
+		               	  
+		            	   $("#log").append(
+		            			'<div class="log_div">'+
+		            			'<li class="log_li"><div class="logImg">'+
+							'<img id="locationIcon" class="mainIcon_t" src="../img/location.png"></div>' +
+       	   				    ' <div class="logText"><div class="log_text">'+test.loctionTag+'</div>'+
+       	   				    '<div class="log_time">'+test.logTime+'</div></div></li></div>');
+		            	   
+          console.log(">>>"+location);
+          window.localStorage.setItem("locationTagText",location);
+
+//		            	   
+//		            	   $(".log_div")
+//		            	   				.append("<div class='log_text'>"+test.loctionTag+"</div>")
+//		            	   				.append("<div class='log_time'>"+test.logTime+"</div>");
+//		               console.log(">>>"+location);
+//		               window.localStorage.setItem("locationTagText",location);
+//		               
+//		               
+//		       		$(".fr_bor").append('<li class="fr_li"><a class="send_email" href="../friendProfile/friend_Pro.html">' +
+//							'<img class="fr_img" src='+"http://14.32.66.98:9989/talkie/" + friend.phoPath + '>' +
+//							'<div class="fr_box"><h4>' +  friend.name +'</h4>' +
+//							'<p class="fr_p">' + friend.profileTitle + '</p></div>' +
+//							'<div data-re= "'+ friend.recommend +'"  data-no= "'+ friend.no +'" class="fr_ui" data-id= "'+ friend.email +'">
+//          <div id="recommend"><span class="ui-li-count">' + friend.recommend+ '</span></div></a></li>');
+
+		               
+		               
+		               
 		               });
 		            });
 		         }

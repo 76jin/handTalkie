@@ -111,9 +111,8 @@
                       var isFirst = window.localStorage.getItem("isFirstChat");
                       console.log('##### isFirst:' + isFirst);
                       
-                      if (isFirst === true) {
+                      if (isFirst) {
                         console.log('이 채팅방 처음 입장이다!');
-                        window.localStorage.setItem("isFirstChat", false);
                         socket.emit('ADD_USER', addUserParam); // 서버에 사용자명 전달
                       } else {
                         console.log('기존 채팅방이다!');
@@ -308,7 +307,7 @@
           console.log('채팅 정보 가져오기 성공!');
           console.log('jsonp::result.data:' + result.data);
           
-          if (result.data) {
+          if (result.data > 0) {
             console.log('기존 채팅방이다!');
             return false;
           } else {

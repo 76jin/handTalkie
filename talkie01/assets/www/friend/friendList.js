@@ -49,7 +49,8 @@ function getFriendList() {
 							'<img class="fr_img" src='+"http://14.32.66.98:9989/talkie/" + friend.phoPath + '>' +
 							'<div class="fr_box"><h4>' +  friend.name +'</h4>' +
 							'<p class="fr_p">' + friend.profileTitle + '</p></div>' +
-							'<div data-re= "'+ friend.recommend +'"  data-no= "'+ friend.no +'" class="fr_ui" data-id= "'+ friend.email +'"><div id="recommend"><span class="ui-li-count">' + friend.recommend+ '</span></div></a></li>');
+							'<div data-re= "'+ friend.recommend +'"  data-no= "'+ friend.no +'" class="fr_ui" data-id= "'+ friend.email +'">'+
+							'<div id="recommend"><span class="ui-li-count">' + friend.recommend+ '</span></div><img id="next" class="mainIcon_next"  src="../img/next2.png"></a></li>');
 
 						});
 		        		$(".fr_ui").on("click",function(){

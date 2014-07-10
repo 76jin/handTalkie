@@ -1,4 +1,19 @@
 @CHARSET "UTF-8";
+#center {
+height: 556px;
+margin-top: 48px;
+/* z-index: 99; */
+/* background-color: white; */
+/* padding: 0px 3px 0px 3px; */
+}
+#menuIcon {
+background-size: 100% 1em;
+width: 4em;
+height: 4em;
+float: left;
+padding: 15px;
+margin-top: -2px;
+}
 #center{
 	background-color: white;
 }

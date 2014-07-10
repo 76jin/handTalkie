@@ -1,54 +1,47 @@
 /* @CHARSET "EUC-KR"; */
 
 #pro {
-	background-color: white;
+background-color: white;
+height: 336px;
 }
 #profile_img {
-
-	border-radius:10px;
-	margin-top:10%;
-		width: 45%;
-/* 		height: 35%; */
-height: 140px;
+/* border-radius: 10px; */
+/* margin-top: 10%; */
+width: 100%;
+/* height: 35%; */
+height: 350px;
+position: absolute;
+z-index: 1;
 }
 #title_pro {
-	 width: 70%;
-	text-align: center;
-	margin-bottom: 6%;
+/* width: 70%; */
+text-align: center;
+margin-bottom: 2%;
 }
-#location_log {
+/* #location_log {
 	background-color: #358fbc;
 	color: white;
 	font-weight: normal;
 	width: 100%;
-/* 	height: 300px; */
+	height: 300px;
 	font-size: 25px;
+} */
+div#location_log {
+position: relative;
+z-index: 7;
+top: 295px;
+margin-top: 50px;
+
 }
 .iconF {
-	width: 8%;
-/* 	height: 8%; */
-	height: 26px;
-	margin: 3%;
-	margin-top: 1.6%;
-}
-
-
-h1 {
-	width: 50%;
-	font-size: 130%;
-	font-weight: bold;
-}
-#iconff {
-	margin-top: 4%;
-}
-
-
-
-
-
-#favoriteTag {
-	width: 80%;
-	margin-bottom: 10px;
+/* width: 8%; */
+/* height: 8%; */
+height: 26px;
+margin: 3%;
+margin-top: 10px;
+position: relative;
+float: right;
+margin-right: 20px;
 }
 
 #favoriteTagLabel {
@@ -112,6 +105,9 @@ text-align: left;
 width: 100%;
 float: left;
 color : highlight;
+position: relative;
+float: left;
+top: -14px;
 	
 }
 img#delete_img {
@@ -128,10 +124,7 @@ float: right;
 padding-top: 10%;
 
 }
-#iconff {
-margin-top: 4%;
-margin-bottom: 4%;
-}
+
 
 
     #map2 {
@@ -139,7 +132,7 @@ margin-bottom: 4%;
       float: left;
       width: 80px;
       height: 26px;
-      border-radius: 5px 0px 0px 5px;
+/*       border-radius: 5px 0px 0px 5px; */
       background-color: #358fbc;
     }
        #maps2 {
@@ -150,7 +143,7 @@ margin-bottom: 4%;
       float: right;
       width: 80px;
       height: 26px;
-      border-radius: 0px 5px 5px 0px;
+/*       border-radius: 0px 5px 5px 0px; */
       background-color: #358fbc;
     }
     #chats2 {
@@ -170,3 +163,128 @@ margin-bottom: 4%;
       #latlng {
         width: 225px;
       }
+      .iconF {
+/* width: 8%; */
+/* height: 8%; */
+height: 26px;
+margin: 3%;
+margin-top: 10px;
+}
+div#progress {
+height: 0px;
+}
+
+/* div#chat_iconff {
+width: 50%;
+height: 50px;
+position: relative;
+float: left;
+background-color: #5E6062;
+} */
+div#add_iconff {
+width: 100%;
+height: 50px;
+position: relative;
+float: left;
+background-color: #303030;
+}
+p#chat_iconP {
+/* width: 50%; */
+margin: 0px;
+position: relative;
+float: left;
+margin-left: 20px;
+margin-top: 13px;
+font-size: larger;
+color: white;
+
+}
+p#add_iconP {
+/* width: 50%; */
+margin: 0px;
+position: relative;
+float: left;
+margin-left: 20px;
+margin-top: 13px;
+font-size: larger;
+color: white;
+	}
+	
+
+div#pofile_h1 {
+
+background-color: lightslategray;
+opacity: 0.7;
+position: relative;
+z-index: 5;
+width: 100%;
+color: white;
+top: 255px;
+font-size:  medium;
+
+}
+h1 {
+/* width: 50%; */
+font-size: 130%;
+/* font-weight: bold; */
+margin: 5px;
+}
+
+div#iconff {
+position: relative;
+z-index: 6;
+top: 250px;
+}
+
+div.log_div {
+font-size: small;
+width: 100%;
+padding-left: 15%;
+padding-right: 15%;
+height: 12%;
+/* position: relative; */
+/* float: left; */
+/* border: 1px solid; */
+padding: 10px;
+background-color: #358fbc;
+
+}
+
+#log {
+
+width: 100%;
+background-color: transparent;
+}
+div.logImg {
+position: relative;
+float: left;
+}
+.mainIcon_t {
+background-size: 100% 2em;
+width: 2em;
+height: 2em;
+padding: 0px;
+position: relative;
+float: left;
+top: 10px;
+margin-left: 10px;
+}
+div.logText {
+margin-left: 40px;
+height: 50px;
+}
+
+.log_text {
+text-align: left;
+width: 100%;
+float: left;
+/* padding-top: 8%; */
+position: relative;
+color: white;
+top: -15px;
+font-size: medium;
+}
+
+li.log_li {
+list-style: none;
+}

@@ -23,20 +23,20 @@
 </head>
 <body>
 	<!-- 사이드메뉴바  시작-->
-	<div class="drawers">
-		<div class="left-drawer">
-			<a href="../profile/main_Pro.html"> <img class="mainIcon_f">
-				<div id="profile">
-					<h4 id="name"></h4>
-					<p>
-						<span id="profileCountry"></span> / <span id="profileLanguage"></span>
-					</p>
-				</div>
-			</a>
-			<div id="imgBox">
-				<img id="myPic" src="../img/profile/profile-image.jpg" alt="myInfo">
-			</div>
-		</div>
+  <div class="drawers">
+    <div class="left-drawer">
+      <div id="imgBox">
+        <img id="myPic" alt="myInfo">
+      </div>
+      <a href="../profile/main_Pro.html"><!--  <img class="mainIcon_f"> -->
+        <div id="profile">
+          <h4 id="name"></h4>
+          <p>
+            <span id="profileCountry"></span> / <span id="profileLanguage"></span>
+          </p>
+        </div>
+      </a>
+    </div>
 
 		<div class="snap-drawer snap-drawer-left">
 			<div>
@@ -47,12 +47,12 @@
 						</a></li>
 					</div>
 
-					<li><a href="../friend/friendList.html"> <img id="friend"
-							class="mainIcon_s" src="../img/friend.png"> friend List
-					</a></li>
-					<li><a href="../help/help.html"> <img id="help"
-							class="mainIcon_s" src="../img/help.png"> help
-					</a></li>
+          <li><a href="../friend/friendList.html"> <img id="friend"
+              class="mainIcon_s" src="../img/friend.png"> search Friend
+          </a></li>
+          <li><a href="../help/myRecommend.html"> <img id="help"
+              class="mainIcon_s" src="../img/help.png"> myFriend List
+          </a></li>
 					<li><a href="../setting/setting.html"> <img id="setting"
 							class="mainIcon_s" src="../img/setting.png"> setting
 					</a></li>
@@ -93,6 +93,9 @@
                 <div id="prChat_content" >
             <div class="list">
               <ul class="chatBox">
+              
+              
+              
                 <!-- <li class="boxChat"><a href="#"> <img class="chatImg"
                     src="../img/man1.jpg">
                     <div class="textChat">
@@ -101,7 +104,7 @@
                       <p class="alarm_time">6월 11일 오전13:23</p>
                       <p class="alarm_location">Korea</p>
                     </div>
-                </a></li> -->
+                </a></li> 
                 
 <!--                 <li class="boxChat"><a href="#"> <img class="chatImg"
                     src="../img/man1.jpg">
@@ -130,20 +133,17 @@
 	<!-- footer 끝  -->
 
 
-
-	<!-- 위치로그 나타내기 -->
-	<div class='locationTag' style='display: none'>
-		<div class="locationTag_close">
-			<img id="closeIcon" class="mainIcon_c" src="../img/close.png">
-		</div>
-		<div class="locationTag_image">
-			<img id="locationIcon" class="mainIcon_t" src="../img/location.png">
-		</div>
-		<p>
-			경기도 용인시 처인구<br> 용인 에버랜드
-		</p>
-	</div>
-	<!-- 위치로그 끝  -->
+  <!-- 위치로그 나타내기 -->
+  <div  id="latlng" class='locationTag' style='display: none' >
+    <div class="locationTag_close">
+      <img id="closeIcon" class="mainIcon_c" src="../img/close.png">
+    </div>
+    <div class="locationTag_image">
+      <img id="locationIcon" class="mainIcon_t" src="../img/location.png">
+    </div>
+     <p  id="locationTagText"></p>
+  </div>
+  <!-- 위치로그 끝  -->
 
 	<!-- 자바스크립트 -->
 	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>

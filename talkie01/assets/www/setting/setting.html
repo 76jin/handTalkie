@@ -21,20 +21,20 @@
 </head>
 <body>
 	<!-- 사이드메뉴바  시작-->
-	<div class="drawers">
-		<div class="left-drawer">
-			<a href="../profile/main_Pro.html">
-				<div id="profile">
-					<h4 id="name"></h4>
-					<p>
-						<span id="profileCountry"></span> / <span id="profileLanguage"></span>
-					</p>
-				</div>
-			</a>
-			<div id="imgBox">
-				<img id="myPic" src="../img/profile/profile-image.jpg" alt="myInfo">
-			</div>
-		</div>
+  <div class="drawers">
+    <div class="left-drawer">
+      <div id="imgBox">
+        <img id="myPic" alt="myInfo">
+      </div>
+      <a href="../profile/main_Pro.html"><!--  <img class="mainIcon_f"> -->
+        <div id="profile">
+          <h4 id="name"></h4>
+          <p>
+            <span id="profileCountry"></span> / <span id="profileLanguage"></span>
+          </p>
+        </div>
+      </a>
+    </div>
 
 		<div class="snap-drawer snap-drawer-left">
 			<div>
@@ -46,10 +46,10 @@
 					</div>
 
 					<li><a href="../friend/friendList.html"> <img id="friend"
-							class="mainIcon_s" src="../img/friend.png"> friend List
+							class="mainIcon_s" src="../img/friend.png"> search Friend
 					</a></li>
-					<li><a href="../help/help.html"> <img id="help"
-							class="mainIcon_s" src="../img/help.png"> help
+					<li><a href="../help/myRecommend.html"> <img id="help"
+							class="mainIcon_s" src="../img/help.png"> myFriend List
 					</a></li>
 					<li><a href="../setting/setting.html"> <img id="setting"
 							class="mainIcon_s" src="../img/setting.png"> setting
@@ -60,37 +60,45 @@
 	</div>
 	<!-- 사이드메뉴바 끝 -->
 
-	<!-- 메인메뉴바 시작 -->
-	<div id="content">
-		<div id="header">
-			<a href="#"><img id="menuIcon"
-				src="../img/menuIcon.png"></a>
-		</div>
-		<!-- 메인메뉴바 끝 -->
 
-		<div class="setting_bar">
-			<p class="setting_bar_text">서비스 설정</p>
-		</div>
 
-		<div class="setting_list">
-			<ul class="setting_box">
-				<li class="boxChat"><a href="#">
-						<p class="setting_content">계정관리</p>
-				</a></li>
-				
-				    <li class="boxChat"><a href="#">
+  <!-- 메인메뉴바 시작 -->
+  <div id="content">
+    <div id="header">
+          <a href="#"><img id="menuIcon" src="../img/menuIcon.png"></a>
+     
+    </div>
+    <!-- 메인메뉴바 끝 -->
+
+    <!-- 내용부분 시작 -->
+
+    <div id="center">
+      <section>
+  
+  <div id="center">
+    <div class="setting_bar">
+      <p class="setting_bar_text">서비스 설정</p>
+    </div>
+
+    <div class="setting_list">
+      <ul class="setting_box">
+        <li class="boxChat"><a href="#">
+            <p class="setting_content">계정관리</p>
+        </a></li>
+        
+            <li class="boxChat"><a href="#">
             <p class="setting_content">위치정보 이용 동의</p>
         </a></li>
-				
-				  <li class="boxChat"><a href="#">
+        
+          <li class="boxChat"><a href="#">
             <p class="setting_content">로그아웃</p>
         </a></li>
         
           <li class="boxChat"><a href="#">
             <p class="setting_content">서비스탈퇴</p>
         </a></li>
-			</ul>
-		</div>
+      </ul>
+    </div>
 
 
     <div class="setting_bar">
@@ -115,26 +123,17 @@
 
 
 
+      </section>
+    </div>
+    <!-- 내용부분 끝 -->
 
 
 
+    <!-- footer 시작 -->
+<!--    <div id="footer"></div> -->
+  </div>
+  <!-- footer 끝  -->
 
-
-
-
-
-
-
-
-		<!-- 내용부분 시작 -->
-		<div id="center"></div>
-
-		<!-- 내용부분 끝 -->
-
-		<!-- footer 시작 -->
-		<div id="footer"></div>
-	</div>
-	<!-- footer 끝  -->
 
 	<!-- 위치로그 나타내기 -->
 	<div class='locationTag' style='display: none'>

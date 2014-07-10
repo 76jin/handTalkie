@@ -114,17 +114,18 @@
   list-style-type: none;
 }
 
-.snap-drawer li > a {
-	padding: 25px;
-  display: block;
-  border-bottom: 1px solid rgba(0,0,0, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
- /* text-shadow: 0 1px 0 #000;*/
-  text-decoration: none;
-  color: white;
-  text-indent: 20px;
-}
 
+.snap-drawer li > a {
+padding: 17px;
+display: block;
+border-bottom: 1px solid rgba(0,0,0, 0.1);
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* text-shadow: 0 1px 0 #000; */
+text-decoration: none;
+color: white;
+text-indent: 7px;
+font-size: medium;
+}
 .snap-drawer p {
   opacity: 0.5;
   padding: 15px;
