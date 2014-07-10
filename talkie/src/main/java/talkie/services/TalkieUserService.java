@@ -15,5 +15,6 @@ public interface TalkieUserService {
 	List<TalkieUserVo> getfriendinfo(int no);
 	// List<TalkieUserVo>  alarmListFriend(int frNo);
 	List<TalkieUserVo> alarmListFriend(int frNo, int alarmNo);
+	TalkieUserVo getUserInfo(int no);
 	
 }

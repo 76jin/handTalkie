@@ -53,6 +53,13 @@
     where EMAIL=#{email} and PASSWORD=#{password}
   </select>
   
+  <select id="getUserInfo" 
+      parameterType="int" resultMap="talkieUserMap">
+    select UNO,NAME,EMAIL,AGENO,NATINO,LANNO,GENDER,FAVTAG,PHOPATH
+    from SE_USERS
+    where UNO=#{userNo}
+  </select>
+  
   <select id="getProfileInfo" 
       parameterType="String" resultMap="talkieUserMap">
     select NAME, FAVTAG, PHOPATH, PROFILETITLE, PROFILEDESC, RECOMMEND

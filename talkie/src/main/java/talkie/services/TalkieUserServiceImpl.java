@@ -117,6 +117,16 @@ public class TalkieUserServiceImpl implements TalkieUserService {
 			throw new RuntimeException(ex);
 		}   
     }
+	
+	@Override
+  public TalkieUserVo getUserInfo(int no) {
+    try {
+        log.debug("===== call getUserInfo.no =====" + no);
+        return talkieUserDao.getUserInfo(no);
+    } catch (Throwable ex) {
+      throw new RuntimeException(ex);
+    }
+  }
 }
 
 

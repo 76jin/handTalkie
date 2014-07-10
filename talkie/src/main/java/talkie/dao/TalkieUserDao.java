@@ -18,6 +18,7 @@ public interface TalkieUserDao {
 	List<TalkieUserVo> getfriendinfo(int no);
 	//List<TalkieUserVo> getAlarmListFriend(HashMap<String, Integer> params);
 	List<TalkieUserVo> getAlarmListFriend(HashMap<String, Integer> params);
+	TalkieUserVo getUserInfo(int no);
 	
 	/*
 	void insert(TalkieUserVo user) throws Throwable;
